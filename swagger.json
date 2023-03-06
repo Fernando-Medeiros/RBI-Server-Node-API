@@ -1,0 +1,35 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Red-Boar-Inn Game API",
+    "description": "",
+    "version": "1.0.0",
+    "contact": { "name": "support", "email": "red-boar-inn-support@gmail.com" }
+  },
+  "basePath": "/",
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "description": "Authentication with bearer token ",
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "BadRequest": {
+        "type": "object",
+        "properties": { "message": { "type": "string" } }
+      },
+      "NotFound": {
+        "type": "object",
+        "properties": { "message": { "type": "string" } }
+      },
+      "Unauthorized": {
+        "type": "object",
+        "properties": { "message": { "type": "string" } }
+      }
+    }
+  },
+  "paths": {}
+}
