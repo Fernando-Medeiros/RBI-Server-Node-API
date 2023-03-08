@@ -1,15 +1,21 @@
 import { Schema, model } from "mongoose";
 
 const inventoriesSchema = {
-  gold: {
-    type: Number,
-    min: 1,
-    default: 1,
+  armors: {
+    type: Array,
+    default: [],
   },
-  jewel: {
-    type: Number,
-    min: 1,
-    default: 1,
+  weapons: {
+    type: Array,
+    default: [],
+  },
+  consumables: {
+    type: Array,
+    default: [],
+  },
+  materials: {
+    type: Array,
+    default: [],
   },
 };
 

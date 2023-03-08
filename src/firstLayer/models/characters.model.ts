@@ -17,9 +17,10 @@ const characterSchema = {
     maxlength: 20,
     default: `unknown`,
   },
-  class: {
+  className: {
     type: String,
     required: true,
+    index: true,
     trim: true,
     minlength: 4,
     maxlength: 25,
