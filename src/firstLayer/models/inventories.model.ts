@@ -5,7 +5,7 @@ const inventoriesSchema = {
     type: Array,
     default: [],
   },
-  weapons: {
+  accessories: {
     type: Array,
     default: [],
   },
@@ -14,6 +14,10 @@ const inventoriesSchema = {
     default: [],
   },
   materials: {
+    type: Array,
+    default: [],
+  },
+  weapons: {
     type: Array,
     default: [],
   },

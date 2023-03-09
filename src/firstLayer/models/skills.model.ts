@@ -1,11 +1,13 @@
 import { Schema, model } from "mongoose";
 
 const skillsSchema = {
-  slash: {
-    type: Object,
+  offensive: {
+    type: Array,
+    default: [],
   },
-  magicHand: {
-    type: Object,
+  defensive: {
+    type: Array,
+    default: [],
   },
 };
 
