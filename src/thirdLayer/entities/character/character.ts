@@ -1,12 +1,17 @@
-import type { ICharacter, PropsCharacter } from "./character.interface";
+import type { ICharacter, PCharacter } from "./character.interface";
 
 export class Character implements ICharacter {
-  private props: PropsCharacter;
+  private props: PCharacter;
 
-  constructor(data: PropsCharacter) {
+  constructor(data: PCharacter) {
     this.props = data;
   }
-
+  get getPubId(): string {
+    return this.props.pubId;
+  }
+  set setPubId(id: string) {
+    this.props.pubId = id;
+  }
   get getLevel(): number {
     return this.props.level;
   }
@@ -29,7 +34,7 @@ export class Character implements ICharacter {
     return this.props.createdAt as object;
   }
 
-  getDataToSave(): PropsCharacter {
+  getDataToSave(): PCharacter {
     return this.props;
   }
 }
