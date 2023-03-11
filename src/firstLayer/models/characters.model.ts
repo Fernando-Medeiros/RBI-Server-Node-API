@@ -1,6 +1,10 @@
 import { Schema, model } from "mongoose";
 
 const characterSchema = {
+  pubId: {
+    type: String,
+    index: true,
+  },
   level: {
     type: Number,
     required: true,
@@ -14,7 +18,7 @@ const characterSchema = {
     unique: true,
     trim: true,
     minlength: 4,
-    maxlength: 20,
+    maxlength: 15,
     default: `unknown`,
   },
   className: {
@@ -23,7 +27,7 @@ const characterSchema = {
     index: true,
     trim: true,
     minlength: 4,
-    maxlength: 25,
+    maxlength: 20,
     default: "peasant",
   },
   createdAt: {
