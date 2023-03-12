@@ -3,39 +3,39 @@ import "tsconfig-paths/register";
 import type { SwaggerInterface, Swagger } from "./interface";
 import * as fs from "fs";
 
-import swaggerJson from "@root/swagger.json";
+import swaggerFile from "@root/swagger.json";
 
 import information from "../config/info.json";
 
 import authentication from "../config/authentication.json";
 import exceptions from "../config/exceptions.json";
 
-import characterPath from "../resources/character/paths.json";
+import characterPaths from "../resources/character/paths.json";
 import characterReq from "../resources/character/requests.json";
 import characterRes from "../resources/character/responses.json";
 
 class BuildSwagger implements SwaggerInterface {
-  public file = swaggerJson as Swagger;
+  public file = swaggerFile as Swagger;
 
-  info(i: object[]): void {
+  insertInfo(i: object[]): void {
     const infos = Object.assign({}, ...i);
 
     this.file.info = infos;
   }
 
-  security(a: object[]): void {
+  insertSecurity(a: object[]): void {
     const authentications = Object.assign({}, ...a);
 
     this.file.components.securitySchemes = authentications;
   }
 
-  components(c: object[]): void {
+  insertComponents(c: object[]): void {
     const components = Object.assign({}, ...c);
 
     this.file.components.schemas = components;
   }
 
-  paths(p: object[]): void {
+  insertPaths(p: object[]): void {
     const paths = Object.assign({}, ...p);
 
     this.file.paths = paths;
@@ -50,12 +50,12 @@ class BuildSwagger implements SwaggerInterface {
 
 const build = new BuildSwagger();
 
-build.info([information]);
+build.insertInfo([information]);
 
-build.security([authentication]);
+build.insertSecurity([authentication]);
 
-build.components([exceptions, characterReq, characterRes]);
+build.insertComponents([exceptions, characterReq, characterRes]);
 
-build.paths([characterPath]);
+build.insertPaths([characterPaths]);
 
 build.save();
