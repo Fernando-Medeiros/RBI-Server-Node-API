@@ -10,6 +10,10 @@ import information from "../config/info.json";
 import authentication from "../config/authentication.json";
 import exceptions from "../config/exceptions.json";
 
+import characterPath from "../resources/character/paths.json";
+import characterReq from "../resources/character/requests.json";
+import characterRes from "../resources/character/responses.json";
+
 class BuildSwagger implements SwaggerInterface {
   public file = swaggerJson as Swagger;
 
@@ -50,8 +54,8 @@ build.info([information]);
 
 build.security([authentication]);
 
-build.components([exceptions]);
+build.components([exceptions, characterReq, characterRes]);
 
-build.paths([]);
+build.paths([characterPath]);
 
 build.save();

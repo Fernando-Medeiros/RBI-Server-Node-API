@@ -1,0 +1,51 @@
+{
+  "RequestCreatedCharacter": {
+    "type": "object",
+    "properties": {
+      "charName": {
+        "type": "string",
+        "required": true,
+        "example": "ExampleName"
+      },
+      "className": {
+        "type": "string",
+        "required": true,
+        "example": "Warrior"
+      }
+    }
+  },
+
+  "RequestUpdateCharacter": {
+    "type": "object",
+    "properties": {
+      "level": {
+        "type": "number",
+        "example": "2"
+      },
+      "charName": {
+        "type": "string",
+        "example": "ExampleName"
+      },
+      "className": {
+        "type": "string",
+        "example": "Warrior"
+      }
+    }
+  },
+
+  "ParameterID": {
+    "description": "Character ID",
+    "name": "id",
+    "in": "path",
+    "type": "string",
+    "required": true
+  },
+
+  "ParameterName": {
+    "description": "Character Name",
+    "name": "name",
+    "in": "path",
+    "type": "string",
+    "required": true
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "ResponseGetAllCharacters": {
+    "type": "array",
+    "items": {
+      "type": "object",
+      "properties": {
+        "pubId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "level": {
+          "type": "number",
+          "example": "1"
+        },
+        "charName": {
+          "type": "string",
+          "example": "ExampleName"
+        },
+        "className": {
+          "type": "string",
+          "example": "Warrior"
+        }
+      }
+    }
+  },
+
+  "ResponseGetByIdOrNameCharacter": {
+    "type": "object",
+    "properties": {
+      "pubId": {
+        "type": "string",
+        "format": "uuid"
+      },
+      "level": {
+        "type": "number",
+        "example": "1"
+      },
+      "charName": {
+        "type": "string",
+        "example": "ExampleName"
+      },
+      "className": {
+        "type": "string",
+        "example": "Warrior"
+      }
+    }
+  }
+}

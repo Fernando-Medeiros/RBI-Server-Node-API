@@ -3,6 +3,7 @@
 - [Red-Boar-Inn Game API](#red-boar-inn-game-api)
   - [Structure](#structure)
   - [Documentation](#documentation)
+  - [Endpoints](#endpoints)
 
 ## Structure
 
@@ -11,3 +12,7 @@
 ## Documentation
 
 [SCRIPT - swagger](swagger/build/)
+
+## Endpoints
+
+![Endpoints](endpoints.png)
