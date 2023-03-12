@@ -35,6 +35,6 @@ export const classNameIsValid_or_400 = (name?: string): void => {
 
 export const idIsValid_or_400 = (id?: string): void => {
   if (id === undefined || !validate(id)) {
-    new BadRequest("ID format is invalid!");
+    throw new BadRequest("ID format is invalid!");
   }
 };

@@ -4,6 +4,8 @@ import type {
   ICharacterRequests,
 } from "./repository/character.interface";
 
+import { NotFound } from "@root/src/utils/http.exceptions";
+
 export const getByNameCase = async (
   req: Request,
   requests: ICharacterRequests,
@@ -12,6 +14,10 @@ export const getByNameCase = async (
   const { name } = requests.getRequestToFindByName(req);
 
   const character = await repository.findByName(name);
+
+  if (character === null) {
+    throw new NotFound("Character not found!");
+  }
 
   delete character?._id;
 
