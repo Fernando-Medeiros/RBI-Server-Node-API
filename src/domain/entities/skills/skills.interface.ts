@@ -1,4 +1,7 @@
-import type { Defensive, Offensive } from "@dom/skills/skills.interface";
+import type {
+  Defensive,
+  Offensive,
+} from "@root/src/domain/skills/skills.interface";
 
 export interface ISkills {
   get getOffensiveSkills(): Offensive[];

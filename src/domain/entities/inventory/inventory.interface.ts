@@ -4,7 +4,7 @@ import type {
   Weapon,
   Consumable,
   Material,
-} from "@dom/items/items.interface";
+} from "@root/src/domain/items/items.interface";
 
 export interface IInventory {
   get getArmors(): Armor[];

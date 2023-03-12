@@ -1,6 +1,6 @@
 import { v4 } from "uuid";
 
-import { Character } from "@dom/entities/character/character";
+import { Character } from "@root/src/domain/entities/character/character";
 
 const dataDefault = {
   level: 1,

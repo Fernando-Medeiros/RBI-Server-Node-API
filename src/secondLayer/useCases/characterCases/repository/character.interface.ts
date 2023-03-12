@@ -1,10 +1,13 @@
-import type { PCharacter } from "@dom/entities/character/character.interface";
+import type { PCharacter } from "@root/src/domain/entities/character/character.interface";
 
 export interface ICharacterRepository {
   find(): Promise<PropsCharacter[]>;
   findById(id: string): Promise<PropsCharacter | null>;
   findByName(name: string): Promise<PropsCharacter | null>;
-  findByIdAndUpdate(id: string, data: PCharacterUpdate): Promise<PropsCharacter | null>;
+  findByIdAndUpdate(
+    id: string,
+    data: PCharacterUpdate
+  ): Promise<PropsCharacter | null>;
   findByIdAndDelete(id: string): Promise<PropsCharacter | null>;
   save(data: PCharacterCreate): Promise<void>;
 }

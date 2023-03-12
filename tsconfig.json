@@ -11,7 +11,7 @@
       "@src/*": ["src/*", "dist/src/*"],
       "@inf/*": ["src/firstLayer/*", "dist/src/firstLayer/*"],
       "@app/*": ["src/secondLayer/*", "dist/src/secondLayer/*"],
-      "@dom/*": ["src/thirdLayer/*", "dist/src/thirdLayer/*"],
+      "@dom/*": ["src/domain/*", "dist/src/domain/*"],
       "@tes/*": ["tests/*"]
     },
     "resolveJsonModule": true,

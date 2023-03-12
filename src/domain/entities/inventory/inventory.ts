@@ -5,7 +5,7 @@ import type {
   Consumable,
   Material,
   Weapon,
-} from "@dom/items/items.interface";
+} from "@root/src/domain/items/items.interface";
 
 export class Inventory implements IInventory {
   private props: PropsPackage;

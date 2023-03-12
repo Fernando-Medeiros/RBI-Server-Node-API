@@ -1,5 +1,8 @@
 import type { ISkills, PropsSkills } from "./skills.interface";
-import type { Defensive, Offensive } from "@dom/skills/skills.interface";
+import type {
+  Defensive,
+  Offensive,
+} from "@root/src/domain/skills/skills.interface";
 
 export class Skill implements ISkills {
   private props: PropsSkills;
