@@ -14,7 +14,7 @@ routes.get("/characters", getAllCharacters);
 
 routes.get("/characters/:id", getCharacterById);
 
-routes.get("/characters/:name", getCharacterByName);
+routes.get("/characters/name/:name", getCharacterByName);
 
 routes.post("/characters", createCharacter);
 
