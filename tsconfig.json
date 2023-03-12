@@ -10,7 +10,7 @@
       "@root/*": ["./*"],
       "@src/*": ["src/*", "dist/src/*"],
       "@inf/*": ["src/firstLayer/*", "dist/src/firstLayer/*"],
-      "@app/*": ["src/secondLayer/*", "dist/src/secondLayer/*"],
+      "@app/*": ["src/application/*", "dist/src/application/*"],
       "@dom/*": ["src/domain/*", "dist/src/domain/*"],
       "@tes/*": ["tests/*"]
     },
