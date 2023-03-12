@@ -19,7 +19,10 @@ export const getByIdCase = async (
     throw new NotFound("Character not found!");
   }
 
-  delete character?._id;
-
-  return character;
+  return {
+    pubId: character.pubId,
+    level: character.level,
+    charName: character.charName,
+    className: character.className,
+  };
 };
