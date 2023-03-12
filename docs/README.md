@@ -1,6 +1,6 @@
-# Red-Boar-Inn Game API
+# Red-Boar-Inn Server API
 
-- [Red-Boar-Inn Game API](#red-boar-inn-game-api)
+- [Red-Boar-Inn Server API](#red-boar-inn-server-api)
   - [Structure](#structure)
   - [Documentation](#documentation)
   - [Endpoints](#endpoints)
