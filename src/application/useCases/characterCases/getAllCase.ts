@@ -1,4 +1,4 @@
-import type { ICharacterRepository } from "./repository/character.interface";
+import type { ICharacterRepository } from "./repository/character.repository.interfaces";
 
 export const getAllCase = async (repository: ICharacterRepository) => {
   const characters = await repository.find();

@@ -1,19 +1,13 @@
-import type { Request } from "express";
-import type {
-  ICharacterRepository,
-  ICharacterRequests,
-} from "./repository/character.interface";
+import type { ICharacterRepository } from "./repository/character.repository.interfaces";
+import type { ICharacterRequestsToUpdate } from "./repository/character.requests.interfaces";
 
-import { BadRequest, NotFound } from "@root/src/utils/http.exceptions";
+import { BadRequest, NotFound } from "@src/utils/http.exceptions";
 
 export const updateCase = async (
-  req: Request,
-  requests: ICharacterRequests,
+  requests: ICharacterRequestsToUpdate,
   repository: ICharacterRepository
 ) => {
-  const { sub } = req.headers;
-
-  const toUpdate = requests.getRequestToUpdate(req);
+  const [sub, toUpdate] = requests.getRequestToUpdate();
 
   const nameExists = toUpdate?.charName
     ? await repository.findByName(toUpdate.charName)

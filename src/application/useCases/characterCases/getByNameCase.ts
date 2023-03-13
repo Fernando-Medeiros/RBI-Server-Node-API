@@ -1,17 +1,13 @@
-import type { Request } from "express";
-import type {
-  ICharacterRepository,
-  ICharacterRequests,
-} from "./repository/character.interface";
+import type { ICharacterRepository } from "./repository/character.repository.interfaces";
+import type { ICharacterRequestsToFindByName } from "./repository/character.requests.interfaces";
 
-import { NotFound } from "@root/src/utils/http.exceptions";
+import { NotFound } from "@src/utils/http.exceptions";
 
 export const getByNameCase = async (
-  req: Request,
-  requests: ICharacterRequests,
+  requests: ICharacterRequestsToFindByName,
   repository: ICharacterRepository
 ) => {
-  const { name } = requests.getRequestToFindByName(req);
+  const { name } = requests.getRequestToFindByName();
 
   const character = await repository.findByName(name);
 
