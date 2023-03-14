@@ -8,7 +8,7 @@ import { InMemoryCharacterRepositoryMock } from "./mock/inMemoryCharacterReposit
 describe("UseCases - Character - Get By Name - OK", () => {
   helpers.insertOneCharacterToDatabase();
 
-  it("should get by name", async () => {
+  it("Should get a character by name", async () => {
     const { charName: name } = helpers.getCharacterDataMock();
 
     const res = await getByNameCase(
@@ -17,6 +17,31 @@ describe("UseCases - Character - Get By Name - OK", () => {
     );
 
     expect(res).toContain({ charName: name });
-    expect(res).toBeTypeOf("object");
+  });
+});
+
+describe("UseCases - Character - Get By Name - Exceptions", () => {
+  helpers.insertOneCharacterToDatabase();
+
+  it("Should return [invalid format]", async () => {
+    const charName = "@@@@@";
+
+    await expect(() =>
+      getByNameCase(
+        new CharacterRequestsToFindByName(charName),
+        new InMemoryCharacterRepositoryMock()
+      )
+    ).rejects.toThrowError("format is invalid");
+  });
+
+  it("Should return [not found]", async () => {
+    const charName = "FakeName";
+
+    await expect(() =>
+      getByNameCase(
+        new CharacterRequestsToFindByName(charName),
+        new InMemoryCharacterRepositoryMock()
+      )
+    ).rejects.toThrowError("not found");
   });
 });
