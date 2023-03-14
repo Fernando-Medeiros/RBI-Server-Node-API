@@ -1,19 +1,16 @@
 import { v4 } from "uuid";
 
-import { Character } from "@root/src/domain/entities/character/character";
+import { Character } from "@dom/entities/character/character";
 
-const dataDefault = {
-  level: 1,
-  pubId: v4(),
-  charName: "ExampleName",
-  className: "Rogue",
-};
+import characterDataMock from "./character.data.mock.json";
+
+characterDataMock.pubId = v4();
 
 export class CharacterMock {
   private props: Character;
 
   constructor(charName: string) {
-    this.props = new Character(dataDefault);
+    this.props = new Character(characterDataMock);
 
     this.props.setName = charName;
   }

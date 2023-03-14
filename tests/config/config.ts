@@ -1,5 +1,4 @@
 import "tsconfig-paths/register";
-
 import request from "supertest";
 import { config } from "dotenv";
 import { env } from "process";

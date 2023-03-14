@@ -1,22 +1,17 @@
 import { describe, expect, it } from "vitest";
-
 import { app } from "@tes/config/config";
-import { HelperHeaders, HelperInsertRemove } from "@tes/config/utils";
 import { CharacterMock } from "../mock/character.mock";
+import {
+  HelperInsertRemove as helpers,
+  HelperHeaders as helperHeader,
+} from "@tes/config/helpers";
 
-const mock = new CharacterMock("CreateCharEx");
-const helperHeader = new HelperHeaders();
-const helperInsRem = new HelperInsertRemove("/characters");
+const mock = new CharacterMock("FakeNameNewOk");
 
-const header = { Authorization: "Bearer " };
+describe("Character - Create - Success", async () => {
+  const header = await helperHeader.getAuthorizationHeader(mock.pubId);
 
-it("Should return authorized header with bearer token for tests", async () => {
-  Object.assign(header, await helperHeader.getAuthorizationHeader(mock.pubId));
-  expect(header.Authorization.length).toBeGreaterThan(150);
-});
-
-describe("Character - Create - Success", () => {
-  helperInsRem.removeAfterAll(header);
+  helpers.removeAfterAll("/characters", header);
 
   it("Should return 201 when creating new character", async () => {
     const res = await app
