@@ -3,7 +3,6 @@
 ```console
 .
 ├── docs
-│   ├── diagrams
 │   ├── swagger
 │   │   ├── build
 │   │   │   ├── interface.ts
@@ -21,50 +20,39 @@
 │   ├── README.md
 │   └── STRUCTURE.md
 ├── src
-│   ├── firstLayer
-│   │   ├── middlewares
-│   │   │   ├── exceptions.ts
-│   │   │   └── session.ts
-│   │   ├── models
-│   │   │   ├── characters.model.ts
-│   │   │   ├── equipments.model.ts
-│   │   │   ├── inventories.model.ts
-│   │   │   ├── skills.model.ts
-│   │   │   └── status.model.ts
-│   │   ├── repositories
-│   │   │   └── character
-│   │   │       └── character.repository.impl.ts
-│   │   ├── routes
-│   │   │   ├── controllers
-│   │   │   │   └── character.controller.ts
-│   │   │   ├── handlers
-│   │   │   │   └── character.handler.ts
-│   │   │   └── resources
-│   │   │       └── character.routes.ts
-│   │   ├── security
-│   │   │   └── token
-│   │   │       └── token.impl.ts
-│   │   ├── services
-│   │   │   └── database
-│   │   │       └── database.connect.ts
-│   │   └── server.ts
-│   ├── secondLayer
+│   ├── application
 │   │   └── useCases
-│   │       ├── characterCases
-│   │       │   ├── repository
-│   │       │   │   └── character.interface.ts
-│   │       │   ├── requests
-│   │       │   │   └── character.requests.ts
-│   │       │   ├── validators
-│   │       │   │   └── validators.ts
-│   │       │   ├── createCase.ts
-│   │       │   ├── deleteCase.ts
-│   │       │   ├── getAllCase.ts
-│   │       │   ├── getByIdCase.ts
-│   │       │   ├── getByNameCase.ts
-│   │       │   └── updateCase.ts
-│   │       └── statusCases
-│   ├── thirdLayer
+│   │       └── characterCases
+│   │           ├── repository
+│   │           │   ├── character.props.ts
+│   │           │   ├── character.repository.interfaces.ts
+│   │           │   └── character.requests.interfaces.ts
+│   │           ├── requests
+│   │           │   ├── create.requests.ts
+│   │           │   ├── delete.requests.ts
+│   │           │   ├── findById.requests.ts
+│   │           │   ├── findByName.requests.ts
+│   │           │   └── update.requests.ts
+│   │           ├── tests
+│   │           │   ├── mock
+│   │           │   │   ├── character.data.mock.json
+│   │           │   │   ├── inMemoryCharacterRepository.ts
+│   │           │   │   └── utils.ts
+│   │           │   ├── create.case.spec.ts
+│   │           │   ├── delete.case.spec.ts
+│   │           │   ├── getAll.case.spec.ts
+│   │           │   ├── getById.case.spec.ts
+│   │           │   ├── getByName.case.spec.ts
+│   │           │   └── update.case.spec.ts
+│   │           ├── validators
+│   │           │   └── validators.ts
+│   │           ├── createCase.ts
+│   │           ├── deleteCase.ts
+│   │           ├── getAllCase.ts
+│   │           ├── getByIdCase.ts
+│   │           ├── getByNameCase.ts
+│   │           └── updateCase.ts
+│   ├── domain
 │   │   ├── entities
 │   │   │   ├── character
 │   │   │   │   ├── character.interface.ts
@@ -90,6 +78,32 @@
 │   │   │   └── items.interface.ts
 │   │   └── skills
 │   │       └── skills.interface.ts
+│   ├── infrastructure
+│   │   ├── middlewares
+│   │   │   ├── exceptions.ts
+│   │   │   └── session.ts
+│   │   ├── models
+│   │   │   ├── characters.model.ts
+│   │   │   ├── equipments.model.ts
+│   │   │   ├── inventories.model.ts
+│   │   │   ├── skills.model.ts
+│   │   │   └── status.model.ts
+│   │   ├── repositories
+│   │   │   └── character.repository.impl.ts
+│   │   ├── routes
+│   │   │   ├── controllers
+│   │   │   │   └── character.controller.ts
+│   │   │   ├── handlers
+│   │   │   │   └── character.handler.ts
+│   │   │   └── resources
+│   │   │       └── character.routes.ts
+│   │   ├── security
+│   │   │   └── token
+│   │   │       └── token.impl.ts
+│   │   ├── services
+│   │   │   └── database
+│   │   │       └── database.connect.ts
+│   │   └── server.ts
 │   ├── utils
 │   │   ├── http.exceptions.ts
 │   │   └── http.protocols.ts
@@ -97,9 +111,9 @@
 ├── tests
 │   ├── config
 │   │   ├── config.ts
-│   │   ├── token.ts
-│   │   └── utils.ts
-│   └── resources
+│   │   ├── helpers.ts
+│   │   └── token.ts
+│   └── integration
 │       └── characters
 │           ├── create
 │           │   ├── exceptions.spec.ts
@@ -117,6 +131,7 @@
 │           │   ├── exceptions.spec.ts
 │           │   └── success.spec.ts
 │           ├── mock
+│           │   ├── character.data.mock.json
 │           │   └── character.mock.ts
 │           └── update
 │               ├── exceptions.spec.ts
@@ -128,5 +143,5 @@
 ├── vitest.config.ts
 └── yarn.lock
 
-49 directories, 76 files
+48 directories, 92 files
 ```
