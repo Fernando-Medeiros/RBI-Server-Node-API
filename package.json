@@ -11,9 +11,10 @@
     "build": "tsc -p tsconfig.json",
     "dev": "nodemon -r ts-node src/main.ts",
     "start": "node dist/src/main.js",
-    "doc": "ts-node docs/swagger/build/script.ts",
     "test": "vitest",
-    "test:ui": "vitest --ui"
+    "test:ui": "vitest --ui",
+    "doc": "ts-node scripts/build.swagger.ts",
+    "tree": "ts-node scripts/build.tree.ts"
   },
   "keywords": [
     "game",
