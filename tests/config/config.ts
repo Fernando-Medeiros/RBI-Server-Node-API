@@ -4,12 +4,16 @@ import { config } from "dotenv";
 import { env } from "process";
 
 env["ENV"] = "test";
-env["MONGO_COLLECTION"] = "TEST";
+env["MONGODB_DATABASE"] = "TEST";
 config();
 
-import { connectToDatabase } from "@inf/services/database/database.connect";
+import { DatabasePrimary } from "@inf/services/database/database.connect";
 import { server } from "@inf/server";
 
-connectToDatabase();
+async function main() {
+  await DatabasePrimary.connect();
+}
+
+main();
 
 export const app = request(server);

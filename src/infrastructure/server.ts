@@ -21,6 +21,10 @@ server.use(characterRoutes);
 
 server.use(exceptionMiddleware);
 
-const PORT = process.env["PORT"] || 8080;
+export class Server {
+  static connect(): void {
+    const PORT = process.env["PORT"] || 8080;
 
-export const startServer = () => server.listen(PORT);
+    server.listen(PORT);
+  }
+}

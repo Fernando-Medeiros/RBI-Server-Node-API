@@ -1,10 +1,13 @@
 import "tsconfig-paths/register";
-
 import { config } from "dotenv";
 config();
 
-import { connectToDatabase } from "@inf/services/database/database.connect";
-import { startServer } from "@inf/server";
+import { DatabasePrimary } from "@inf/services/database/database.connect";
+import { Server } from "@inf/server";
 
-connectToDatabase();
-startServer();
+async function main() {
+  await DatabasePrimary.connect();
+  Server.connect();
+}
+
+main();

@@ -1,22 +1,30 @@
-import { env } from "process";
-import { set, connect } from "mongoose";
+import { set, connect, disconnect } from "mongoose";
 
 set("strictQuery", false);
 
 export const getURI = (): string => {
-  const username = env["MONGO_USERNAME"] || "";
-  const password = env["MONGO_PASSWORD"] || "";
-  const host = env["MONGO_HOST"] || "";
-  const collection =
-    env["ENV"] === "dev" ? "DEVELOPMENT" : env["MONGO_COLLECTION"];
+  const {
+    MONGODB_USERNAME: username,
+    MONGODB_PASSWORD: password,
+    MONGODB_HOST: host,
+    MONGODB_DATABASE: database,
+    MONGODB_PORT: port,
+    ENV: env,
+  } = process.env;
 
-  return `mongodb+srv://${username}:${password}.${host}/${collection}?retryWrites=true&w=majority`;
+  if (env?.toLowerCase() === "dev" || env?.toLowerCase() === "test") {
+    return `mongodb://${host}:${port}/${database}`;
+  }
+
+  return `mongodb+srv://${username}:${password}.${host}/${database}?retryWrites=true&w=majority`;
 };
 
-export const connectToDatabase = async () => {
-  const uri: string = getURI();
-
-  await connect(uri)
-    .then(() => console.log(`Connected to the database -> ${env["ENV"]}`))
-    .catch(() => new Error(`Error connecting to the database!`));
-};
+export class DatabasePrimary {
+  static async connect(): Promise<void> {
+    await connect(getURI())
+    .catch((err) => console.log(err));
+  }
+  static async disconnect(): Promise<void> {
+    await disconnect();
+  }
+}
