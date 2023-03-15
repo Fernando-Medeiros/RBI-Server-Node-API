@@ -1,17 +1,27 @@
 # Red-Boar-Inn Server API
 
 - [Red-Boar-Inn Server API](#red-boar-inn-server-api)
+  - [Start](#start)
   - [Structure](#structure)
   - [Documentation](#documentation)
+  - [Scripts](#scripts)
   - [Endpoints](#endpoints)
+
+## Start
+
+[run - project](START.md)
 
 ## Structure
 
-[STRUCTURE](STRUCTURE.md)
+[tree - structure](STRUCTURE.md)
 
 ## Documentation
 
-[SCRIPT - swagger](swagger/build/)
+[doc - swagger](../swagger.json)
+
+## Scripts
+
+[scripts > tree - doc](../scripts/)
 
 ## Endpoints
 
