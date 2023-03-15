@@ -1,0 +1,45 @@
+version: "3.7"
+
+services:
+  app:
+    build: .
+    container_name: "rbi"
+    depends_on:
+      - mongodb
+      - redis
+    links:
+      - mongodb
+      - redis
+    command: yarn dev
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/usr/app
+      - /usr/app/node_modules
+    environment:
+      NODE_ENV: dev
+      PORT: 3000
+
+  mongodb:
+    container_name: "mongo"
+    image: bitnami/mongodb:latest
+    ports:
+      - 27017:27017
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    volumes:
+      - "mongodb_data:/bitnami/mongodb/database"
+
+  redis:
+    container_name: "redis"
+    image: bitnami/redis:latest
+    ports:
+      - 6379:6379
+    environment:
+      REDIS_PASSWORD: "password"
+    volumes:
+      - redis_data:/bitnami/redis/database
+
+volumes:
+  mongodb_data:
+  redis_data:
