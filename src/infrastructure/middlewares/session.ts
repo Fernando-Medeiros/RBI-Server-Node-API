@@ -1,9 +1,7 @@
 import type { NextFunction, Request, Response } from "express";
-
 import { validate } from "uuid";
-import { InternalServerError, Unauthorized } from "@src/utils/http.exceptions";
-
-import { decodeTokenJwt } from "@inf/security/token/token.impl";
+import { JWT } from "@inf/security/token/token.impl";
+import { BadRequest, Unauthorized } from "@src/utils/http.exceptions";
 
 export const sessionMiddleware = async (
   req: Request,
@@ -18,10 +16,10 @@ export const sessionMiddleware = async (
     new Unauthorized("Missing Authorization header with token");
   }
 
-  const { sub } = await decodeTokenJwt(String(token));
+  const { sub } = await JWT.decode(String(token));
 
   if (sub === undefined || !validate(sub)) {
-    new InternalServerError(
+    new BadRequest(
       "Could not verify credentials, please sign in again to refresh session!"
     );
   }
