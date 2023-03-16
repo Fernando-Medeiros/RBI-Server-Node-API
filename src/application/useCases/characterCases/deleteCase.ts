@@ -1,7 +1,7 @@
 import type { ICharacterRepository } from "./repository/character.repository.interfaces";
 import type { ICharacterRequestsToDelete } from "./repository/character.requests.interfaces";
 
-import { NotFound } from "@root/src/utils/http.exceptions";
+import { NotFound } from "@src/utils/http.exceptions";
 
 export const deleteCase = async (
   requests: ICharacterRequestsToDelete,
