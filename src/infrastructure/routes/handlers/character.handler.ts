@@ -23,7 +23,7 @@ export const characterHandler = {
     const { id } = req.params;
 
     return await getByIdCase(
-      new CharacterRequestsToFindById(id),
+      new CharacterRequestsToFindById(id as string),
       new CharacterRepository()
     );
   },
@@ -42,7 +42,7 @@ export const characterHandler = {
     const { charName, className } = req.body;
 
     return await createCase(
-      new CharacterRequestsToCreate(charName, className, sub as string),
+      new CharacterRequestsToCreate(sub as string, charName, className),
       new CharacterRepository()
     );
   },
@@ -61,7 +61,7 @@ export const characterHandler = {
     const { charName, className, level } = req.body;
 
     return await updateCase(
-      new CharacterRequestsToUpdate(charName, className, level, sub as string),
+      new CharacterRequestsToUpdate(sub as string, charName, className, level),
       new CharacterRepository()
     );
   },
