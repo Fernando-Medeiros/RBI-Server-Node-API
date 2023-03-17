@@ -1,8 +1,8 @@
 import { describe, it, expect } from "vitest";
 import { UseCaseStatusHelpers as helpers } from "./mock/utils";
 
-import { getByIdCase } from "../getByIdCase";
-import { StatusRequestsToGetById } from "../requests/getById.requests";
+import { getByIdCase } from "../get-by-id.case";
+import { StatusRequestsToGetById } from "../requests/get-by-id.requests";
 import { InMemoryStatusRepository } from "./mock/inMemoryStatusRepository";
 
 const { pubId: sub } = helpers.getStatusDataMock();

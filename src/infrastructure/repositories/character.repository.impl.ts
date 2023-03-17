@@ -1,9 +1,9 @@
-import type { ICharacterRepository } from "@app/useCases/characterCases/repository/character.repository.interfaces";
+import type { ICharacterRepository } from "@app/use-cases/character-cases/repository/character.repository.interfaces";
 import type {
   CharacterProps,
   CharacterCreateProps,
   CharacterUpdateProps,
-} from "@app/useCases/characterCases/repository/character.props";
+} from "@app/use-cases/character-cases/repository/character.props";
 
 import { CharactersModel as model } from "@inf/models/characters.model";
 

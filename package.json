@@ -1,5 +1,5 @@
 {
-  "name": "rbi-game-node-api",
+  "name": "rbi-server-node-api",
   "version": "1.0.0",
   "description": "",
   "main": "main.js",

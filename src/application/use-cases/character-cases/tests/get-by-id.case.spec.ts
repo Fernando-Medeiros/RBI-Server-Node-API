@@ -1,8 +1,8 @@
 import { describe, it, expect } from "vitest";
 import { UseCaseCharacterHelpers as helpers } from "./mock/utils";
 
-import { getByIdCase } from "../getByIdCase";
-import { CharacterRequestsToFindById } from "../requests/findById.requests";
+import { getByIdCase } from "../get-by-id.case";
+import { CharacterRequestsToGetById } from "../requests/get-by-id.requests";
 import { InMemoryCharacterRepository } from "./mock/inMemoryCharacterRepository";
 
 describe("UseCases - Character - Get By Id - OK", () => {
@@ -12,7 +12,7 @@ describe("UseCases - Character - Get By Id - OK", () => {
     const { pubId: sub } = helpers.getCharacterDataMock();
 
     const res = await getByIdCase(
-      new CharacterRequestsToFindById(sub),
+      new CharacterRequestsToGetById(sub),
       new InMemoryCharacterRepository()
     );
 
@@ -26,7 +26,7 @@ describe("UseCases - Character - Get By Id - Exceptions", () => {
 
     await expect(() =>
       getByIdCase(
-        new CharacterRequestsToFindById(sub),
+        new CharacterRequestsToGetById(sub),
         new InMemoryCharacterRepository()
       )
     ).rejects.toThrowError("Could not verify credentials");
@@ -35,7 +35,7 @@ describe("UseCases - Character - Get By Id - Exceptions", () => {
   it("Should return error when passing an null id", async () => {
     await expect(() =>
       getByIdCase(
-        new CharacterRequestsToFindById(""),
+        new CharacterRequestsToGetById(""),
         new InMemoryCharacterRepository()
       )
     ).rejects.toThrowError("Could not verify credentials");
@@ -46,7 +46,7 @@ describe("UseCases - Character - Get By Id - Exceptions", () => {
 
     await expect(() =>
       getByIdCase(
-        new CharacterRequestsToFindById(sub),
+        new CharacterRequestsToGetById(sub),
         new InMemoryCharacterRepository()
       )
     ).rejects.toThrowError("not found");

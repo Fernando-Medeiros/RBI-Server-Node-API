@@ -1,15 +1,15 @@
 import type { ICharacterRepository } from "./repository/character.repository.interfaces";
-import type { ICharacterRequestsToFindById } from "./repository/character.requests.interfaces";
+import type { ICharacterRequestsToGetByName } from "./repository/character.requests.interfaces";
 
 import { NotFound } from "@src/utils/http.exceptions";
 
-export const getByIdCase = async (
-  requests: ICharacterRequestsToFindById,
+export const getByNameCase = async (
+  requests: ICharacterRequestsToGetByName,
   repository: ICharacterRepository
 ) => {
-  const { id } = requests.getRequestToFindById();
+  const { name } = requests.getRequestToGetByName();
 
-  const character = await repository.findById(id);
+  const character = await repository.findByName(name);
 
   if (character === null) {
     throw new NotFound("Character not found!");

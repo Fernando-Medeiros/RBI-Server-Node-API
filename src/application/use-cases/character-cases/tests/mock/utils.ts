@@ -1,6 +1,6 @@
-import { InMemoryCharacterRepository } from "../mock/inMemoryCharacterRepository";
+import { InMemoryCharacterRepository } from "./inMemoryCharacterRepository";
 
-import characterDataMock from "../mock/character.data.mock.json";
+import characterDataMock from "./character.data.mock.json";
 
 const database = new InMemoryCharacterRepository();
 

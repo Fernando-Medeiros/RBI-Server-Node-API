@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { UseCaseCharacterHelpers as helpers } from "./mock/utils";
 
-import { getAllCase } from "@app/useCases/characterCases/getAllCase";
+import { getAllCase } from "../get-all.case";
 import { InMemoryCharacterRepository } from "./mock/inMemoryCharacterRepository";
 
 describe("UseCases - Character - Get All - OK", () => {

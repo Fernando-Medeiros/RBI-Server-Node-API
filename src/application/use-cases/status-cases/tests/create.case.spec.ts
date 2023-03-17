@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { UseCaseStatusHelpers as helpers } from "./mock/utils";
 
-import { createCase } from "../createCase";
+import { createCase } from "../create.case";
 import { StatusRequestsToCreate } from "../requests/create.requests";
 import { InMemoryStatusRepository } from "./mock/inMemoryStatusRepository";
 

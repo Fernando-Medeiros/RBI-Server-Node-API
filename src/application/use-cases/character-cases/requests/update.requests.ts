@@ -9,12 +9,14 @@ export class CharacterRequestsToUpdate implements ICharacterRequestsToUpdate {
     protected sub: string,
     protected charName?: string,
     protected className?: string,
-    protected level?: number,
+    protected level?: number
   ) {}
 
   getRequestToUpdate(): { sub: string; toUpdate: CharacterUpdateProps } {
     this.charName ? CharacterValidators.validateCharName(this.charName) : null;
-    this.className ? CharacterValidators.validateClassName(this.className) : null;
+    this.className
+      ? CharacterValidators.validateClassName(this.className)
+      : null;
     this.level ? CharacterValidators.validateLevel(this.level) : null;
 
     const data = {
@@ -26,6 +28,6 @@ export class CharacterRequestsToUpdate implements ICharacterRequestsToUpdate {
     if (!Object.values(data).length ? true : null) {
       throw new BadRequest("No data to be updated!");
     }
-    return { sub: this.sub , toUpdate: data };
+    return { sub: this.sub, toUpdate: data };
   }
 }

@@ -1,7 +1,7 @@
 import { it, expect, describe } from "vitest";
 import { UseCaseCharacterHelpers as helpers } from "./mock/utils";
 
-import { createCase } from "../createCase";
+import { createCase } from "../create.case";
 import { CharacterRequestsToCreate } from "../requests/create.requests";
 import { InMemoryCharacterRepository } from "./mock/inMemoryCharacterRepository";
 

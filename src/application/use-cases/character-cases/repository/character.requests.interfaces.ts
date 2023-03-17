@@ -15,10 +15,10 @@ export interface ICharacterRequestsToDelete {
   getRequestToDelete(): { sub: string };
 }
 
-export interface ICharacterRequestsToFindByName {
-  getRequestToFindByName(): { name: string };
+export interface ICharacterRequestsToGetByName {
+  getRequestToGetByName(): { name: string };
 }
 
-export interface ICharacterRequestsToFindById {
-  getRequestToFindById(): { id: string };
+export interface ICharacterRequestsToGetById {
+  getRequestToGetById(): { id: string };
 }

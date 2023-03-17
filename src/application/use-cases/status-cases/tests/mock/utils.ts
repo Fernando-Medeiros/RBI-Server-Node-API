@@ -1,6 +1,6 @@
-import { InMemoryStatusRepository } from "../mock/inMemoryStatusRepository";
+import { InMemoryStatusRepository } from "./inMemoryStatusRepository";
 
-import statusDataMock from "../mock/status.data.mock.json";
+import statusDataMock from "./status.data.mock.json";
 
 const database = new InMemoryStatusRepository();
 

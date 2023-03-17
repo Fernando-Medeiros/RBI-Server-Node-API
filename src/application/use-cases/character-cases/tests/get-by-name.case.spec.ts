@@ -1,8 +1,8 @@
 import { describe, it, expect } from "vitest";
 import { UseCaseCharacterHelpers as helpers } from "./mock/utils";
 
-import { getByNameCase } from "@app/useCases/characterCases/getByNameCase";
-import { CharacterRequestsToFindByName } from "@app/useCases/characterCases/requests/findByName.requests";
+import { getByNameCase } from "../get-by-name.case";
+import { CharacterRequestsToGetByName } from "../requests/get-by-name.requests";
 import { InMemoryCharacterRepository } from "./mock/inMemoryCharacterRepository";
 
 describe("UseCases - Character - Get By Name - OK", () => {
@@ -12,7 +12,7 @@ describe("UseCases - Character - Get By Name - OK", () => {
     const { charName: name } = helpers.getCharacterDataMock();
 
     const res = await getByNameCase(
-      new CharacterRequestsToFindByName(name),
+      new CharacterRequestsToGetByName(name),
       new InMemoryCharacterRepository()
     );
 
@@ -28,7 +28,7 @@ describe("UseCases - Character - Get By Name - Exceptions", () => {
 
     await expect(() =>
       getByNameCase(
-        new CharacterRequestsToFindByName(charName),
+        new CharacterRequestsToGetByName(charName),
         new InMemoryCharacterRepository()
       )
     ).rejects.toThrowError("format is invalid");
@@ -39,7 +39,7 @@ describe("UseCases - Character - Get By Name - Exceptions", () => {
 
     await expect(() =>
       getByNameCase(
-        new CharacterRequestsToFindByName(charName),
+        new CharacterRequestsToGetByName(charName),
         new InMemoryCharacterRepository()
       )
     ).rejects.toThrowError("not found");

@@ -1,8 +1,8 @@
 import { describe, it, expect } from "vitest";
 import { UseCaseCharacterHelpers as helpers } from "./mock/utils";
 
-import { deleteCase } from "@app/useCases/characterCases/deleteCase";
-import { CharacterRequestsToDelete } from "@app/useCases/characterCases/requests/delete.requests";
+import { deleteCase } from "../delete.case";
+import { CharacterRequestsToDelete } from "../requests/delete.requests";
 import { InMemoryCharacterRepository } from "./mock/inMemoryCharacterRepository";
 
 describe("UseCases - Character - Delete - OK", () => {

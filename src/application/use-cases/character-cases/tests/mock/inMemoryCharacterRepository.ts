@@ -1,9 +1,9 @@
-import type { ICharacterRepository } from "@app/useCases/characterCases/repository/character.repository.interfaces";
+import type { ICharacterRepository } from "@app/use-cases/character-cases/repository/character.repository.interfaces";
 import type {
   CharacterCreateProps,
   CharacterUpdateProps,
   CharacterProps,
-} from "@app/useCases/characterCases/repository/character.props";
+} from "@app/use-cases/character-cases/repository/character.props";
 
 const inMemoryDatabase: CharacterProps[] = [];
 
