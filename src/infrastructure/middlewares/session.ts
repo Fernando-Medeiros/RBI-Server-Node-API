@@ -1,7 +1,6 @@
 import type { NextFunction, Request, Response } from "express";
-import { validate } from "uuid";
+import { CommonValidators } from "@app/validators/common.validators";
 import { JWT } from "@inf/security/token/token.impl";
-import { BadRequest, Unauthorized } from "@src/utils/http.exceptions";
 
 export const sessionMiddleware = async (
   req: Request,
@@ -12,17 +11,11 @@ export const sessionMiddleware = async (
 
   const token = authorization?.substring(authorization.indexOf(" ") + 1);
 
-  if (token === undefined || token?.length < 150) {
-    new Unauthorized("Missing Authorization header with token");
-  }
+  CommonValidators.validateToken(token);
 
   const { sub } = await JWT.decode(String(token));
 
-  if (sub === undefined || !validate(sub)) {
-    new BadRequest(
-      "Could not verify credentials, please sign in again to refresh session!"
-    );
-  }
+  CommonValidators.validateID(sub);
 
   req.headers = { sub: sub };
 
