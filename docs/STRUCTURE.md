@@ -26,37 +26,65 @@
 │   └── build.tree.ts
 ├── src
 │   ├── application
-│   │   └── useCases
-│   │       └── characterCases
-│   │           ├── repository
-│   │           │   ├── character.props.ts
-│   │           │   ├── character.repository.interfaces.ts
-│   │           │   └── character.requests.interfaces.ts
-│   │           ├── requests
-│   │           │   ├── create.requests.ts
-│   │           │   ├── delete.requests.ts
-│   │           │   ├── findById.requests.ts
-│   │           │   ├── findByName.requests.ts
-│   │           │   └── update.requests.ts
-│   │           ├── tests
-│   │           │   ├── mock
-│   │           │   │   ├── character.data.mock.json
-│   │           │   │   ├── inMemoryCharacterRepository.ts
-│   │           │   │   └── utils.ts
-│   │           │   ├── create.case.spec.ts
-│   │           │   ├── delete.case.spec.ts
-│   │           │   ├── getAll.case.spec.ts
-│   │           │   ├── getById.case.spec.ts
-│   │           │   ├── getByName.case.spec.ts
-│   │           │   └── update.case.spec.ts
-│   │           ├── validators
-│   │           │   └── validators.ts
-│   │           ├── createCase.ts
-│   │           ├── deleteCase.ts
-│   │           ├── getAllCase.ts
-│   │           ├── getByIdCase.ts
-│   │           ├── getByNameCase.ts
-│   │           └── updateCase.ts
+│   │   ├── use-cases
+│   │   │   ├── character-cases
+│   │   │   │   ├── repository
+│   │   │   │   │   ├── character.props.ts
+│   │   │   │   │   ├── character.repository.interfaces.ts
+│   │   │   │   │   └── character.requests.interfaces.ts
+│   │   │   │   ├── requests
+│   │   │   │   │   ├── create.requests.ts
+│   │   │   │   │   ├── delete.requests.ts
+│   │   │   │   │   ├── get-by-id.requests.ts
+│   │   │   │   │   ├── get-by-name.requests.ts
+│   │   │   │   │   └── update.requests.ts
+│   │   │   │   ├── tests
+│   │   │   │   │   ├── mock
+│   │   │   │   │   │   ├── character.data.mock.json
+│   │   │   │   │   │   ├── inMemoryCharacterRepository.ts
+│   │   │   │   │   │   └── utils.ts
+│   │   │   │   │   ├── create.case.spec.ts
+│   │   │   │   │   ├── delete.case.spec.ts
+│   │   │   │   │   ├── get-all.case.spec.ts
+│   │   │   │   │   ├── get-by-id.case.spec.ts
+│   │   │   │   │   ├── get-by-name.case.spec.ts
+│   │   │   │   │   └── update.case.spec.ts
+│   │   │   │   ├── validators
+│   │   │   │   │   └── validators.ts
+│   │   │   │   ├── create.case.ts
+│   │   │   │   ├── delete.case.ts
+│   │   │   │   ├── get-all.case.ts
+│   │   │   │   ├── get-by-id.case.ts
+│   │   │   │   ├── get-by-name.case.ts
+│   │   │   │   └── update.case.ts
+│   │   │   ├── inventory-cases
+│   │   │   └── status-cases
+│   │   │       ├── repository
+│   │   │       │   ├── status.props.ts
+│   │   │       │   ├── status.repository.interfaces.ts
+│   │   │       │   └── status.requests.interfaces.ts
+│   │   │       ├── requests
+│   │   │       │   ├── create.requests.ts
+│   │   │       │   ├── delete.requests.ts
+│   │   │       │   ├── get-by-id.requests.ts
+│   │   │       │   └── update.requests.ts
+│   │   │       ├── tests
+│   │   │       │   ├── mock
+│   │   │       │   │   ├── inMemoryStatusRepository.ts
+│   │   │       │   │   ├── status.data.mock.json
+│   │   │       │   │   └── utils.ts
+│   │   │       │   ├── create.case.spec.ts
+│   │   │       │   ├── delete.case.spec.ts
+│   │   │       │   ├── get-by-id.case.spec.ts
+│   │   │       │   └── update.case.spec.ts
+│   │   │       ├── validators
+│   │   │       │   └── validators.ts
+│   │   │       ├── create.case.ts
+│   │   │       ├── delete.case.ts
+│   │   │       ├── get-by-id.case.ts
+│   │   │       └── update.case.ts
+│   │   └── validators
+│   │       └── common.validators.ts
 │   ├── domain
 │   │   ├── entities
 │   │   │   ├── character
@@ -129,13 +157,13 @@
 │           ├── delete
 │           │   ├── exceptions.spec.ts
 │           │   └── success.spec.ts
-│           ├── getAll
+│           ├── get-all
 │           │   ├── exceptions.spec.ts
 │           │   └── success.spec.ts
-│           ├── getById
+│           ├── get-by-id
 │           │   ├── exceptions.spec.ts
 │           │   └── success.spec.ts
-│           ├── getByName
+│           ├── get-by-name
 │           │   ├── exceptions.spec.ts
 │           │   └── success.spec.ts
 │           ├── mock
@@ -153,6 +181,6 @@
 ├── vitest.config.ts
 └── yarn.lock
 
-50 directories, 99 files
+58 directories, 119 files
 
 ```
