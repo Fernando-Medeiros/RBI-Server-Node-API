@@ -23,6 +23,8 @@ export interface IEquipment {
 }
 
 export type PropsEquipment = {
+  _id?: string;
+  pubId: string;
   head: Armor | object;
   body: Armor | object;
   leg: Armor | object;

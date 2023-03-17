@@ -17,6 +17,8 @@ export interface ISkills {
 }
 
 export type PropsSkills = {
+  _id?: string;
+  pubId: string;
   offensive: Offensive[];
   defensive: Defensive[];
 };

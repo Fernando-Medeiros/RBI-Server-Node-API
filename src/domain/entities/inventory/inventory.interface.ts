@@ -28,6 +28,8 @@ export interface IInventory {
 }
 
 export type PropsPackage = {
+  _id?: string;
+  pubId: string;
   armors: Armor[];
   accessories: Accessory[];
   consumables: Consumable[];

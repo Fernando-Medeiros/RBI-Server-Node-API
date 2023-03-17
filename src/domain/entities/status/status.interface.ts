@@ -23,6 +23,8 @@ export interface IStatus {
 }
 
 export type PropsStatus = {
+  _id?: string;
+  pubId: string;
   points: number;
   experience: number;
   strength: number;
