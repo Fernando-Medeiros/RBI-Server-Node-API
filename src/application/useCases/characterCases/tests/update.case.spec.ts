@@ -1,9 +1,9 @@
 import { describe, it, expect } from "vitest";
 import { UseCaseCharacterHelpers as helpers } from "./mock/utils";
 
-import { updateCase } from "@app/useCases/characterCases/updateCase";
-import { CharacterRequestsToUpdate } from "@app/useCases/characterCases/requests/update.requests";
-import { InMemoryCharacterRepositoryMock } from "./mock/inMemoryCharacterRepository";
+import { updateCase } from "../updateCase";
+import { CharacterRequestsToUpdate } from "../requests/update.requests";
+import { InMemoryCharacterRepository } from "./mock/inMemoryCharacterRepository";
 
 describe("UseCases - Character - Update - OK", () => {
   helpers.insertOneCharacterToDatabase();
@@ -14,8 +14,8 @@ describe("UseCases - Character - Update - OK", () => {
     const [charName, className, level] = ["fakeName", "Mage", 2];
 
     const res = await updateCase(
-      new CharacterRequestsToUpdate(charName, className, level, sub),
-      new InMemoryCharacterRepositoryMock()
+      new CharacterRequestsToUpdate(sub, charName, className, level),
+      new InMemoryCharacterRepository()
     );
 
     expect(res).toBeUndefined();
@@ -25,8 +25,8 @@ describe("UseCases - Character - Update - OK", () => {
     const [charName, className, level] = ["FakeName", undefined, undefined];
 
     const res = await updateCase(
-      new CharacterRequestsToUpdate(charName, className, level, sub),
-      new InMemoryCharacterRepositoryMock()
+      new CharacterRequestsToUpdate(sub, charName, className, level),
+      new InMemoryCharacterRepository()
     );
 
     expect(res).toBeUndefined();
@@ -36,8 +36,8 @@ describe("UseCases - Character - Update - OK", () => {
     const [charName, className, level] = [undefined, "Warrior", undefined];
 
     const res = await updateCase(
-      new CharacterRequestsToUpdate(charName, className, level, sub),
-      new InMemoryCharacterRepositoryMock()
+      new CharacterRequestsToUpdate(sub, charName, className, level),
+      new InMemoryCharacterRepository()
     );
 
     expect(res).toBeUndefined();
@@ -47,8 +47,8 @@ describe("UseCases - Character - Update - OK", () => {
     const [charName, className, level] = [undefined, undefined, 2];
 
     const res = await updateCase(
-      new CharacterRequestsToUpdate(charName, className, level, sub),
-      new InMemoryCharacterRepositoryMock()
+      new CharacterRequestsToUpdate(sub, charName, className, level),
+      new InMemoryCharacterRepository()
     );
 
     expect(res).toBeUndefined();
@@ -63,8 +63,8 @@ describe("UseCases - Character - Update - Exceptions", () => {
 
     await expect(() =>
       updateCase(
-        new CharacterRequestsToUpdate(charName, className, level, sub),
-        new InMemoryCharacterRepositoryMock()
+        new CharacterRequestsToUpdate(sub, charName, className, level),
+        new InMemoryCharacterRepository()
       )
     ).rejects.toThrowError("No data");
   });
@@ -74,8 +74,8 @@ describe("UseCases - Character - Update - Exceptions", () => {
 
     await expect(() =>
       updateCase(
-        new CharacterRequestsToUpdate(charName, className, level, sub),
-        new InMemoryCharacterRepositoryMock()
+        new CharacterRequestsToUpdate(sub, charName, className, level),
+        new InMemoryCharacterRepository()
       )
     ).rejects.toThrowError("format is invalid");
   });
@@ -85,8 +85,8 @@ describe("UseCases - Character - Update - Exceptions", () => {
 
     await expect(() =>
       updateCase(
-        new CharacterRequestsToUpdate(charName, className, level, sub),
-        new InMemoryCharacterRepositoryMock()
+        new CharacterRequestsToUpdate(sub, charName, className, level),
+        new InMemoryCharacterRepository()
       )
     ).rejects.toThrowError("format is invalid");
   });
@@ -96,8 +96,8 @@ describe("UseCases - Character - Update - Exceptions", () => {
 
     await expect(() =>
       updateCase(
-        new CharacterRequestsToUpdate(charName, className, level, sub),
-        new InMemoryCharacterRepositoryMock()
+        new CharacterRequestsToUpdate(sub, charName, className, level),
+        new InMemoryCharacterRepository()
       )
     ).rejects.toThrowError("format is invalid");
   });

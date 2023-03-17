@@ -7,7 +7,7 @@ import type {
 
 const inMemoryDatabase: CharacterProps[] = [];
 
-export class InMemoryCharacterRepositoryMock implements ICharacterRepository {
+export class InMemoryCharacterRepository implements ICharacterRepository {
   public database = inMemoryDatabase;
 
   async find(): Promise<CharacterProps[]> {

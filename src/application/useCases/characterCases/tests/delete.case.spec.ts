@@ -3,7 +3,7 @@ import { UseCaseCharacterHelpers as helpers } from "./mock/utils";
 
 import { deleteCase } from "@app/useCases/characterCases/deleteCase";
 import { CharacterRequestsToDelete } from "@app/useCases/characterCases/requests/delete.requests";
-import { InMemoryCharacterRepositoryMock } from "./mock/inMemoryCharacterRepository";
+import { InMemoryCharacterRepository } from "./mock/inMemoryCharacterRepository";
 
 describe("UseCases - Character - Delete - OK", () => {
   helpers.insertOneCharacterToDatabase();
@@ -13,7 +13,7 @@ describe("UseCases - Character - Delete - OK", () => {
   it("should delete the character", async () => {
     const res = await deleteCase(
       new CharacterRequestsToDelete(sub),
-      new InMemoryCharacterRepositoryMock()
+      new InMemoryCharacterRepository()
     );
 
     expect(res).toBeUndefined();
@@ -25,7 +25,7 @@ describe("UseCases - Character - Delete - Exceptions", () => {
     await expect(() =>
       deleteCase(
         new CharacterRequestsToDelete(""),
-        new InMemoryCharacterRepositoryMock()
+        new InMemoryCharacterRepository()
       )
     ).rejects.toThrowError("not found");
   });

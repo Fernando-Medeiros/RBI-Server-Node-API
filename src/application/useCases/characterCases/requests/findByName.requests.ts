@@ -1,5 +1,5 @@
 import type { ICharacterRequestsToFindByName } from "../repository/character.requests.interfaces";
-import { charNameIsValid_or_400 } from "../validators/validators";
+import { CharacterValidators } from "../validators/validators";
 
 export class CharacterRequestsToFindByName
   implements ICharacterRequestsToFindByName
@@ -7,7 +7,7 @@ export class CharacterRequestsToFindByName
   constructor(protected name?: string) {}
 
   getRequestToFindByName(): { name: string } {
-    charNameIsValid_or_400(this.name);
+    CharacterValidators.validateCharName(this.name);
 
     return { name: this.name as string };
   }

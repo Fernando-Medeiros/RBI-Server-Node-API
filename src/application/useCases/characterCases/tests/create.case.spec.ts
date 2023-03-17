@@ -1,17 +1,17 @@
 import { it, expect, describe } from "vitest";
 import { UseCaseCharacterHelpers as helpers } from "./mock/utils";
 
-import { createCase } from "@app/useCases/characterCases/createCase";
-import { CharacterRequestsToCreate } from "@app/useCases/characterCases/requests/create.requests";
-import { InMemoryCharacterRepositoryMock } from "./mock/inMemoryCharacterRepository";
+import { createCase } from "../createCase";
+import { CharacterRequestsToCreate } from "../requests/create.requests";
+import { InMemoryCharacterRepository } from "./mock/inMemoryCharacterRepository";
 
 describe("UseCases - Character - Create - OK", () => {
   const { charName, className, pubId: sub } = helpers.getCharacterDataMock();
 
   it("Should create the character", async () => {
     const res = await createCase(
-      new CharacterRequestsToCreate(charName, className, sub),
-      new InMemoryCharacterRepositoryMock()
+      new CharacterRequestsToCreate(sub, charName, className),
+      new InMemoryCharacterRepository()
     );
 
     expect(res).toBeUndefined();
@@ -26,8 +26,8 @@ describe("UseCases - Character - Create - Exceptions", () => {
 
     await expect(() =>
       createCase(
-        new CharacterRequestsToCreate(charName, className, sub),
-        new InMemoryCharacterRepositoryMock()
+        new CharacterRequestsToCreate(sub, charName, className),
+        new InMemoryCharacterRepository()
       )
     ).rejects.toThrowError("format is invalid");
   });
@@ -37,8 +37,8 @@ describe("UseCases - Character - Create - Exceptions", () => {
 
     await expect(() =>
       createCase(
-        new CharacterRequestsToCreate(charName, className, sub),
-        new InMemoryCharacterRepositoryMock()
+        new CharacterRequestsToCreate(sub, charName, className),
+        new InMemoryCharacterRepository()
       )
     ).rejects.toThrowError("format is invalid");
   });
@@ -46,8 +46,8 @@ describe("UseCases - Character - Create - Exceptions", () => {
   it("Should return [already in use] when informing a name in use", async () => {
     await expect(() =>
       createCase(
-        new CharacterRequestsToCreate(charName, className, sub),
-        new InMemoryCharacterRepositoryMock()
+        new CharacterRequestsToCreate(sub, charName, className),
+        new InMemoryCharacterRepository()
       )
     ).rejects.toThrowError("name is already in use");
   });
@@ -57,8 +57,8 @@ describe("UseCases - Character - Create - Exceptions", () => {
 
     await expect(() =>
       createCase(
-        new CharacterRequestsToCreate(charName, className, sub),
-        new InMemoryCharacterRepositoryMock()
+        new CharacterRequestsToCreate(sub, charName, className),
+        new InMemoryCharacterRepository()
       )
     ).rejects.toThrowError("format is invalid");
   });
@@ -80,8 +80,8 @@ describe("UseCases - Character - Create - Loop-Exceptions", () => {
       for (const charName of listNames) {
         await expect(() =>
           createCase(
-            new CharacterRequestsToCreate(charName, className, sub),
-            new InMemoryCharacterRepositoryMock()
+            new CharacterRequestsToCreate(sub, charName, className),
+            new InMemoryCharacterRepository()
           )
         ).rejects.toThrowError("format is invalid");
       }
@@ -93,8 +93,8 @@ describe("UseCases - Character - Create - Loop-Exceptions", () => {
       for (const charName of listNames) {
         await expect(() =>
           createCase(
-            new CharacterRequestsToCreate(charName, className, sub),
-            new InMemoryCharacterRepositoryMock()
+            new CharacterRequestsToCreate(sub, charName, className),
+            new InMemoryCharacterRepository()
           )
         ).rejects.toThrowError("format is invalid");
       }

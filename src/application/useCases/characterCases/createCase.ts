@@ -7,7 +7,7 @@ export const createCase = async (
   requests: ICharacterRequestsToCreate,
   repository: ICharacterRepository
 ) => {
-  const [sub, toCreate] = requests.getRequestToCreate();
+  const { sub, toCreate } = requests.getRequestToCreate();
 
   toCreate.pubId = sub as string;
 

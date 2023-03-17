@@ -1,8 +1,8 @@
-import { InMemoryCharacterRepositoryMock } from "../mock/inMemoryCharacterRepository";
+import { InMemoryCharacterRepository } from "../mock/inMemoryCharacterRepository";
 
 import characterDataMock from "../mock/character.data.mock.json";
 
-const database = new InMemoryCharacterRepositoryMock();
+const database = new InMemoryCharacterRepository();
 
 export class UseCaseCharacterHelpers {
   public static insertOneCharacterToDatabase = async (): Promise<void> => {

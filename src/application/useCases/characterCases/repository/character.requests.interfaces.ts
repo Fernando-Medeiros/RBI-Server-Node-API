@@ -4,11 +4,11 @@ import type {
 } from "./character.props";
 
 export interface ICharacterRequestsToCreate {
-  getRequestToCreate(): [sub: string, toCreate: CharacterCreateProps];
+  getRequestToCreate(): { sub: string; toCreate: CharacterCreateProps };
 }
 
 export interface ICharacterRequestsToUpdate {
-  getRequestToUpdate(): [sub: string, toUpdate: CharacterUpdateProps];
+  getRequestToUpdate(): { sub: string; toUpdate: CharacterUpdateProps };
 }
 
 export interface ICharacterRequestsToDelete {

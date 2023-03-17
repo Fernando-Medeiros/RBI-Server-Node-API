@@ -7,7 +7,7 @@ export const updateCase = async (
   requests: ICharacterRequestsToUpdate,
   repository: ICharacterRepository
 ) => {
-  const [sub, toUpdate] = requests.getRequestToUpdate();
+  const { sub, toUpdate } = requests.getRequestToUpdate();
 
   const nameExists = toUpdate?.charName
     ? await repository.findByName(toUpdate.charName)

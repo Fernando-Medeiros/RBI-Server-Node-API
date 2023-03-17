@@ -1,14 +1,14 @@
 import type { ICharacterRequestsToFindById } from "../repository/character.requests.interfaces";
-import { idIsValid_or_400 } from "../validators/validators";
+import { CommonValidators } from "@app/validators/common.validators";
 
 export class CharacterRequestsToFindById
   implements ICharacterRequestsToFindById
 {
-  constructor(protected id?: string) {}
+  constructor(protected id: string) {}
 
   getRequestToFindById(): { id: string } {
-    idIsValid_or_400(this.id);
+    CommonValidators.validateID(this.id);
 
-    return { id: this.id as string };
+    return { id: this.id };
   }
 }
