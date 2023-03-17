@@ -1,6 +1,10 @@
 import { Schema, model } from "mongoose";
 
 const equipmentsSchema = {
+  pubId: {
+    type: String,
+    index: true,
+  },
   head: {
     type: Object,
     default: {},

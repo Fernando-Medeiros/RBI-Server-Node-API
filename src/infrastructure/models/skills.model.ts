@@ -1,6 +1,10 @@
 import { Schema, model } from "mongoose";
 
 const skillsSchema = {
+  pubId: {
+    type: String,
+    index: true,
+  },
   offensive: {
     type: Array,
     default: [],

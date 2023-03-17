@@ -1,6 +1,10 @@
 import { Schema, model } from "mongoose";
 
 const inventoriesSchema = {
+  pubId: {
+    type: String,
+    index: true,
+  },
   armors: {
     type: Array,
     default: [],

@@ -1,6 +1,10 @@
 import { Schema, model } from "mongoose";
 
 const statusSchema = {
+  pubId: {
+    type: String,
+    index: true,
+  },
   points: {
     type: Number,
     min: 1,
