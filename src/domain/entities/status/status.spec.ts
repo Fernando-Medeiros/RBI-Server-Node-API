@@ -3,6 +3,7 @@ import { describe, it, expect } from "vitest";
 import { Status } from "./status";
 
 const dataMock = {
+  pubId: "123",
   points: 1,
   experience: 1,
   strength: 1,

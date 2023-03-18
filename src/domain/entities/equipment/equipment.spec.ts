@@ -3,6 +3,7 @@ import { describe, it, expect } from "vitest";
 import { Equipment } from "./equipment";
 
 const dataMock = {
+  pubId: '123',
   head: {},
   body: {},
   leg: {},

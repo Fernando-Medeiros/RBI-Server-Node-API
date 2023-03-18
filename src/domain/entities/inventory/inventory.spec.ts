@@ -3,6 +3,7 @@ import { describe, it, expect } from "vitest";
 import { Inventory } from "./inventory";
 
 const dataMock = {
+  pubId: "123",
   armors: [],
   accessories: [],
   consumables: [],

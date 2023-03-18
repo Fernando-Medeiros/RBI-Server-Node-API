@@ -3,6 +3,7 @@ import { describe, it, expect } from "vitest";
 import { Skill } from "./skills";
 
 const dataMock = {
+  pubId: "123",
   offensive: [],
   defensive: [],
 };

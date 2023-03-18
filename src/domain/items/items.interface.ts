@@ -3,8 +3,6 @@ export type Armor = {
   defense: number;
   resistance: number;
   value: number;
-  health?: number;
-  energy?: number;
   description?: string;
 };
 
@@ -13,8 +11,6 @@ export type Weapon = {
   attack: number;
   magic: number;
   value: number;
-  health?: number;
-  energy?: number;
   description?: string;
 };
 
@@ -39,7 +35,7 @@ export type Accessory = {
   name: string;
   type: string;
   value: number;
-  health?: number;
-  energy?: number;
+  health: number;
+  energy: number;
   description?: string;
 };
