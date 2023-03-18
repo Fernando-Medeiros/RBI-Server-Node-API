@@ -57,7 +57,34 @@
 │   │   │   │   ├── get-by-id.case.ts
 │   │   │   │   ├── get-by-name.case.ts
 │   │   │   │   └── update.case.ts
-│   │   │   ├── inventory-cases
+│   │   │   ├── equipment-cases 
+│   │   │   │   ├── repository
+│   │   │   │   │   ├── equipment.props.ts
+│   │   │   │   │   ├── equipment.repository.interfaces.ts
+│   │   │   │   │   └── equipment.requests.interfaces.ts
+│   │   │   │   ├── requests
+│   │   │   │   │   ├── create.requests.ts
+│   │   │   │   │   ├── delete.requests.ts
+│   │   │   │   │   ├── get-by-id.requests.ts
+│   │   │   │   │   └── update.requests.ts
+│   │   │   │   ├── tests
+│   │   │   │   │   ├── mock
+│   │   │   │   │   │   ├── accessory.data.mock.json
+│   │   │   │   │   │   ├── armor.data.mock.json
+│   │   │   │   │   │   ├── equipment.data.mock.json
+│   │   │   │   │   │   ├── inMemoryEquipmentRepository.ts
+│   │   │   │   │   │   ├── utils.ts
+│   │   │   │   │   │   └── weapon.data.mock.json
+│   │   │   │   │   ├── create.case.spec.ts
+│   │   │   │   │   ├── delete.case.spec.ts
+│   │   │   │   │   ├── get-by-id.case.spec.ts
+│   │   │   │   │   └── update.case.spec.ts
+│   │   │   │   ├── validators
+│   │   │   │   │   └── validators.ts
+│   │   │   │   ├── create.case.ts
+│   │   │   │   ├── delete.case.ts
+│   │   │   │   ├── get-by-id.case.ts
+│   │   │   │   └── update.case.ts
 │   │   │   └── status-cases
 │   │   │       ├── repository
 │   │   │       │   ├── status.props.ts
@@ -181,6 +208,6 @@
 ├── vitest.config.ts
 └── yarn.lock
 
-58 directories, 119 files
+63 directories, 141 files
 
 ```
