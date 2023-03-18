@@ -5,17 +5,17 @@ import statusDataMock from "./status.data.mock.json";
 const database = new InMemoryStatusRepository();
 
 export class UseCaseStatusHelpers {
-  public static insertOneStatusToDatabase = async (): Promise<void> => {
+  public static insertOneToDatabase = async (): Promise<void> => {
     await database.save(statusDataMock);
   };
 
-  public static removeOneStatusToDatabase = async (): Promise<void> => {
+  public static removeOneToDatabase = async (): Promise<void> => {
     const { pubId: id } = statusDataMock;
 
     await database.findByIdAndDelete(id);
   };
 
-  public static getStatusDataMock() {
-    return statusDataMock;
+  public static getDataMock() {
+    return Object.assign({}, statusDataMock);
   }
 }

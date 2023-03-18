@@ -6,30 +6,36 @@ import { BadRequest } from "@src/utils/http.exceptions";
 export class StatusRequestsToUpdate implements IStatusRequestsToUpdate {
   constructor(
     protected sub: string,
-    protected points?: number,
-    protected experience?: number,
-    protected strength?: number,
-    protected intelligence?: number,
-    protected dexterity?: number,
-    protected vitality?: number,
-    protected health?: number,
-    protected energy?: number,
-    protected currentHealth?: number,
-    protected currentEnergy?: number
+    protected props: {
+      points?: number;
+      experience?: number;
+      strength?: number;
+      intelligence?: number;
+      dexterity?: number;
+      vitality?: number;
+      health?: number;
+      energy?: number;
+      currentHealth?: number;
+      currentEnergy?: number;
+    }
   ) {}
 
   getRequestToUpdate(): { sub: string; toUpdate: StatusUpdateProps } {
     const data = {
-      ...(this.points && { points: this.points }),
-      ...(this.experience && { experience: this.experience }),
-      ...(this.strength && { strength: this.strength }),
-      ...(this.intelligence && { intelligence: this.intelligence }),
-      ...(this.dexterity && { dexterity: this.dexterity }),
-      ...(this.vitality && { vitality: this.vitality }),
-      ...(this.health && { health: this.health }),
-      ...(this.energy && { energy: this.energy }),
-      ...(this.currentHealth && { currentHealth: this.currentHealth }),
-      ...(this.currentEnergy && { currentEnergy: this.currentEnergy }),
+      ...(this.props.points && { points: this.props.points }),
+      ...(this.props.experience && { experience: this.props.experience }),
+      ...(this.props.strength && { strength: this.props.strength }),
+      ...(this.props.intelligence && { intelligence: this.props.intelligence }),
+      ...(this.props.dexterity && { dexterity: this.props.dexterity }),
+      ...(this.props.vitality && { vitality: this.props.vitality }),
+      ...(this.props.health && { health: this.props.health }),
+      ...(this.props.energy && { energy: this.props.energy }),
+      ...(this.props.currentHealth && {
+        currentHealth: this.props.currentHealth,
+      }),
+      ...(this.props.currentEnergy && {
+        currentEnergy: this.props.currentEnergy,
+      }),
     };
 
     Object.values(data).filter((attr) =>

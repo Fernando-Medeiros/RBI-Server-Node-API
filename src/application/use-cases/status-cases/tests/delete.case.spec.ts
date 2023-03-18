@@ -5,10 +5,10 @@ import { deleteCase } from "../delete.case";
 import { StatusRequestsToDelete } from "../requests/delete.requests";
 import { InMemoryStatusRepository } from "./mock/inMemoryStatusRepository";
 
-const { pubId: sub } = helpers.getStatusDataMock();
+const { pubId: sub } = helpers.getDataMock();
 
 describe("UseCases - Status - Delete - OK", () => {
-  helpers.insertOneStatusToDatabase();
+  helpers.insertOneToDatabase();
 
   it("Should delete the status", async () => {
     const res = await deleteCase(

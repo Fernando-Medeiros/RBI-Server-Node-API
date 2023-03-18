@@ -5,7 +5,7 @@ import { createCase } from "../create.case";
 import { StatusRequestsToCreate } from "../requests/create.requests";
 import { InMemoryStatusRepository } from "./mock/inMemoryStatusRepository";
 
-const { pubId: sub } = helpers.getStatusDataMock();
+const { pubId: sub } = helpers.getDataMock();
 
 describe("UseCases - Status - Create - OK", () => {
   it("Should create the status", async () => {

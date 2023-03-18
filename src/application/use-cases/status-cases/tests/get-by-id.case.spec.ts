@@ -5,10 +5,10 @@ import { getByIdCase } from "../get-by-id.case";
 import { StatusRequestsToGetById } from "../requests/get-by-id.requests";
 import { InMemoryStatusRepository } from "./mock/inMemoryStatusRepository";
 
-const { pubId: sub } = helpers.getStatusDataMock();
+const { pubId: sub } = helpers.getDataMock();
 
 describe("UseCases - Status - Get By Id - OK", () => {
-  helpers.insertOneStatusToDatabase();
+  helpers.insertOneToDatabase();
 
   it("Should get a status by id", async () => {
     const res = await getByIdCase(
