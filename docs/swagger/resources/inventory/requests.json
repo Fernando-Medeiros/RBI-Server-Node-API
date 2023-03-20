@@ -1,0 +1,35 @@
+{
+  "RequestUpdateInventory": {
+    "type": "object",
+    "properties": {
+      "armors": {
+        "type": "array",
+        "example": "[{name: '...', defense: 2, resistance: 2, value: 1, description: '..'}"
+      },
+      "accessories": {
+        "type": "array",
+        "example": "[{name: '...', type: 'ring', value: 1, health: 2, energy: 2, description: '..'}]"
+      },
+      "consumables": {
+        "type": "array",
+        "example": "[{name: '...', type: 'food', restore: 'health', total: 2, value: 1, description: '...'}]"
+      },
+      "materials": {
+        "type": "array",
+        "example": "[{name: '...', type: 'craft', total: 2, value: 1, description: '...'}]"
+      },
+      "weapons": {
+        "type": "array",
+        "example": "[{name: '...', attack: 2, magic: 2, value: 1, description: '..'}]"
+      }
+    }
+  },
+
+  "ParameterInventoryID": {
+    "description": "Inventory ID",
+    "name": "id",
+    "in": "path",
+    "type": "string",
+    "required": true
+  }
+}

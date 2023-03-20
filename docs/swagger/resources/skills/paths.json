@@ -1,0 +1,138 @@
+{
+  "/skills": {
+    "post": {
+      "tags": ["skills"],
+      "summary": "Register new skills",
+      "security": [{ "bearerAuth": [] }],
+      "description": "",
+      "requestBody": {},
+      "parameters": [],
+      "responses": {
+        "201": {
+          "description": "Successful Response"
+        },
+        "400": {
+          "description": "Bad Request",
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/BadRequest" }
+            }
+          }
+        }
+      }
+    },
+
+    "patch": {
+      "tags": ["skills"],
+      "summary": "Update skills",
+      "security": [{ "bearerAuth": [] }],
+      "description": "",
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": { "$ref": "#/components/schemas/RequestUpdateSkills" }
+          }
+        }
+      },
+      "parameters": [],
+      "responses": {
+        "204": {
+          "description": "No content"
+        },
+        "400": {
+          "description": "Bad Request",
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/BadRequest" }
+            }
+          }
+        },
+        "401": {
+          "description": "Unauthorized",
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Unauthorized" }
+            }
+          }
+        }
+      }
+    },
+
+    "delete": {
+      "tags": ["skills"],
+      "summary": "Delete the skills",
+      "security": [{ "bearerAuth": [] }],
+      "description": "",
+      "parameters": [],
+      "responses": {
+        "204": {
+          "description": "No content"
+        },
+        "401": {
+          "description": "Unauthorized",
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Unauthorized" }
+            }
+          }
+        },
+        "404": {
+          "description": "Not Found",
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/NotFound" }
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "/skills/{id}": {
+    "get": {
+      "tags": ["skills"],
+      "summary": "Find a skills by id",
+      "security": [{ "bearerAuth": [] }],
+      "description": "",
+      "parameters": [{ "$ref": "#/components/schemas/ParameterSkillsID" }],
+      "responses": {
+        "200": {
+          "description": "Successful Response",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResponseGetByIdSkills"
+              }
+            }
+          }
+        },
+
+        "400": {
+          "description": "Bad Request",
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/BadRequest" }
+            }
+          }
+        },
+        "401": {
+          "description": "Unauthorized",
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Unauthorized" }
+            }
+          }
+        },
+
+        "404": {
+          "description": "Not Found",
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/NotFound" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

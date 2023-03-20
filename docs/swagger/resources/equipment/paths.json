@@ -1,0 +1,138 @@
+{
+  "/equipments": {
+    "post": {
+      "tags": ["equipment"],
+      "summary": "Register new equipment",
+      "security": [{ "bearerAuth": [] }],
+      "description": "",
+      "requestBody": {},
+      "parameters": [],
+      "responses": {
+        "201": {
+          "description": "Successful Response"
+        },
+        "400": {
+          "description": "Bad Request",
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/BadRequest" }
+            }
+          }
+        }
+      }
+    },
+
+    "patch": {
+      "tags": ["equipment"],
+      "summary": "Update equipment",
+      "security": [{ "bearerAuth": [] }],
+      "description": "",
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": { "$ref": "#/components/schemas/RequestUpdateEquipment" }
+          }
+        }
+      },
+      "parameters": [],
+      "responses": {
+        "204": {
+          "description": "No content"
+        },
+        "400": {
+          "description": "Bad Request",
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/BadRequest" }
+            }
+          }
+        },
+        "401": {
+          "description": "Unauthorized",
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Unauthorized" }
+            }
+          }
+        }
+      }
+    },
+
+    "delete": {
+      "tags": ["equipment"],
+      "summary": "Delete the equipment",
+      "security": [{ "bearerAuth": [] }],
+      "description": "",
+      "parameters": [],
+      "responses": {
+        "204": {
+          "description": "No content"
+        },
+        "401": {
+          "description": "Unauthorized",
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Unauthorized" }
+            }
+          }
+        },
+        "404": {
+          "description": "Not Found",
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/NotFound" }
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "/equipments/{id}": {
+    "get": {
+      "tags": ["equipment"],
+      "summary": "Find a equipment by id",
+      "security": [{ "bearerAuth": [] }],
+      "description": "",
+      "parameters": [{ "$ref": "#/components/schemas/ParameterEquipmentID" }],
+      "responses": {
+        "200": {
+          "description": "Successful Response",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResponseGetByIdEquipment"
+              }
+            }
+          }
+        },
+
+        "400": {
+          "description": "Bad Request",
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/BadRequest" }
+            }
+          }
+        },
+        "401": {
+          "description": "Unauthorized",
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Unauthorized" }
+            }
+          }
+        },
+
+        "404": {
+          "description": "Not Found",
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/NotFound" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

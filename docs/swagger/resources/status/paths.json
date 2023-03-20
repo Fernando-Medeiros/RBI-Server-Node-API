@@ -1,0 +1,138 @@
+{
+  "/status": {
+    "post": {
+      "tags": ["status"],
+      "summary": "Register new status",
+      "security": [{ "bearerAuth": [] }],
+      "description": "",
+      "requestBody": {},
+      "parameters": [],
+      "responses": {
+        "201": {
+          "description": "Successful Response"
+        },
+        "400": {
+          "description": "Bad Request",
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/BadRequest" }
+            }
+          }
+        }
+      }
+    },
+
+    "patch": {
+      "tags": ["status"],
+      "summary": "Update status",
+      "security": [{ "bearerAuth": [] }],
+      "description": "",
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": { "$ref": "#/components/schemas/RequestUpdateStatus" }
+          }
+        }
+      },
+      "parameters": [],
+      "responses": {
+        "204": {
+          "description": "No content"
+        },
+        "400": {
+          "description": "Bad Request",
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/BadRequest" }
+            }
+          }
+        },
+        "401": {
+          "description": "Unauthorized",
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Unauthorized" }
+            }
+          }
+        }
+      }
+    },
+
+    "delete": {
+      "tags": ["status"],
+      "summary": "Delete the status",
+      "security": [{ "bearerAuth": [] }],
+      "description": "",
+      "parameters": [],
+      "responses": {
+        "204": {
+          "description": "No content"
+        },
+        "401": {
+          "description": "Unauthorized",
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Unauthorized" }
+            }
+          }
+        },
+        "404": {
+          "description": "Not Found",
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/NotFound" }
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "/status/{id}": {
+    "get": {
+      "tags": ["status"],
+      "summary": "Find a status by id",
+      "security": [{ "bearerAuth": [] }],
+      "description": "",
+      "parameters": [{ "$ref": "#/components/schemas/ParameterStatusID" }],
+      "responses": {
+        "200": {
+          "description": "Successful Response",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResponseGetByIdStatus"
+              }
+            }
+          }
+        },
+
+        "400": {
+          "description": "Bad Request",
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/BadRequest" }
+            }
+          }
+        },
+        "401": {
+          "description": "Unauthorized",
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Unauthorized" }
+            }
+          }
+        },
+
+        "404": {
+          "description": "Not Found",
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/NotFound" }
+            }
+          }
+        }
+      }
+    }
+  }
+}
