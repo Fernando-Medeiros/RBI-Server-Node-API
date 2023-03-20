@@ -1,9 +1,10 @@
 import { InMemoryEquipmentRepository } from "./inMemoryEquipmentRepository";
 
 import equipmentDataMock from "./equipment.data.mock.json";
-import armorItem from "./armor.data.mock.json";
-import weaponItem from "./weapon.data.mock.json";
-import accessoryItem from "./accessory.data.mock.json";
+
+import accessoryExample from "@dom/items/examples/accessory.example.json";
+import armorExample from "@dom/items/examples/armor.example.json";
+import weaponExample from "@dom/items/examples/weapon.example.json";
 
 const database = new InMemoryEquipmentRepository();
 
@@ -23,14 +24,14 @@ export class UseCaseEquipmentsHelpers {
   }
 
   public static getFakeArmor() {
-    return armorItem;
+    return armorExample;
   }
 
   public static getFakeWeapon() {
-    return weaponItem;
+    return weaponExample;
   }
 
   public static getFakeAccessory() {
-    return accessoryItem;
+    return accessoryExample;
   }
 }

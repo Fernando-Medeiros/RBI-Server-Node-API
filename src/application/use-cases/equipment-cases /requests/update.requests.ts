@@ -1,6 +1,6 @@
 import type { EquipmentUpdateProps } from "../repository/equipment.props";
 import type { IEquipmentRequestsToUpdate } from "../repository/equipment.requests.interfaces";
-import { EquipmentValidators as v } from "../validators/validators";
+import { EquipmentValidators as validate } from "../validators/validators";
 import { BadRequest } from "@src/utils/http.exceptions";
 
 export class EquipmentRequestsToUpdate implements IEquipmentRequestsToUpdate {
@@ -24,28 +24,24 @@ export class EquipmentRequestsToUpdate implements IEquipmentRequestsToUpdate {
       leg,
       handLeft,
       handRight,
-      accessoryLeft,
-      accessoryRight,
+      accessoryLeft: accLeft,
+      accessoryRight: accRight,
     } = this.props;
 
-    const data = { pubId: this.sub };
-
     const equipments = {
-      head: v.validateArmor(head),
-      body: v.validateArmor(body),
-      leg: v.validateArmor(leg),
-      handLeft: v.validateWeapon(handLeft),
-      handRight: v.validateWeapon(handRight),
-      accessoryLeft: v.validateAccessory(accessoryLeft),
-      accessoryRight: v.validateAccessory(accessoryRight),
+      ...(head && { head: validate.armor(head) }),
+      ...(body && { body: validate.armor(body) }),
+      ...(leg && { leg: validate.armor(leg) }),
+      ...(handLeft && { handLeft: validate.weapon(handLeft) }),
+      ...(handRight && { handRight: validate.weapon(handRight) }),
+      ...(accLeft && { accessoryLeft: validate.accessory(accLeft) }),
+      ...(accRight && { accessoryRight: validate.accessory(accRight) }),
     };
 
     if (Object.values(equipments).filter((V) => V != undefined).length === 0) {
       throw new BadRequest("No data to be updated!");
     }
 
-    Object.assign(data, equipments);
-
-    return { sub: this.sub, toUpdate: data };
+    return { sub: this.sub, toUpdate: equipments };
   }
 }

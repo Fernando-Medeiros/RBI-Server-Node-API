@@ -12,19 +12,13 @@ function testFields(item: object, keys: string[]) {
 }
 
 export class EquipmentValidators {
-  static validateArmor(item: unknown) {
-    testFields(item || {}, [
-      "name",
-      "defense",
-      "resistance",
-      "value",
-      "description",
-    ]);
+  static armor(item: object) {
+    testFields(item, ["name", "defense", "resistance", "value", "description"]);
     return item;
   }
 
-  static validateAccessory(item: unknown) {
-    testFields(item || {}, [
+  static accessory(item: object) {
+    testFields(item, [
       "name",
       "type",
       "value",
@@ -35,8 +29,8 @@ export class EquipmentValidators {
     return item;
   }
 
-  static validateWeapon(item: unknown) {
-    testFields(item || {}, ["name", "attack", "magic", "value", "description"]);
+  static weapon(item: object) {
+    testFields(item, ["name", "attack", "magic", "value", "description"]);
     return item;
   }
 }
