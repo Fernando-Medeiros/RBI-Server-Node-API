@@ -1,12 +1,10 @@
 import type { Request, Response } from "express";
-
+import { CharacterHandler as handler } from "../handlers/character.handler";
 import {
   StatusCreated,
   StatusOK,
   StatusOkNoContent,
 } from "@src/utils/http.protocols";
-
-import { characterHandler as handler } from "../handlers/character.handler";
 
 export const getAllCharacters = async (_req: Request, res: Response) => {
   const characters = await handler.getAllCharacters();
