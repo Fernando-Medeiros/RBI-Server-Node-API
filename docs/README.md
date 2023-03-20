@@ -6,6 +6,11 @@
   - [Documentation](#documentation)
   - [Scripts](#scripts)
   - [Endpoints](#endpoints)
+    - [Character](#character)
+    - [Status](#status)
+    - [Inventory](#inventory)
+    - [Equipment](#equipment)
+    - [Skills](#skills)
 
 ## Start
 
@@ -25,4 +30,22 @@
 
 ## Endpoints
 
-![Endpoints](endpoints.png)
+### Character
+
+![Character](endpoints/character.png)
+
+### Status
+
+![Status](endpoints/status.png)
+
+### Inventory
+
+![Inventory](endpoints/inventory.png)
+
+### Equipment
+
+![Equipment](endpoints/equipment.png)
+
+### Skills
+
+![Skills](endpoints/skills.png)

@@ -4,6 +4,12 @@
 
 .
 ├── docs
+│   ├── endpoints
+│   │   ├── character.png
+│   │   ├── equipment.png
+│   │   ├── inventory.png
+│   │   ├── skills.png
+│   │   └── status.png
 │   ├── swagger
 │   │   ├── build
 │   │   │   ├── build.impl.ts
@@ -13,11 +19,26 @@
 │   │   │   ├── exceptions.json
 │   │   │   └── info.json
 │   │   └── resources
-│   │       └── character
+│   │       ├── character
+│   │       │   ├── paths.json
+│   │       │   ├── requests.json
+│   │       │   └── responses.json
+│   │       ├── equipment
+│   │       │   ├── paths.json
+│   │       │   ├── requests.json
+│   │       │   └── responses.json
+│   │       ├── inventory
+│   │       │   ├── paths.json
+│   │       │   ├── requests.json
+│   │       │   └── responses.json
+│   │       ├── skills
+│   │       │   ├── paths.json
+│   │       │   ├── requests.json
+│   │       │   └── responses.json
+│   │       └── status
 │   │           ├── paths.json
 │   │           ├── requests.json
 │   │           └── responses.json
-│   ├── endpoints.png
 │   ├── README.md
 │   ├── START.md
 │   └── STRUCTURE.md
@@ -57,7 +78,7 @@
 │   │   │   │   ├── get-by-id.case.ts
 │   │   │   │   ├── get-by-name.case.ts
 │   │   │   │   └── update.case.ts
-│   │   │   ├── equipment-cases 
+│   │   │   ├── equipment-cases
 │   │   │   │   ├── repository
 │   │   │   │   │   ├── equipment.props.ts
 │   │   │   │   │   ├── equipment.repository.interfaces.ts
@@ -69,12 +90,59 @@
 │   │   │   │   │   └── update.requests.ts
 │   │   │   │   ├── tests
 │   │   │   │   │   ├── mock
-│   │   │   │   │   │   ├── accessory.data.mock.json
-│   │   │   │   │   │   ├── armor.data.mock.json
 │   │   │   │   │   │   ├── equipment.data.mock.json
 │   │   │   │   │   │   ├── inMemoryEquipmentRepository.ts
-│   │   │   │   │   │   ├── utils.ts
-│   │   │   │   │   │   └── weapon.data.mock.json
+│   │   │   │   │   │   └── utils.ts
+│   │   │   │   │   ├── create.case.spec.ts
+│   │   │   │   │   ├── delete.case.spec.ts
+│   │   │   │   │   ├── get-by-id.case.spec.ts
+│   │   │   │   │   └── update.case.spec.ts
+│   │   │   │   ├── validators
+│   │   │   │   │   └── validators.ts
+│   │   │   │   ├── create.case.ts
+│   │   │   │   ├── delete.case.ts
+│   │   │   │   ├── get-by-id.case.ts
+│   │   │   │   └── update.case.ts
+│   │   │   ├── inventory-cases
+│   │   │   │   ├── repository
+│   │   │   │   │   ├── inventory.props.ts
+│   │   │   │   │   ├── inventory.repository.interfaces.ts
+│   │   │   │   │   └── inventory.requests.interfaces.ts
+│   │   │   │   ├── requests
+│   │   │   │   │   ├── create.requests.ts
+│   │   │   │   │   ├── delete.requests.ts
+│   │   │   │   │   ├── get-by-id.requests.ts
+│   │   │   │   │   └── update.requests.ts
+│   │   │   │   ├── tests
+│   │   │   │   │   ├── mock
+│   │   │   │   │   │   ├── inMemoryInventoryRepository.ts
+│   │   │   │   │   │   ├── inventory.data.mock.json
+│   │   │   │   │   │   └── utils.ts
+│   │   │   │   │   ├── create.case.spec.ts
+│   │   │   │   │   ├── delete.case.spec.ts
+│   │   │   │   │   ├── get-by-id.case.spec.ts
+│   │   │   │   │   └── update.case.spec.ts
+│   │   │   │   ├── validators
+│   │   │   │   │   └── validators.ts
+│   │   │   │   ├── create.case.ts
+│   │   │   │   ├── delete.case.ts
+│   │   │   │   ├── get-by-id.case.ts
+│   │   │   │   └── update.case.ts
+│   │   │   ├── skills-cases
+│   │   │   │   ├── repository
+│   │   │   │   │   ├── skills.props.ts
+│   │   │   │   │   ├── skills.repository.interfaces.ts
+│   │   │   │   │   └── skills.requests.interfaces.ts
+│   │   │   │   ├── requests
+│   │   │   │   │   ├── create.requests.ts
+│   │   │   │   │   ├── delete.requests.ts
+│   │   │   │   │   ├── get-by-id.requests.ts
+│   │   │   │   │   └── update.requests.ts
+│   │   │   │   ├── tests
+│   │   │   │   │   ├── mock
+│   │   │   │   │   │   ├── inMemorySkillsRepository.ts
+│   │   │   │   │   │   ├── skills.data.mock.json
+│   │   │   │   │   │   └── utils.ts
 │   │   │   │   │   ├── create.case.spec.ts
 │   │   │   │   │   ├── delete.case.spec.ts
 │   │   │   │   │   ├── get-by-id.case.spec.ts
@@ -135,8 +203,17 @@
 │   │   │       ├── status.spec.ts
 │   │   │       └── status.ts
 │   │   ├── items
+│   │   │   ├── examples
+│   │   │   │   ├── accessory.example.json
+│   │   │   │   ├── armor.example.json
+│   │   │   │   ├── consumable.example.json
+│   │   │   │   ├── material.example.json
+│   │   │   │   └── weapon.example.json
 │   │   │   └── items.interface.ts
 │   │   └── skills
+│   │       ├── examples
+│   │       │   ├── defensive.example.json
+│   │       │   └── offensive.example.json
 │   │       └── skills.interface.ts
 │   ├── infrastructure
 │   │   ├── middlewares
@@ -149,14 +226,30 @@
 │   │   │   ├── skills.model.ts
 │   │   │   └── status.model.ts
 │   │   ├── repositories
-│   │   │   └── character.repository.impl.ts
+│   │   │   ├── character.repository.impl.ts
+│   │   │   ├── equipment.repository.impl.ts
+│   │   │   ├── inventory.repository.impl.ts
+│   │   │   ├── skills.repository.impl.ts
+│   │   │   └── status.repository.impl.ts
 │   │   ├── routes
 │   │   │   ├── controllers
-│   │   │   │   └── character.controller.ts
+│   │   │   │   ├── character.controller.ts
+│   │   │   │   ├── equipment.controller.ts
+│   │   │   │   ├── inventory.controller.ts
+│   │   │   │   ├── skills.controller.ts
+│   │   │   │   └── status.controller.ts
 │   │   │   ├── handlers
-│   │   │   │   └── character.handler.ts
+│   │   │   │   ├── character.handler.ts
+│   │   │   │   ├── equipment.handler.ts
+│   │   │   │   ├── inventory.handler.ts
+│   │   │   │   ├── skills.handler.ts
+│   │   │   │   └── status.handler.ts
 │   │   │   └── resources
-│   │   │       └── character.routes.ts
+│   │   │       ├── character.routes.ts
+│   │   │       ├── equipment.routes.ts
+│   │   │       ├── inventory.routes.ts
+│   │   │       ├── skills.routes.ts
+│   │   │       └── status.routes.ts
 │   │   ├── security
 │   │   │   └── token
 │   │   │       └── token.impl.ts
@@ -208,6 +301,6 @@
 ├── vitest.config.ts
 └── yarn.lock
 
-63 directories, 141 files
+82 directories, 215 files
 
 ```
