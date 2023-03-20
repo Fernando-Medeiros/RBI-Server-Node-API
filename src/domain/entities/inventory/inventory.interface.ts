@@ -30,9 +30,9 @@ export interface IInventory {
 export type PropsPackage = {
   _id?: string;
   pubId: string;
-  armors: Armor[];
-  accessories: Accessory[];
-  consumables: Consumable[];
-  materials: Material[];
-  weapons: Weapon[];
+  armors: object[] | Armor[];
+  accessories: object[] | Accessory[];
+  consumables: object[] | Consumable[];
+  materials: object[] | Material[];
+  weapons: object[] | Weapon[];
 };
