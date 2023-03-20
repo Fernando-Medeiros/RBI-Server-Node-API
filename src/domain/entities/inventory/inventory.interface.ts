@@ -4,7 +4,7 @@ import type {
   Weapon,
   Consumable,
   Material,
-} from "@root/src/domain/items/items.interface";
+} from "@dom/items/items.interface";
 
 export interface IInventory {
   get getArmors(): Armor[];
@@ -30,9 +30,9 @@ export interface IInventory {
 export type PropsPackage = {
   _id?: string;
   pubId: string;
-  armors: object[] | Armor[];
-  accessories: object[] | Accessory[];
-  consumables: object[] | Consumable[];
-  materials: object[] | Material[];
-  weapons: object[] | Weapon[];
+  armors: Armor[];
+  accessories: Accessory[];
+  consumables: Consumable[];
+  materials: Material[];
+  weapons: Weapon[];
 };

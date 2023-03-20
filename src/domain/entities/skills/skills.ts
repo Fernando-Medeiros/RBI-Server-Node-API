@@ -1,8 +1,5 @@
 import type { ISkills, PropsSkills } from "./skills.interface";
-import type {
-  Defensive,
-  Offensive,
-} from "@root/src/domain/skills/skills.interface";
+import type { Defensive, Offensive } from "@dom/skills/skills.interface";
 
 export class Skill implements ISkills {
   private props: PropsSkills;
@@ -11,13 +8,13 @@ export class Skill implements ISkills {
     this.props = data;
   }
 
-  get getOffensiveSkills(): Offensive[] {
+  get getOffensiveSkills(): Offensive[] | object[] {
     return this.props.offensive;
   }
   set setOffensive(skill: Offensive) {
     this.props.offensive.push(skill);
   }
-  get getDefensiveSkills(): Defensive[] {
+  get getDefensiveSkills(): Defensive[] | object[] {
     return this.props.defensive;
   }
   set setDefensive(skill: Defensive) {

@@ -1,13 +1,10 @@
-import type {
-  Defensive,
-  Offensive,
-} from "@root/src/domain/skills/skills.interface";
+import type { Defensive, Offensive } from "@dom/skills/skills.interface";
 
 export interface ISkills {
-  get getOffensiveSkills(): Offensive[];
+  get getOffensiveSkills(): Offensive[] | object[];
   set setOffensive(skill: Offensive);
 
-  get getDefensiveSkills(): Defensive[];
+  get getDefensiveSkills(): Defensive[] | object[];
   set setDefensive(skill: Defensive);
 
   findOffensive(name: string): Offensive | undefined;
