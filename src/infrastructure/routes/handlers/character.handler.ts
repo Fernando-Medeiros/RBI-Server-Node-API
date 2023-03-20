@@ -14,7 +14,7 @@ import { getByIdCase } from "@app/use-cases/character-cases/get-by-id.case";
 import { getByNameCase } from "@app/use-cases/character-cases/get-by-name.case";
 import { updateCase } from "@app/use-cases/character-cases/update.case";
 
-export const characterHandler = {
+export const CharacterHandler = {
   async getAllCharacters() {
     return await getAllCase(new CharacterRepository());
   },
