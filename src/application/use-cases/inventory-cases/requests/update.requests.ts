@@ -34,6 +34,10 @@ export class InventoryRequestsToUpdate implements IInventoryRequestsToUpdate {
       throw new BadRequest("No data to be updated!");
     }
 
-    return { sub: this.sub, toUpdate: inventory };
+    const dataToUpdate = {};
+
+    Object.assign(dataToUpdate, inventory);
+
+    return { sub: this.sub, toUpdate: dataToUpdate };
   }
 }
