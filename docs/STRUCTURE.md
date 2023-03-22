@@ -270,25 +270,89 @@
 │   │   ├── helpers.ts
 │   │   └── token.ts
 │   └── integration
-│       └── characters
+│       ├── characters
+│       │   ├── create
+│       │   │   ├── exceptions.spec.ts
+│       │   │   └── success.spec.ts
+│       │   ├── delete
+│       │   │   ├── exceptions.spec.ts
+│       │   │   └── success.spec.ts
+│       │   ├── get-all
+│       │   │   ├── exceptions.spec.ts
+│       │   │   └── success.spec.ts
+│       │   ├── get-by-id
+│       │   │   ├── exceptions.spec.ts
+│       │   │   └── success.spec.ts
+│       │   ├── get-by-name
+│       │   │   ├── exceptions.spec.ts
+│       │   │   └── success.spec.ts
+│       │   ├── mock
+│       │   │   ├── character.data.mock.json
+│       │   │   └── character.mock.ts
+│       │   └── update
+│       │       ├── exceptions.spec.ts
+│       │       └── success.spec.ts
+│       ├── equipment
+│       │   ├── create
+│       │   │   ├── exceptions.spec.ts
+│       │   │   └── success.spec.ts
+│       │   ├── delete
+│       │   │   ├── exceptions.spec.ts
+│       │   │   └── success.spec.ts
+│       │   ├── get-by-id
+│       │   │   ├── exceptions.spec.ts
+│       │   │   └── success.spec.ts
+│       │   ├── mock
+│       │   │   ├── equipment.data.mock.json
+│       │   │   └── equipment.mock.ts
+│       │   └── update
+│       │       ├── exceptions.spec.ts
+│       │       └── success.spec.ts
+│       ├── inventory
+│       │   ├── create
+│       │   │   ├── exceptions.spec.ts
+│       │   │   └── success.spec.ts
+│       │   ├── delete
+│       │   │   ├── exceptions.spec.ts
+│       │   │   └── success.spec.ts
+│       │   ├── get-by-id
+│       │   │   ├── exceptions.spec.ts
+│       │   │   └── success.spec.ts
+│       │   ├── mock
+│       │   │   ├── inventory.data.mock.json
+│       │   │   └── inventory.mock.ts
+│       │   └── update
+│       │       ├── exceptions.spec.ts
+│       │       └── success.spec.ts
+│       ├── skills
+│       │   ├── create
+│       │   │   ├── exceptions.spec.ts
+│       │   │   └── success.spec.ts
+│       │   ├── delete
+│       │   │   ├── exceptions.spec.ts
+│       │   │   └── success.spec.ts
+│       │   ├── get-by-id
+│       │   │   ├── exceptions.spec.ts
+│       │   │   └── success.spec.ts
+│       │   ├── mock
+│       │   │   ├── skills.data.mock.json
+│       │   │   └── skills.mock.ts
+│       │   └── update
+│       │       ├── exceptions.spec.ts
+│       │       └── success.spec.ts
+│       └── status
 │           ├── create
 │           │   ├── exceptions.spec.ts
 │           │   └── success.spec.ts
 │           ├── delete
 │           │   ├── exceptions.spec.ts
 │           │   └── success.spec.ts
-│           ├── get-all
-│           │   ├── exceptions.spec.ts
-│           │   └── success.spec.ts
 │           ├── get-by-id
 │           │   ├── exceptions.spec.ts
 │           │   └── success.spec.ts
-│           ├── get-by-name
-│           │   ├── exceptions.spec.ts
-│           │   └── success.spec.ts
 │           ├── mock
-│           │   ├── character.data.mock.json
-│           │   └── character.mock.ts
+│           │   ├── status.data.mock.json
+│           │   └── status.mock.ts
 │           └── update
 │               ├── exceptions.spec.ts
 │               └── success.spec.ts
@@ -301,6 +365,6 @@
 ├── vitest.config.ts
 └── yarn.lock
 
-82 directories, 215 files
+106 directories, 255 files
 
 ```
