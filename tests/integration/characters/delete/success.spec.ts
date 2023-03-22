@@ -17,6 +17,5 @@ describe("Character - Delete - Success", async () => {
     const res = await app.delete("/characters").set(header);
 
     expect(res.statusCode).toEqual(204);
-    expect(res.body).toBeNull;
   });
 });

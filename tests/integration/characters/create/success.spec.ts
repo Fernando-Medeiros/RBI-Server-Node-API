@@ -20,6 +20,5 @@ describe("Character - Create - Success", async () => {
       .set(header);
 
     expect(res.statusCode).toEqual(201);
-    expect(res.body).toBeNull;
   });
 });

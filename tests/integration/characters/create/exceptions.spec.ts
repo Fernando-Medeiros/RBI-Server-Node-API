@@ -22,7 +22,7 @@ describe("Character - Create - Exceptions", async () => {
     const res = await app.post("/characters").send(dataToCreate).set(header);
 
     expect(res.statusCode).toEqual(400);
-    expect(res.body).toBeTypeOf("object");
+    expect(res.body).toHaveProperty("message");
   });
 
   it("Should return 400 when submitting a name already in use", async () => {
@@ -32,7 +32,7 @@ describe("Character - Create - Exceptions", async () => {
       .set(header);
 
     expect(res.statusCode).toEqual(400);
-    expect(res.body).toBeTypeOf("object");
+    expect(res.body).toHaveProperty("message");
   });
 
   it("Should return 401 when sending invalid or null token", async () => {
@@ -42,6 +42,6 @@ describe("Character - Create - Exceptions", async () => {
       .set({ Authorization: "Bearer 000000" });
 
     expect(res.statusCode).toEqual(401);
-    expect(res.body).toBeTypeOf("object");
+    expect(res.body).toHaveProperty("message");
   });
 });

@@ -9,6 +9,6 @@ describe("Character - Get All - Exceptions", () => {
       .set({ Authorization: "Bearer 000000" });
 
     expect(res.statusCode).toEqual(401);
-    expect(res.body).toBeTypeOf("object");
+    expect(res.body).toHaveProperty("message");
   });
 });

@@ -18,6 +18,6 @@ describe("Character - Get By Name - Success", async () => {
     const res = await app.get(`/characters/name/${mock.charName}`).set(header);
 
     expect(res.statusCode).toEqual(200);
-    expect(res.body).toBeTypeOf("object");
+    expect(res.body).toHaveProperty("pubId");
   });
 });
