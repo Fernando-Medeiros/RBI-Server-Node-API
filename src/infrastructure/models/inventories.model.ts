@@ -3,6 +3,7 @@ import { Schema, model } from "mongoose";
 const inventoriesSchema = {
   pubId: {
     type: String,
+    required: true,
     index: true,
   },
   armors: {

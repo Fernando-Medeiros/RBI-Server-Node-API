@@ -3,6 +3,7 @@ import { Schema, model } from "mongoose";
 const characterSchema = {
   pubId: {
     type: String,
+    required: true,
     index: true,
   },
   level: {

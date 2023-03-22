@@ -3,6 +3,7 @@ import { Schema, model } from "mongoose";
 const equipmentsSchema = {
   pubId: {
     type: String,
+    required: true,
     index: true,
   },
   head: {

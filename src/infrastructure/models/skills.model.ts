@@ -3,6 +3,7 @@ import { Schema, model } from "mongoose";
 const skillsSchema = {
   pubId: {
     type: String,
+    required: true,
     index: true,
   },
   offensive: {
