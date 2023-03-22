@@ -7,7 +7,7 @@ import { SkillsModel as model } from "@inf/models/skills.model";
 
 export class SkillsRepository implements ISkillsRepository {
   async findById(sub: string): Promise<SkillsProps | null> {
-    return await model.findById({ pubId: sub });
+    return await model.findOne({ pubId: sub });
   }
 
   async findByIdAndDelete(sub: string): Promise<SkillsProps | null> {

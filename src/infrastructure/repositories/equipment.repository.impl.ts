@@ -7,7 +7,7 @@ import { EquipmentsModel as model } from "@inf/models/equipments.model";
 
 export class EquipmentRepository implements IEquipmentRepository {
   async findById(sub: string): Promise<EquipmentProps | null> {
-    return await model.findById({ pubId: sub });
+    return await model.findOne({ pubId: sub });
   }
 
   async findByIdAndDelete(sub: string): Promise<EquipmentProps | null> {

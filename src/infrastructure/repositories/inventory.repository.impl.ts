@@ -7,7 +7,7 @@ import { InventoriesModel as model } from "@inf/models/inventories.model";
 
 export class InventoryRepository implements IInventoryRepository {
   async findById(sub: string): Promise<InventoryProps | null> {
-    return await model.findById({ pubId: sub });
+    return await model.findOne({ pubId: sub });
   }
 
   async findByIdAndDelete(sub: string): Promise<InventoryProps | null> {

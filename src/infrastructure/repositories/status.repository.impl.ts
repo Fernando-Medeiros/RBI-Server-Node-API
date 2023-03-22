@@ -7,7 +7,7 @@ import { StatusModel as model } from "@inf/models/status.model";
 
 export class StatusRepository implements IStatusRepository {
   async findById(sub: string): Promise<StatusProps | null> {
-    return await model.findById({ pubId: sub });
+    return await model.findOne({ pubId: sub });
   }
 
   async findByIdAndDelete(sub: string): Promise<StatusProps | null> {
