@@ -269,6 +269,11 @@
 │   │   ├── config.ts
 │   │   ├── helpers.ts
 │   │   └── token.ts
+│   ├── e2e
+│   │   ├── create-character
+│   │   │   └── success.spec.ts
+│   │   └── delete-character
+│   │       └── success.spec.ts
 │   └── integration
 │       ├── characters
 │       │   ├── create
@@ -365,6 +370,6 @@
 ├── vitest.config.ts
 └── yarn.lock
 
-106 directories, 255 files
+109 directories, 257 files
 
 ```
