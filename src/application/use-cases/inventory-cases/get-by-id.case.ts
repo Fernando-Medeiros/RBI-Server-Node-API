@@ -14,5 +14,12 @@ export const getByIdCase = async (
     throw new NotFound("Inventory not found!");
   }
 
-  return inventory;
+  return {
+    pubId: inventory.pubId,
+    armors: inventory.armors,
+    accessories: inventory.accessories,
+    consumables: inventory.consumables,
+    materials: inventory.materials,
+    weapons: inventory.weapons,
+  };
 };

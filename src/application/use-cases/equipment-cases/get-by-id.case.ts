@@ -8,11 +8,20 @@ export const getByIdCase = async (
 ) => {
   const { sub } = requests.getRequestToGetById();
 
-  const status = await repository.findById(sub);
+  const equipments = await repository.findById(sub);
 
-  if (status === null) {
+  if (equipments === null) {
     throw new NotFound("Equipments not found!");
   }
 
-  return status;
+  return {
+    pubId: equipments.pubId,
+    head: equipments.head,
+    body: equipments.body,
+    leg: equipments.leg,
+    handLeft: equipments.handLeft,
+    handRight: equipments.handRight,
+    accessoryLeft: equipments.accessoryLeft,
+    accessoryRight: equipments.accessoryRight,
+  };
 };

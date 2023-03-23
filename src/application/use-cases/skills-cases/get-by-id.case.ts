@@ -14,5 +14,9 @@ export const getByIdCase = async (
     throw new NotFound("Skills not found!");
   }
 
-  return skills;
+  return {
+    pubId: skills.pubId,
+    offensive: skills.offensive,
+    defensive: skills.defensive,
+  };
 };
