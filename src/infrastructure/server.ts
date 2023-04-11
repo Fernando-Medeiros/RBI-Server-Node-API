@@ -3,6 +3,7 @@ import express from "express";
 
 import { exceptionMiddleware } from "./middlewares/exceptions";
 import { sessionMiddleware } from "./middlewares/session";
+import { requestLimiterMiddleware } from "./middlewares/request-rate-limit";
 
 import swaggerUi from "swagger-ui-express";
 import swaggerFile from "@root/swagger.json";
@@ -16,6 +17,8 @@ import { routes as skillsRoutes } from "@inf/routes/resources/skills.routes";
 export const server = express();
 
 server.use(express.json());
+
+server.use(requestLimiterMiddleware);
 
 server.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
