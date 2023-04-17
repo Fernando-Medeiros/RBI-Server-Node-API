@@ -1,5 +1,6 @@
 import "express-async-errors";
 import express from "express";
+import cors from "cors";
 
 import { exceptionMiddleware } from "./middlewares/exceptions";
 import { sessionMiddleware } from "./middlewares/session";
@@ -17,6 +18,8 @@ import { routes as skillsRoutes } from "@inf/routes/resources/skills.routes";
 export const server = express();
 
 server.use(express.json());
+
+server.use(cors());
 
 server.use(requestLimiterMiddleware);
 
