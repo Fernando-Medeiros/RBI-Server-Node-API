@@ -7,6 +7,7 @@ const dataMock = {
   charName: "Example",
   className: "Peasant",
   level: 1,
+  gender: "man",
   createdAt: new Date(),
 };
 
@@ -18,8 +19,8 @@ describe("Domain - CharacterEntity - OK", () => {
   });
 
   it("Should check the get methods", () => {
-    const {pubId, charName, className, level, createdAt } = dataMock;
-    
+    const { pubId, charName, className, level, createdAt } = dataMock;
+
     expect(character.getPubId).toEqual(pubId);
     expect(character.getName).toEqual(charName);
     expect(character.getClass).toEqual(className);
@@ -28,7 +29,7 @@ describe("Domain - CharacterEntity - OK", () => {
   });
 
   it("Should check the set methods", () => {
-    character.setPubId = "new-uuid4"
+    character.setPubId = "new-uuid4";
     character.setName = "NewExample";
     character.setClass = "Mage";
     character.setLevel = 2;

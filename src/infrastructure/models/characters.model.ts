@@ -31,6 +31,13 @@ const characterSchema = {
     maxlength: 20,
     default: "peasant",
   },
+  gender: {
+    type: String,
+    trim: true,
+    minlength: 3,
+    maxlength: 5,
+    default: "man",
+  },
   createdAt: {
     type: Date,
     default: Date.now,

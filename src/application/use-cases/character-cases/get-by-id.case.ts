@@ -20,5 +20,6 @@ export const getByIdCase = async (
     level: character.level,
     charName: character.charName,
     className: character.className,
+    gender: character.gender,
   };
 };

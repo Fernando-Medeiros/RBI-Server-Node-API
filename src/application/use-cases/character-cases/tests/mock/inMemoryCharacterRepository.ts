@@ -54,6 +54,7 @@ export class InMemoryCharacterRepository implements ICharacterRepository {
       pubId: pubId as string,
       charName: charName,
       className: className,
+      gender: "man",
     };
 
     this.database.push(newCharacter);

@@ -17,5 +17,6 @@ export type PCharacter = {
   level: number;
   charName: string;
   className: string;
+  gender: string;
   createdAt?: object;
 };

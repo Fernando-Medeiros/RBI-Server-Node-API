@@ -12,4 +12,5 @@ export type CharacterUpdateProps = {
   level?: number;
   charName?: string;
   className?: string;
+  gender?: string;
 };
