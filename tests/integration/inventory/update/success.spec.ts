@@ -1,10 +1,8 @@
-import { describe, expect, it } from "vitest";
-import { app } from "@tes/config/config";
+import { describe, it, expect, beforeAll, afterAll } from "vitest";
+import { app, secretHeader } from "@tes/config/config";
 import { InventoryMock } from "../mock/inventory.mock";
-import {
-  HelperInsertRemove as helpers,
-  HelperHeaders as helperHeader,
-} from "@tes/config/helpers";
+import { HelperHeaders } from "@tes/config/helpers/get-auth-header";
+import { Helpers } from "@tes/config/helpers/insert-remove";
 
 import accessoryExample from "@dom/items/examples/accessory.example.json";
 import armorExample from "@dom/items/examples/armor.example.json";
@@ -13,12 +11,19 @@ import materialExample from "@dom/items/examples/material.example.json";
 import weaponExample from "@dom/items/examples/weapon.example.json";
 
 const mock = new InventoryMock();
+const headers = { ...secretHeader, Authorization: "" };
 
 describe("Inventory - Update - Success", async () => {
-  const header = await helperHeader.getAuthorizationHeader(mock.pubId);
-
-  helpers.insertBeforeAll("/inventories", mock.dataToCreate, header);
-  helpers.removeAfterAll("/inventories", header);
+  beforeAll(async () => {
+    Object.assign(
+      headers,
+      await HelperHeaders.mockAuthorizationHeader(mock.pubId)
+    );
+    await Helpers.insertBeforeAll("/inventories", mock.dataToCreate, headers);
+  });
+  afterAll(async () => {
+    await Helpers.removeAfterAll("/inventories", headers);
+  });
 
   it("Should update the inventory", async () => {
     const toUpdate = {
@@ -29,7 +34,7 @@ describe("Inventory - Update - Success", async () => {
       weapons: [weaponExample, weaponExample],
     };
 
-    const res = await app.patch("/inventories").send(toUpdate).set(header);
+    const res = await app.patch("/inventories").send(toUpdate).set(headers);
 
     expect(res.statusCode).toEqual(204);
   });
@@ -37,7 +42,7 @@ describe("Inventory - Update - Success", async () => {
   it("Should update the armors", async () => {
     const toUpdate = { armors: [armorExample] };
 
-    const res = await app.patch("/inventories").send(toUpdate).set(header);
+    const res = await app.patch("/inventories").send(toUpdate).set(headers);
 
     expect(res.statusCode).toEqual(204);
   });
@@ -45,7 +50,7 @@ describe("Inventory - Update - Success", async () => {
   it("Should update the accessories", async () => {
     const toUpdate = { accessories: [accessoryExample] };
 
-    const res = await app.patch("/inventories").send(toUpdate).set(header);
+    const res = await app.patch("/inventories").send(toUpdate).set(headers);
 
     expect(res.statusCode).toEqual(204);
   });
@@ -53,7 +58,7 @@ describe("Inventory - Update - Success", async () => {
   it("Should update the consumables", async () => {
     const toUpdate = { consumables: [consumableExample] };
 
-    const res = await app.patch("/inventories").send(toUpdate).set(header);
+    const res = await app.patch("/inventories").send(toUpdate).set(headers);
 
     expect(res.statusCode).toEqual(204);
   });
@@ -61,7 +66,7 @@ describe("Inventory - Update - Success", async () => {
   it("Should update the materials", async () => {
     const toUpdate = { materials: [materialExample] };
 
-    const res = await app.patch("/inventories").send(toUpdate).set(header);
+    const res = await app.patch("/inventories").send(toUpdate).set(headers);
 
     expect(res.statusCode).toEqual(204);
   });
@@ -69,7 +74,7 @@ describe("Inventory - Update - Success", async () => {
   it("Should update the weapons", async () => {
     const toUpdate = { weapons: [weaponExample] };
 
-    const res = await app.patch("/inventories").send(toUpdate).set(header);
+    const res = await app.patch("/inventories").send(toUpdate).set(headers);
 
     expect(res.statusCode).toEqual(204);
   });
