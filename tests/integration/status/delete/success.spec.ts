@@ -1,20 +1,23 @@
-import { describe, expect, it } from "vitest";
-import { app } from "@tes/config/config";
+import { describe, it, expect, beforeAll } from "vitest";
+import { app, secretHeader } from "@tes/config/config";
 import { StatusMock } from "../mock/status.mock";
-import {
-  HelperInsertRemove as helpers,
-  HelperHeaders as helperHeader,
-} from "@tes/config/helpers";
+import { HelperHeaders } from "@tes/config/helpers/get-auth-header";
+import { Helpers } from "@tes/config/helpers/insert-remove";
 
 const mock = new StatusMock();
+const headers = { ...secretHeader, Authorization: "" };
 
 describe("Status - Delete - Success", async () => {
-  const header = await helperHeader.getAuthorizationHeader(mock.pubId);
-
-  helpers.insertBeforeAll("/status", mock.dataToCreate, header);
+  beforeAll(async () => {
+    Object.assign(
+      headers,
+      await HelperHeaders.mockAuthorizationHeader(mock.pubId)
+    );
+    await Helpers.insertBeforeAll("/status", mock.dataToCreate, headers);
+  });
 
   it("Should return 204 when deleting the status", async () => {
-    const res = await app.delete("/status").set(header);
+    const res = await app.delete("/status").set(headers);
 
     expect(res.statusCode).toEqual(204);
   });
