@@ -22,7 +22,8 @@
       "infra/*": ["src/infrastructure/*", "dist/src/infrastructure/*"],
       "utils/*": ["src/utils/*", "dist/src/utils/*"],
       "docs/*": ["docs/*"],
-      "tests/*": ["tests/*"]
+      "tests/*": ["tests/*"],
+      "example/*": ["examples/*"]
     }
   },
   "ts-node": {

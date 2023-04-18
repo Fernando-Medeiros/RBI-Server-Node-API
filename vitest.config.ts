@@ -16,6 +16,7 @@ export default defineConfig({
       utils: path.resolve(__dirname, "./src/utils/"),
       docs: path.resolve(__dirname, "./docs/"),
       tests: path.resolve(__dirname, "./tests/"),
+      example: path.resolve(__dirname, "./examples/"),
     },
   },
 });
