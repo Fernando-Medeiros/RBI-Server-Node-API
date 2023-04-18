@@ -1,30 +1,37 @@
-import { describe, test, expect } from "vitest";
-import { app } from "@tes/config/config";
+import { describe, test, expect, beforeAll, afterAll } from "vitest";
+import { app, secretHeader } from "@tes/config/config";
 import { CharacterMock } from "@tes/integration/characters/mock/character.mock";
-import {
-  HelperInsertRemove as helpers,
-  HelperHeaders as helperHeader,
-} from "@tes/config/helpers";
+import { HelperHeaders } from "@tes/config/helpers/get-auth-header";
+import { Helpers } from "@tes/config/helpers/insert-remove";
 
 const mock = new CharacterMock("XTesterXXY");
+const headers = { ...secretHeader, Authorization: "" };
 
-describe("E2E - Request all character data - Success", async () => {
-  const header = await helperHeader.getAuthorizationHeader(mock.pubId);
-
-  helpers.removeAfterAll("/characters", header);
-  helpers.removeAfterAll("/status", header);
-  helpers.removeAfterAll("/equipments", header);
-  helpers.removeAfterAll("/inventories", header);
-  helpers.removeAfterAll("/skills", header);
+describe("E2E - Request all character data - Success", () => {
+  beforeAll(async () => {
+    Object.assign(
+      headers,
+      await HelperHeaders.mockAuthorizationHeader(mock.pubId)
+    );
+  });
+  afterAll(async () => {
+    Promise.all([
+      await Helpers.removeAfterAll("/characters", headers),
+      await Helpers.removeAfterAll("/status", headers),
+      await Helpers.removeAfterAll("/equipments", headers),
+      await Helpers.removeAfterAll("/inventories", headers),
+      await Helpers.removeAfterAll("/skills", headers),
+    ]);
+  });
 
   test("Should create a new character", async () => {
     const [character, status, equipment, inventory, skills] = await Promise.all(
       [
-        await app.post("/characters").send(mock.dataToCreate).set(header),
-        await app.post("/status").set(header),
-        await app.post("/equipments").set(header),
-        await app.post("/inventories").set(header),
-        await app.post("/skills").set(header),
+        app.post("/characters").send(mock.dataToCreate).set(headers),
+        app.post("/status").set(headers),
+        app.post("/equipments").set(headers),
+        app.post("/inventories").set(headers),
+        app.post("/skills").set(headers),
       ]
     );
 
@@ -38,11 +45,11 @@ describe("E2E - Request all character data - Success", async () => {
   test("Should receive full character data", async () => {
     const [character, status, equipment, inventory, skills] = await Promise.all(
       [
-        await app.get(`/characters/${mock.pubId}`).set(header),
-        await app.get(`/status/${mock.pubId}`).set(header),
-        await app.get(`/equipments/${mock.pubId}`).set(header),
-        await app.get(`/inventories/${mock.pubId}`).set(header),
-        await app.get(`/skills/${mock.pubId}`).set(header),
+        app.get(`/characters/${mock.pubId}`).set(headers),
+        app.get(`/status/${mock.pubId}`).set(headers),
+        app.get(`/equipments/${mock.pubId}`).set(headers),
+        app.get(`/inventories/${mock.pubId}`).set(headers),
+        app.get(`/skills/${mock.pubId}`).set(headers),
       ]
     );
 

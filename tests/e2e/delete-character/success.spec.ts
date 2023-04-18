@@ -1,30 +1,35 @@
-import { describe, test, expect } from "vitest";
-import { app } from "@tes/config/config";
+import { describe, test, expect, beforeAll } from "vitest";
+import { app, secretHeader } from "@tes/config/config";
 import { CharacterMock } from "@tes/integration/characters/mock/character.mock";
-import {
-  HelperInsertRemove as helpers,
-  HelperHeaders as helperHeader,
-} from "@tes/config/helpers";
+import { HelperHeaders } from "@tes/config/helpers/get-auth-header";
+import { Helpers } from "@tes/config/helpers/insert-remove";
 
 const mock = new CharacterMock("XTesterXY");
+const headers = { ...secretHeader, Authorization: "" };
 
 describe("E2E - Delete all character data - Success", async () => {
-  const header = await helperHeader.getAuthorizationHeader(mock.pubId);
-
-  helpers.insertBeforeAll("/characters", mock.dataToCreate, header);
-  helpers.insertBeforeAll("/status", {}, header);
-  helpers.insertBeforeAll("/equipments", {}, header);
-  helpers.insertBeforeAll("/inventories", {}, header);
-  helpers.insertBeforeAll("/skills", {}, header);
+  beforeAll(async () => {
+    Object.assign(
+      headers,
+      await HelperHeaders.mockAuthorizationHeader(mock.pubId)
+    );
+    Promise.all([
+      await Helpers.insertBeforeAll("/characters", mock.dataToCreate, headers),
+      await Helpers.insertBeforeAll("/status", {}, headers),
+      await Helpers.insertBeforeAll("/equipments", {}, headers),
+      await Helpers.insertBeforeAll("/inventories", {}, headers),
+      await Helpers.insertBeforeAll("/skills", {}, headers),
+    ]);
+  });
 
   test("Should delete full character data", async () => {
     const [character, status, equipment, inventory, skills] = await Promise.all(
       [
-        await app.delete("/characters").set(header),
-        await app.delete("/status").set(header),
-        await app.delete("/equipments").set(header),
-        await app.delete("/inventories").set(header),
-        await app.delete("/skills").set(header),
+        app.delete("/characters").set(headers),
+        app.delete("/status").set(headers),
+        app.delete("/equipments").set(headers),
+        app.delete("/inventories").set(headers),
+        app.delete("/skills").set(headers),
       ]
     );
 
