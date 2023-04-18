@@ -1,21 +1,26 @@
-import { describe, expect, it } from "vitest";
-import { app } from "@tes/config/config";
+import { describe, it, expect, beforeAll, afterAll } from "vitest";
+import { app, secretHeader } from "@tes/config/config";
 import { EquipmentMock } from "../mock/equipment.mock";
-import {
-  HelperInsertRemove as helpers,
-  HelperHeaders as helperHeader,
-} from "@tes/config/helpers";
+import { HelperHeaders } from "@tes/config/helpers/get-auth-header";
+import { Helpers } from "@tes/config/helpers/insert-remove";
 
 const mock = new EquipmentMock();
+const headers = { ...secretHeader, Authorization: "" };
 
 describe("Equipment - Get By Id - Success", async () => {
-  const header = await helperHeader.getAuthorizationHeader(mock.pubId);
-
-  helpers.insertBeforeAll("/equipments", mock.dataToCreate, header);
-  helpers.removeAfterAll("/equipments", header);
+  beforeAll(async () => {
+    Object.assign(
+      headers,
+      await HelperHeaders.mockAuthorizationHeader(mock.pubId)
+    );
+    await Helpers.insertBeforeAll("/equipments", mock.dataToCreate, headers);
+  });
+  afterAll(async () => {
+    await Helpers.removeAfterAll("/equipments", headers);
+  });
 
   it("Should return equipments", async () => {
-    const res = await app.get(`/equipments/${mock.pubId}`).set(header);
+    const res = await app.get(`/equipments/${mock.pubId}`).set(headers);
 
     expect(res.statusCode).toEqual(200);
     expect(res.body).toHaveProperty("pubId");
