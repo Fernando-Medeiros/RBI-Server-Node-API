@@ -4,9 +4,9 @@ import { EquipmentMock } from "../mock/equipment.mock";
 import { HelperHeaders } from "tests/config/helpers/get-auth-header";
 import { Helpers } from "tests/config/helpers/insert-remove";
 
-import accessoryExample from "domain/items/examples/accessory.example.json";
-import armorExample from "domain/items/examples/armor.example.json";
-import weaponExample from "domain/items/examples/weapon.example.json";
+import accessoryExample from "example/items/accessory.example.json";
+import armorExample from "example/items/armor.example.json";
+import weaponExample from "example/items/weapon.example.json";
 
 const mock = new EquipmentMock();
 const headers = { ...secretHeader, Authorization: "" };

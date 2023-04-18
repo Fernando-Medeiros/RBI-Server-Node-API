@@ -4,8 +4,8 @@ import { SkillsMock } from "../mock/skills.mock";
 import { HelperHeaders } from "tests/config/helpers/get-auth-header";
 import { Helpers } from "tests/config/helpers/insert-remove";
 
-import offensiveExample from "domain/skills/examples/offensive.example.json";
-import defensiveExample from "domain/skills/examples/defensive.example.json";
+import offensiveExample from "example/skills/offensive.example.json";
+import defensiveExample from "example/skills/defensive.example.json";
 
 const mock = new SkillsMock();
 const headers = { ...secretHeader, Authorization: "" };

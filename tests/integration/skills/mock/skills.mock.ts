@@ -1,6 +1,6 @@
 import { v4 } from "uuid";
 import { Skill } from "domain/entities/skills/skills";
-import skillsDataMock from "./skills.data.mock.json";
+import skillsDataMock from "example/skills.data.mock.json";
 
 skillsDataMock.pubId = v4();
 

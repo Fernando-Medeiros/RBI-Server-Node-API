@@ -1,6 +1,6 @@
 import { v4 } from "uuid";
 import { Status } from "domain/entities/status/status";
-import statusDataMock from "./status.data.mock.json";
+import statusDataMock from "example/status.data.mock.json";
 
 statusDataMock.pubId = v4();
 
