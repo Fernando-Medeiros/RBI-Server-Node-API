@@ -10,12 +10,12 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      "@root": path.resolve(__dirname, "./"),
-      "@src": path.resolve(__dirname, "./src/"),
-      "@inf": path.resolve(__dirname, "./src/infrastructure/"),
-      "@app": path.resolve(__dirname, "./src/application/"),
-      "@dom": path.resolve(__dirname, "./src/domain/"),
-      "@tes": path.resolve(__dirname, "./tests/"),
+      app: path.resolve(__dirname, "./src/application/"),
+      domain: path.resolve(__dirname, "./src/domain/"),
+      infra: path.resolve(__dirname, "./src/infrastructure/"),
+      utils: path.resolve(__dirname, "./src/utils/"),
+      docs: path.resolve(__dirname, "./docs/"),
+      tests: path.resolve(__dirname, "./tests/"),
     },
   },
 });
