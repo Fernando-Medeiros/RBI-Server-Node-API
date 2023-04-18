@@ -22,11 +22,11 @@ server.use(express.json());
 
 server.use(cors());
 
-server.use(apiSecretMiddleware);
-
 server.use(requestLimiterMiddleware);
 
 server.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
+
+server.use(apiSecretMiddleware);
 
 server.use(sessionMiddleware);
 
