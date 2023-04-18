@@ -1,5 +1,5 @@
 import type { AuthorizationSchema } from "../headers/authorization.header";
-import { app, secretHeader } from "@tes/config/config";
+import { app, secretHeader } from "tests/config/config";
 
 export class Helpers {
   static insertBeforeAll = async (

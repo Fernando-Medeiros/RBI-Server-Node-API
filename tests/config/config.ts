@@ -7,8 +7,8 @@ import { env } from "process";
 env["MONGODB_DATABASE"] = "TEST";
 config();
 
-import { DatabasePrimary } from "@inf/services/database/database.connect";
-import { server } from "@inf/server";
+import { DatabasePrimary } from "infra/services/database/database.connect";
+import { server } from "infra/server";
 import { secretHeader as getSecret } from "./headers/api-secret.header";
 
 export const app = request(server);

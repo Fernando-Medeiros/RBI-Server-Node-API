@@ -1,11 +1,11 @@
 import { describe, it, expect, beforeAll, afterAll } from "vitest";
-import { app, secretHeader } from "@tes/config/config";
+import { app, secretHeader } from "tests/config/config";
 import { SkillsMock } from "../mock/skills.mock";
-import { HelperHeaders } from "@tes/config/helpers/get-auth-header";
-import { Helpers } from "@tes/config/helpers/insert-remove";
+import { HelperHeaders } from "tests/config/helpers/get-auth-header";
+import { Helpers } from "tests/config/helpers/insert-remove";
 
-import offensiveExample from "@dom/skills/examples/offensive.example.json";
-import defensiveExample from "@dom/skills/examples/defensive.example.json";
+import offensiveExample from "domain/skills/examples/offensive.example.json";
+import defensiveExample from "domain/skills/examples/defensive.example.json";
 
 const mock = new SkillsMock();
 const headers = { ...secretHeader, Authorization: "" };

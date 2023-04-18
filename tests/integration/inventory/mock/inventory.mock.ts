@@ -1,5 +1,5 @@
 import { v4 } from "uuid";
-import { Inventory } from "@dom/entities/inventory/inventory";
+import { Inventory } from "domain/entities/inventory/inventory";
 import inventoryDataMock from "./inventory.data.mock.json";
 
 inventoryDataMock.pubId = v4();

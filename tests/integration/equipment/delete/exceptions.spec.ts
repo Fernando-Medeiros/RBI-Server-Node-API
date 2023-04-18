@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeAll } from "vitest";
-import { app, secretHeader } from "@tes/config/config";
+import { app, secretHeader } from "tests/config/config";
 import { EquipmentMock } from "../mock/equipment.mock";
-import { HelperHeaders } from "@tes/config/helpers/get-auth-header";
+import { HelperHeaders } from "tests/config/helpers/get-auth-header";
 
 const mock = new EquipmentMock();
 const headers = { ...secretHeader, Authorization: "" };

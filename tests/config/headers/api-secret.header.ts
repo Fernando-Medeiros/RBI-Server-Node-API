@@ -1,4 +1,4 @@
-import { encode } from "@inf/security/token/encode.impl";
+import { encode } from "infra/security/token/encode.impl";
 
 export type ApiSecretKeySchema = {
   secret: string;

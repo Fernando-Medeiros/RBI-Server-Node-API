@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { app, secretHeader } from "@tes/config/config";
+import { app, secretHeader } from "tests/config/config";
 
 const headers = { ...secretHeader, ...{ Authorization: "Bearer 000000" } };
 

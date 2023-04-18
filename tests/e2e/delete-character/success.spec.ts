@@ -1,8 +1,8 @@
 import { describe, test, expect, beforeAll } from "vitest";
-import { app, secretHeader } from "@tes/config/config";
-import { CharacterMock } from "@tes/integration/characters/mock/character.mock";
-import { HelperHeaders } from "@tes/config/helpers/get-auth-header";
-import { Helpers } from "@tes/config/helpers/insert-remove";
+import { app, secretHeader } from "tests/config/config";
+import { CharacterMock } from "tests/integration/characters/mock/character.mock";
+import { HelperHeaders } from "tests/config/helpers/get-auth-header";
+import { Helpers } from "tests/config/helpers/insert-remove";
 
 const mock = new CharacterMock("XTesterXY");
 const headers = { ...secretHeader, Authorization: "" };

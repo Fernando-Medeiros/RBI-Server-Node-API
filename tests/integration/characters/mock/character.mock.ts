@@ -1,6 +1,6 @@
 import { v4 } from "uuid";
 
-import { Character } from "@dom/entities/character/character";
+import { Character } from "domain/entities/character/character";
 
 import characterDataMock from "./character.data.mock.json";
 

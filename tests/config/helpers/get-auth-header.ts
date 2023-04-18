@@ -1,4 +1,4 @@
-import { TokenMock } from "@tes/config/token";
+import { TokenMock } from "tests/config/token";
 import {
   authHeader,
   AuthorizationSchema,

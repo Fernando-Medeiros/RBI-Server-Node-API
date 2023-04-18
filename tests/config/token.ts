@@ -1,4 +1,4 @@
-import { encode, PropsToken } from "@inf/security/token/encode.impl";
+import { encode, PropsToken } from "infra/security/token/encode.impl";
 
 const convertToMilliseconds = (exp: number): number => {
   return Math.floor(Date.now() / 1000) + 60 * exp;

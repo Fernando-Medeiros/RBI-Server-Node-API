@@ -1,12 +1,12 @@
 import { describe, it, expect, beforeAll, afterAll } from "vitest";
-import { app, secretHeader } from "@tes/config/config";
+import { app, secretHeader } from "tests/config/config";
 import { EquipmentMock } from "../mock/equipment.mock";
-import { HelperHeaders } from "@tes/config/helpers/get-auth-header";
-import { Helpers } from "@tes/config/helpers/insert-remove";
+import { HelperHeaders } from "tests/config/helpers/get-auth-header";
+import { Helpers } from "tests/config/helpers/insert-remove";
 
-import accessoryExample from "@dom/items/examples/accessory.example.json";
-import armorExample from "@dom/items/examples/armor.example.json";
-import weaponExample from "@dom/items/examples/weapon.example.json";
+import accessoryExample from "domain/items/examples/accessory.example.json";
+import armorExample from "domain/items/examples/armor.example.json";
+import weaponExample from "domain/items/examples/weapon.example.json";
 
 const mock = new EquipmentMock();
 const headers = { ...secretHeader, Authorization: "" };
