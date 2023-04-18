@@ -217,7 +217,9 @@
 │   │       └── skills.interface.ts
 │   ├── infrastructure
 │   │   ├── middlewares
+│   │   │   ├── api-secret.ts
 │   │   │   ├── exceptions.ts
+│   │   │   ├── request-rate-limit.ts
 │   │   │   └── session.ts
 │   │   ├── models
 │   │   │   ├── characters.model.ts
@@ -252,7 +254,8 @@
 │   │   │       └── status.routes.ts
 │   │   ├── security
 │   │   │   └── token
-│   │   │       └── token.impl.ts
+│   │   │       ├── decode.impl.ts
+│   │   │       └── encode.impl.ts
 │   │   ├── services
 │   │   │   ├── cache
 │   │   │   │   ├── cache.connect.ts
@@ -266,8 +269,13 @@
 │   └── main.ts
 ├── tests
 │   ├── config
+│   │   ├── headers
+│   │   │   ├── api-secret.header.ts
+│   │   │   └── authorization.header.ts
+│   │   ├── helpers
+│   │   │   ├── get-auth-header.ts
+│   │   │   └── insert-remove.ts
 │   │   ├── config.ts
-│   │   ├── helpers.ts
 │   │   └── token.ts
 │   ├── e2e
 │   │   ├── create-character
@@ -370,6 +378,6 @@
 ├── vitest.config.ts
 └── yarn.lock
 
-109 directories, 257 files
+111 directories, 263 files
 
 ```
