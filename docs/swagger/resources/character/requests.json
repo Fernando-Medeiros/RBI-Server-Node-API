@@ -29,6 +29,10 @@
       "className": {
         "type": "string",
         "example": "Warrior"
+      },
+      "gender": {
+        "type": "string",
+        "example": "man | woman"
       }
     }
   },
