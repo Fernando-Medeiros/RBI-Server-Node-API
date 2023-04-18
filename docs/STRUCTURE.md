@@ -42,6 +42,21 @@
 │   ├── README.md
 │   ├── START.md
 │   └── STRUCTURE.md
+├── examples
+│   ├── items
+│   │   ├── accessory.example.json
+│   │   ├── armor.example.json
+│   │   ├── consumable.example.json
+│   │   ├── material.example.json
+│   │   └── weapon.example.json
+│   ├── skills
+│   │   ├── defensive.example.json
+│   │   └── offensive.example.json
+│   ├── character.data.mock.json
+│   ├── equipment.data.mock.json
+│   ├── inventory.data.mock.json
+│   ├── skills.data.mock.json
+│   └── status.data.mock.json
 ├── scripts
 │   ├── build.swagger.ts
 │   └── build.tree.ts
@@ -61,7 +76,6 @@
 │   │   │   │   │   └── update.requests.ts
 │   │   │   │   ├── tests
 │   │   │   │   │   ├── mock
-│   │   │   │   │   │   ├── character.data.mock.json
 │   │   │   │   │   │   ├── inMemoryCharacterRepository.ts
 │   │   │   │   │   │   └── utils.ts
 │   │   │   │   │   ├── create.case.spec.ts
@@ -90,7 +104,6 @@
 │   │   │   │   │   └── update.requests.ts
 │   │   │   │   ├── tests
 │   │   │   │   │   ├── mock
-│   │   │   │   │   │   ├── equipment.data.mock.json
 │   │   │   │   │   │   ├── inMemoryEquipmentRepository.ts
 │   │   │   │   │   │   └── utils.ts
 │   │   │   │   │   ├── create.case.spec.ts
@@ -116,7 +129,6 @@
 │   │   │   │   ├── tests
 │   │   │   │   │   ├── mock
 │   │   │   │   │   │   ├── inMemoryInventoryRepository.ts
-│   │   │   │   │   │   ├── inventory.data.mock.json
 │   │   │   │   │   │   └── utils.ts
 │   │   │   │   │   ├── create.case.spec.ts
 │   │   │   │   │   ├── delete.case.spec.ts
@@ -141,7 +153,6 @@
 │   │   │   │   ├── tests
 │   │   │   │   │   ├── mock
 │   │   │   │   │   │   ├── inMemorySkillsRepository.ts
-│   │   │   │   │   │   ├── skills.data.mock.json
 │   │   │   │   │   │   └── utils.ts
 │   │   │   │   │   ├── create.case.spec.ts
 │   │   │   │   │   ├── delete.case.spec.ts
@@ -166,7 +177,6 @@
 │   │   │       ├── tests
 │   │   │       │   ├── mock
 │   │   │       │   │   ├── inMemoryStatusRepository.ts
-│   │   │       │   │   ├── status.data.mock.json
 │   │   │       │   │   └── utils.ts
 │   │   │       │   ├── create.case.spec.ts
 │   │   │       │   ├── delete.case.spec.ts
@@ -203,17 +213,8 @@
 │   │   │       ├── status.spec.ts
 │   │   │       └── status.ts
 │   │   ├── items
-│   │   │   ├── examples
-│   │   │   │   ├── accessory.example.json
-│   │   │   │   ├── armor.example.json
-│   │   │   │   ├── consumable.example.json
-│   │   │   │   ├── material.example.json
-│   │   │   │   └── weapon.example.json
 │   │   │   └── items.interface.ts
 │   │   └── skills
-│   │       ├── examples
-│   │       │   ├── defensive.example.json
-│   │       │   └── offensive.example.json
 │   │       └── skills.interface.ts
 │   ├── infrastructure
 │   │   ├── middlewares
@@ -300,7 +301,6 @@
 │       │   │   ├── exceptions.spec.ts
 │       │   │   └── success.spec.ts
 │       │   ├── mock
-│       │   │   ├── character.data.mock.json
 │       │   │   └── character.mock.ts
 │       │   └── update
 │       │       ├── exceptions.spec.ts
@@ -316,7 +316,6 @@
 │       │   │   ├── exceptions.spec.ts
 │       │   │   └── success.spec.ts
 │       │   ├── mock
-│       │   │   ├── equipment.data.mock.json
 │       │   │   └── equipment.mock.ts
 │       │   └── update
 │       │       ├── exceptions.spec.ts
@@ -332,7 +331,6 @@
 │       │   │   ├── exceptions.spec.ts
 │       │   │   └── success.spec.ts
 │       │   ├── mock
-│       │   │   ├── inventory.data.mock.json
 │       │   │   └── inventory.mock.ts
 │       │   └── update
 │       │       ├── exceptions.spec.ts
@@ -348,7 +346,6 @@
 │       │   │   ├── exceptions.spec.ts
 │       │   │   └── success.spec.ts
 │       │   ├── mock
-│       │   │   ├── skills.data.mock.json
 │       │   │   └── skills.mock.ts
 │       │   └── update
 │       │       ├── exceptions.spec.ts
@@ -364,7 +361,6 @@
 │           │   ├── exceptions.spec.ts
 │           │   └── success.spec.ts
 │           ├── mock
-│           │   ├── status.data.mock.json
 │           │   └── status.mock.ts
 │           └── update
 │               ├── exceptions.spec.ts
@@ -378,6 +374,6 @@
 ├── vitest.config.ts
 └── yarn.lock
 
-111 directories, 263 files
+112 directories, 258 files
 
 ```
