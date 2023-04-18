@@ -1,38 +1,14 @@
-import type { Algorithm } from "jsonwebtoken";
-import { env } from "process";
-import Jwt from "jsonwebtoken";
+import { encode, PropsToken } from "@inf/security/token/encode.impl";
 
-import { InternalServerError } from "@src/utils/http.exceptions";
-import { randomUUID } from "crypto";
-
-const SECRET = env["SECRET_KEY"] || randomUUID();
-const ALGORITHM: Algorithm = "HS512";
+const convertToMilliseconds = (exp: number): number => {
+  return Math.floor(Date.now() / 1000) + 60 * exp;
+};
 
 export class TokenMock {
-  encode = async (payload: PropsToken): Promise<string> => {
-    const token = await new Promise((resolve) => {
-      resolve(Jwt.sign(payload, SECRET, { algorithm: ALGORITHM }));
-    }).catch(() => {
-      throw new InternalServerError("Internal failure while encoding token!");
-    });
-
-    return token as string;
-  };
-
-  convertToMilliseconds = (exp: number): number => {
-    return Math.floor(Date.now() / 1000) + 60 * exp;
-  };
-
-  createToken = async (payload: PropsToken): Promise<string> => {
+  static async createToken(payload: PropsToken): Promise<string> {
     payload.scope = "refresh";
-    payload.exp = this.convertToMilliseconds(20);
+    payload.exp = convertToMilliseconds(20);
 
-    return await this.encode(payload);
-  };
-}
-
-export interface PropsToken {
-  sub: string;
-  exp?: number;
-  scope?: string;
+    return await encode<PropsToken, string>(payload);
+  }
 }
