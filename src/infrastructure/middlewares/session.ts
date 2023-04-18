@@ -1,6 +1,6 @@
 import type { NextFunction, Request, Response } from "express";
 import { CommonValidators } from "@app/validators/common.validators";
-import { JWT } from "@inf/security/token/token.impl";
+import { decode, PropsToken } from "@inf/security/token/decode.impl";
 
 export const sessionMiddleware = async (
   req: Request,
@@ -13,7 +13,7 @@ export const sessionMiddleware = async (
 
   CommonValidators.validateToken(token);
 
-  const { sub } = await JWT.decode(String(token));
+  const { sub } = await decode<string, PropsToken>(String(token));
 
   CommonValidators.validateID(sub);
 

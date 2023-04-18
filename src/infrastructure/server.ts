@@ -2,6 +2,7 @@ import "express-async-errors";
 import express from "express";
 import cors from "cors";
 
+import { apiSecretMiddleware } from "./middlewares/api-secret";
 import { exceptionMiddleware } from "./middlewares/exceptions";
 import { sessionMiddleware } from "./middlewares/session";
 import { requestLimiterMiddleware } from "./middlewares/request-rate-limit";
@@ -20,6 +21,8 @@ export const server = express();
 server.use(express.json());
 
 server.use(cors());
+
+server.use(apiSecretMiddleware);
 
 server.use(requestLimiterMiddleware);
 
