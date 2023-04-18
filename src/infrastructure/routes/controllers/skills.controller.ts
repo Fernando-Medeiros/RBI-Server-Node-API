@@ -4,7 +4,7 @@ import {
   StatusCreated,
   StatusOK,
   StatusOkNoContent,
-} from "@src/utils/http.protocols";
+} from "utils/http.protocols";
 
 export const getSkillsById = async (req: Request, res: Response) => {
   const skills = await handler.getSkillsById(req);

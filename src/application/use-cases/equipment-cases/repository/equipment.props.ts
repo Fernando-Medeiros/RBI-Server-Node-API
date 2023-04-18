@@ -1,4 +1,4 @@
-import type { PropsEquipment } from "@dom/entities/equipment/equipment.interface";
+import type { PropsEquipment } from "domain/entities/equipment/equipment.interface";
 
 export type EquipmentProps = PropsEquipment;
 

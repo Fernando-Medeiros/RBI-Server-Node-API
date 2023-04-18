@@ -1,7 +1,7 @@
 import type { SkillsUpdateProps } from "../repository/skills.props";
 import type { ISkillsRequestsToUpdate } from "../repository/skills.requests.interfaces";
 import { SkillsValidators as validate } from "../validators/validators";
-import { BadRequest } from "@src/utils/http.exceptions";
+import { BadRequest } from "utils/http.exceptions";
 
 export class SkillsRequestsToUpdate implements ISkillsRequestsToUpdate {
   constructor(

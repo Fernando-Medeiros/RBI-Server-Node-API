@@ -1,4 +1,4 @@
-import type { Armor, Weapon, Accessory } from "@dom/items/items.interface";
+import type { Armor, Weapon, Accessory } from "domain/items/items.interface";
 
 export interface IEquipment {
   get getHead(): Armor | object;

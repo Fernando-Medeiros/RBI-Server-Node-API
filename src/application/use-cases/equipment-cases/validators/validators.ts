@@ -1,4 +1,4 @@
-import { BadRequest } from "@src/utils/http.exceptions";
+import { BadRequest } from "utils/http.exceptions";
 
 function testFields(item: object, keys: string[]) {
   const itemKeys = Object.keys(item);

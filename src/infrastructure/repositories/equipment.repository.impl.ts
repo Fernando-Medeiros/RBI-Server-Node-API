@@ -1,9 +1,9 @@
-import type { IEquipmentRepository } from "@app/use-cases/equipment-cases/repository/equipment.repository.interfaces";
+import type { IEquipmentRepository } from "app/use-cases/equipment-cases/repository/equipment.repository.interfaces";
 import type {
   EquipmentUpdateProps,
   EquipmentProps,
-} from "@app/use-cases/equipment-cases/repository/equipment.props";
-import { EquipmentsModel as model } from "@inf/models/equipments.model";
+} from "app/use-cases/equipment-cases/repository/equipment.props";
+import { EquipmentsModel as model } from "infra/models/equipments.model";
 
 export class EquipmentRepository implements IEquipmentRepository {
   async findById(sub: string): Promise<EquipmentProps | null> {

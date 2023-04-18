@@ -1,4 +1,4 @@
-import type { PropsStatus } from "@dom/entities/status/status.interface";
+import type { PropsStatus } from "domain/entities/status/status.interface";
 
 export type StatusProps = PropsStatus;
 

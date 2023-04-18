@@ -1,6 +1,6 @@
 import type { Algorithm } from "jsonwebtoken";
 import Jwt from "jsonwebtoken";
-import { InternalServerError } from "@src/utils/http.exceptions";
+import { InternalServerError } from "utils/http.exceptions";
 
 type payloadSchema = string | Buffer | object;
 

@@ -1,7 +1,7 @@
 import type { ICharacterRepository } from "./repository/character.repository.interfaces";
 import type { ICharacterRequestsToGetByName } from "./repository/character.requests.interfaces";
 
-import { NotFound } from "@src/utils/http.exceptions";
+import { NotFound } from "utils/http.exceptions";
 
 export const getByNameCase = async (
   requests: ICharacterRequestsToGetByName,

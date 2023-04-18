@@ -1,4 +1,4 @@
-import { BadRequest } from "@src/utils/http.exceptions";
+import { BadRequest } from "utils/http.exceptions";
 
 function clearInvalidSkills(skills: [] | object[]) {
   const packageSkills: object[] = [];

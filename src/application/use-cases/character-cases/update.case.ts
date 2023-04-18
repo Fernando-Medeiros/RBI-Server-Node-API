@@ -1,7 +1,7 @@
 import type { ICharacterRepository } from "./repository/character.repository.interfaces";
 import type { ICharacterRequestsToUpdate } from "./repository/character.requests.interfaces";
 
-import { BadRequest, NotFound } from "@src/utils/http.exceptions";
+import { BadRequest, NotFound } from "utils/http.exceptions";
 
 export const updateCase = async (
   requests: ICharacterRequestsToUpdate,

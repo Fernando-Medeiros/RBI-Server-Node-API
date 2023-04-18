@@ -1,9 +1,9 @@
-import type { IStatusRepository } from "@app/use-cases/status-cases/repository/status.repository.interfaces";
+import type { IStatusRepository } from "app/use-cases/status-cases/repository/status.repository.interfaces";
 import type {
   StatusUpdateProps,
   StatusProps,
-} from "@app/use-cases/status-cases/repository/status.props";
-import { StatusModel as model } from "@inf/models/status.model";
+} from "app/use-cases/status-cases/repository/status.props";
+import { StatusModel as model } from "infra/models/status.model";
 
 export class StatusRepository implements IStatusRepository {
   async findById(sub: string): Promise<StatusProps | null> {

@@ -2,9 +2,9 @@ import { InMemoryEquipmentRepository } from "./inMemoryEquipmentRepository";
 
 import equipmentDataMock from "./equipment.data.mock.json";
 
-import accessoryExample from "@dom/items/examples/accessory.example.json";
-import armorExample from "@dom/items/examples/armor.example.json";
-import weaponExample from "@dom/items/examples/weapon.example.json";
+import accessoryExample from "domain/items/examples/accessory.example.json";
+import armorExample from "domain/items/examples/armor.example.json";
+import weaponExample from "domain/items/examples/weapon.example.json";
 
 const database = new InMemoryEquipmentRepository();
 

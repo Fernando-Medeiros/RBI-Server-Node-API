@@ -1,4 +1,4 @@
-import type { PCharacter } from "@dom/entities/character/character.interface";
+import type { PCharacter } from "domain/entities/character/character.interface";
 
 export type CharacterProps = PCharacter;
 

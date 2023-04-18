@@ -8,13 +8,13 @@ import { sessionMiddleware } from "./middlewares/session";
 import { requestLimiterMiddleware } from "./middlewares/request-rate-limit";
 
 import swaggerUi from "swagger-ui-express";
-import swaggerFile from "@root/swagger.json";
+import swaggerFile from "swagger.json";
 
-import { routes as characterRoutes } from "@inf/routes/resources/character.routes";
-import { routes as equipmentRoutes } from "@inf/routes/resources/equipment.routes";
-import { routes as inventoryRoutes } from "@inf/routes/resources/inventory.routes";
-import { routes as statusRoutes } from "@inf/routes/resources/status.routes";
-import { routes as skillsRoutes } from "@inf/routes/resources/skills.routes";
+import { routes as characterRoutes } from "infra/routes/resources/character.routes";
+import { routes as equipmentRoutes } from "infra/routes/resources/equipment.routes";
+import { routes as inventoryRoutes } from "infra/routes/resources/inventory.routes";
+import { routes as statusRoutes } from "infra/routes/resources/status.routes";
+import { routes as skillsRoutes } from "infra/routes/resources/skills.routes";
 
 export const server = express();
 

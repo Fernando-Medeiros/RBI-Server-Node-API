@@ -1,4 +1,4 @@
-import { BadRequest } from "@src/utils/http.exceptions";
+import { BadRequest } from "utils/http.exceptions";
 
 class RegexValidator {
   constructor(value: string | undefined, regex: RegExp, message: string) {

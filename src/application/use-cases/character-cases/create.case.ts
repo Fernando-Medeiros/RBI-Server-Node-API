@@ -1,7 +1,7 @@
 import type { ICharacterRepository } from "./repository/character.repository.interfaces";
 import type { ICharacterRequestsToCreate } from "./repository/character.requests.interfaces";
 
-import { BadRequest } from "@src/utils/http.exceptions";
+import { BadRequest } from "utils/http.exceptions";
 
 export const createCase = async (
   requests: ICharacterRequestsToCreate,

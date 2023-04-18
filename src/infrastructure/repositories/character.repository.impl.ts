@@ -1,10 +1,10 @@
-import type { ICharacterRepository } from "@app/use-cases/character-cases/repository/character.repository.interfaces";
+import type { ICharacterRepository } from "app/use-cases/character-cases/repository/character.repository.interfaces";
 import type {
   CharacterProps,
   CharacterCreateProps,
   CharacterUpdateProps,
-} from "@app/use-cases/character-cases/repository/character.props";
-import { CharactersModel as model } from "@inf/models/characters.model";
+} from "app/use-cases/character-cases/repository/character.props";
+import { CharactersModel as model } from "infra/models/characters.model";
 
 export class CharacterRepository implements ICharacterRepository {
   async find(): Promise<CharacterProps[]> {

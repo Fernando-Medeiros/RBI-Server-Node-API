@@ -1,15 +1,15 @@
 import type { Request } from "express";
 
-import { EquipmentRepository } from "@inf/repositories/equipment.repository.impl";
-import { EquipmentRequestsToCreate } from "@app/use-cases/equipment-cases/requests/create.requests";
-import { EquipmentRequestsToDelete } from "@app/use-cases/equipment-cases/requests/delete.requests";
-import { EquipmentRequestsToUpdate } from "@app/use-cases/equipment-cases/requests/update.requests";
-import { EquipmentRequestsToGetById } from "@app/use-cases/equipment-cases/requests/get-by-id.requests";
+import { EquipmentRepository } from "infra/repositories/equipment.repository.impl";
+import { EquipmentRequestsToCreate } from "app/use-cases/equipment-cases/requests/create.requests";
+import { EquipmentRequestsToDelete } from "app/use-cases/equipment-cases/requests/delete.requests";
+import { EquipmentRequestsToUpdate } from "app/use-cases/equipment-cases/requests/update.requests";
+import { EquipmentRequestsToGetById } from "app/use-cases/equipment-cases/requests/get-by-id.requests";
 
-import { createCase } from "@app/use-cases/equipment-cases/create.case";
-import { deleteCase } from "@app/use-cases/equipment-cases/delete.case";
-import { getByIdCase } from "@app/use-cases/equipment-cases/get-by-id.case";
-import { updateCase } from "@app/use-cases/equipment-cases/update.case";
+import { createCase } from "app/use-cases/equipment-cases/create.case";
+import { deleteCase } from "app/use-cases/equipment-cases/delete.case";
+import { getByIdCase } from "app/use-cases/equipment-cases/get-by-id.case";
+import { updateCase } from "app/use-cases/equipment-cases/update.case";
 
 export const EquipmentHandler = {
   async getEquipmentById(req: Request) {

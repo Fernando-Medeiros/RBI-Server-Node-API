@@ -1,5 +1,5 @@
 import type { NextFunction, Request, Response } from "express";
-import type { BaseException } from "@src/utils/http.exceptions";
+import type { BaseException } from "utils/http.exceptions";
 
 export const exceptionMiddleware = (
   error: Error & Partial<BaseException>,

@@ -1,7 +1,7 @@
 import type { StatusUpdateProps } from "../repository/status.props";
 import type { IStatusRequestsToUpdate } from "../repository/status.requests.interfaces";
 import { StatusValidators } from "../validators/validators";
-import { BadRequest } from "@src/utils/http.exceptions";
+import { BadRequest } from "utils/http.exceptions";
 
 export class StatusRequestsToUpdate implements IStatusRequestsToUpdate {
   constructor(

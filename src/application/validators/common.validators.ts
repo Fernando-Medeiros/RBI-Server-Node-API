@@ -1,5 +1,5 @@
 import { validate } from "uuid";
-import { BadRequest, Unauthorized } from "@src/utils/http.exceptions";
+import { BadRequest, Unauthorized } from "utils/http.exceptions";
 
 export class CommonValidators {
   static validateID(id?: unknown): void {

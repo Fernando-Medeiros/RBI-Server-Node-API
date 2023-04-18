@@ -1,4 +1,4 @@
-import type { PropsPackage } from "@dom/entities/inventory/inventory.interface";
+import type { PropsPackage } from "domain/entities/inventory/inventory.interface";
 
 export type InventoryProps = PropsPackage;
 

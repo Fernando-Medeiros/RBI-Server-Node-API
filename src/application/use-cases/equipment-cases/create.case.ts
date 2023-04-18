@@ -1,7 +1,7 @@
 import type { IEquipmentRepository } from "./repository/equipment.repository.interfaces";
 import type { IEquipmentRequestsToCreate } from "./repository/equipment.requests.interfaces";
-import { Equipment } from "@dom/entities/equipment/equipment";
-import { BadRequest } from "@src/utils/http.exceptions";
+import { Equipment } from "domain/entities/equipment/equipment";
+import { BadRequest } from "utils/http.exceptions";
 
 export const createCase = async (
   requests: IEquipmentRequestsToCreate,

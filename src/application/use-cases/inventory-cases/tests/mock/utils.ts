@@ -2,11 +2,11 @@ import { InMemoryInventoryRepository } from "./inMemoryInventoryRepository";
 
 import inventoryDataMock from "./inventory.data.mock.json";
 
-import accessoryExample from "@dom/items/examples/accessory.example.json";
-import armorExample from "@dom/items/examples/armor.example.json";
-import consumableExample from "@dom/items/examples/consumable.example.json";
-import materialExample from "@dom/items/examples/material.example.json";
-import weaponExample from "@dom/items/examples/weapon.example.json";
+import accessoryExample from "domain/items/examples/accessory.example.json";
+import armorExample from "domain/items/examples/armor.example.json";
+import consumableExample from "domain/items/examples/consumable.example.json";
+import materialExample from "domain/items/examples/material.example.json";
+import weaponExample from "domain/items/examples/weapon.example.json";
 
 const database = new InMemoryInventoryRepository();
 

@@ -4,7 +4,7 @@ import {
   StatusCreated,
   StatusOK,
   StatusOkNoContent,
-} from "@src/utils/http.protocols";
+} from "utils/http.protocols";
 
 export const getAllCharacters = async (_req: Request, res: Response) => {
   const characters = await handler.getAllCharacters();

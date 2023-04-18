@@ -1,7 +1,7 @@
 import type { InventoryUpdateProps } from "../repository/inventory.props";
 import type { IInventoryRequestsToUpdate } from "../repository/inventory.requests.interfaces";
 import { InventoryValidators as validate } from "../validators/validators";
-import { BadRequest } from "@src/utils/http.exceptions";
+import { BadRequest } from "utils/http.exceptions";
 
 export class InventoryRequestsToUpdate implements IInventoryRequestsToUpdate {
   constructor(

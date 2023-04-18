@@ -1,15 +1,15 @@
 import type { Request } from "express";
 
-import { InventoryRepository } from "@inf/repositories/inventory.repository.impl";
-import { InventoryRequestsToCreate } from "@app/use-cases/inventory-cases/requests/create.requests";
-import { InventoryRequestsToDelete } from "@app/use-cases/inventory-cases/requests/delete.requests";
-import { InventoryRequestsToUpdate } from "@app/use-cases/inventory-cases/requests/update.requests";
-import { InventoryRequestsToGetById } from "@app/use-cases/inventory-cases/requests/get-by-id.requests";
+import { InventoryRepository } from "infra/repositories/inventory.repository.impl";
+import { InventoryRequestsToCreate } from "app/use-cases/inventory-cases/requests/create.requests";
+import { InventoryRequestsToDelete } from "app/use-cases/inventory-cases/requests/delete.requests";
+import { InventoryRequestsToUpdate } from "app/use-cases/inventory-cases/requests/update.requests";
+import { InventoryRequestsToGetById } from "app/use-cases/inventory-cases/requests/get-by-id.requests";
 
-import { createCase } from "@app/use-cases/inventory-cases/create.case";
-import { deleteCase } from "@app/use-cases/inventory-cases/delete.case";
-import { getByIdCase } from "@app/use-cases/inventory-cases/get-by-id.case";
-import { updateCase } from "@app/use-cases/inventory-cases/update.case";
+import { createCase } from "app/use-cases/inventory-cases/create.case";
+import { deleteCase } from "app/use-cases/inventory-cases/delete.case";
+import { getByIdCase } from "app/use-cases/inventory-cases/get-by-id.case";
+import { updateCase } from "app/use-cases/inventory-cases/update.case";
 
 export const InventoryHandler = {
   async getInventoryById(req: Request) {

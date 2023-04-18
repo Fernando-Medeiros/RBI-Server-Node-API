@@ -1,4 +1,4 @@
-import type { PropsSkills } from "@dom/entities/skills/skills.interface";
+import type { PropsSkills } from "domain/entities/skills/skills.interface";
 
 export type SkillsProps = PropsSkills;
 

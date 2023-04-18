@@ -2,8 +2,8 @@ import { InMemorySkillsRepository } from "./inMemorySkillsRepository";
 
 import SkillsDataMock from "./skills.data.mock.json";
 
-import offensiveExample from "@dom/skills/examples/offensive.example.json";
-import defensiveExample from "@dom/skills/examples/defensive.example.json";
+import offensiveExample from "domain/skills/examples/offensive.example.json";
+import defensiveExample from "domain/skills/examples/defensive.example.json";
 
 const database = new InMemorySkillsRepository();
 

@@ -1,6 +1,6 @@
 import type { Algorithm } from "jsonwebtoken";
 import Jwt from "jsonwebtoken";
-import { Unauthorized } from "@src/utils/http.exceptions";
+import { Unauthorized } from "utils/http.exceptions";
 
 export async function decode<T = string, R = object>(payload: T): Promise<R> {
   const { SECRET_KEY, ALGORITHM } = process.env;

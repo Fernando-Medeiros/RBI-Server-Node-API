@@ -1,6 +1,6 @@
 import type { ISkillsRepository } from "./repository/skills.repository.interfaces";
 import type { ISkillsRequestsToDelete } from "./repository/skills.requests.interfaces";
-import { NotFound } from "@src/utils/http.exceptions";
+import { NotFound } from "utils/http.exceptions";
 
 export const deleteCase = async (
   requests: ISkillsRequestsToDelete,

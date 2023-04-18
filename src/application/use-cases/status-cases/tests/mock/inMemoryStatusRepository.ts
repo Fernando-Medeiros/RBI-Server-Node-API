@@ -1,8 +1,8 @@
-import type { IStatusRepository } from "@app/use-cases/status-cases/repository/status.repository.interfaces";
+import type { IStatusRepository } from "app/use-cases/status-cases/repository/status.repository.interfaces";
 import type {
   StatusProps,
   StatusUpdateProps,
-} from "@app/use-cases/status-cases/repository/status.props";
+} from "app/use-cases/status-cases/repository/status.props";
 
 const inMemoryDatabase: StatusProps[] = [];
 

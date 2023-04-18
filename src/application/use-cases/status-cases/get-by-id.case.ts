@@ -1,6 +1,6 @@
 import type { IStatusRepository } from "./repository/status.repository.interfaces";
 import type { IStatusRequestsToGetById } from "./repository/status.requests.interfaces";
-import { NotFound } from "@src/utils/http.exceptions";
+import { NotFound } from "utils/http.exceptions";
 
 export const getByIdCase = async (
   requests: IStatusRequestsToGetById,

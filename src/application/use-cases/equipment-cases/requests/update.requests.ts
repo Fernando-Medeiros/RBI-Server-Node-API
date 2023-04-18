@@ -1,7 +1,7 @@
 import type { EquipmentUpdateProps } from "../repository/equipment.props";
 import type { IEquipmentRequestsToUpdate } from "../repository/equipment.requests.interfaces";
 import { EquipmentValidators as validate } from "../validators/validators";
-import { BadRequest } from "@src/utils/http.exceptions";
+import { BadRequest } from "utils/http.exceptions";
 
 export class EquipmentRequestsToUpdate implements IEquipmentRequestsToUpdate {
   constructor(

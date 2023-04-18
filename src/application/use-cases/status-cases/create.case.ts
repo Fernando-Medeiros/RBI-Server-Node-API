@@ -1,7 +1,7 @@
 import type { IStatusRepository } from "./repository/status.repository.interfaces";
 import type { IStatusRequestsToCreate } from "./repository/status.requests.interfaces";
-import { Status } from "@dom/entities/status/status";
-import { BadRequest } from "@src/utils/http.exceptions";
+import { Status } from "domain/entities/status/status";
+import { BadRequest } from "utils/http.exceptions";
 
 export const createCase = async (
   requests: IStatusRequestsToCreate,

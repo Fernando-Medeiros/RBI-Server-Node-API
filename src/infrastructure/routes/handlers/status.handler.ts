@@ -1,15 +1,15 @@
 import type { Request } from "express";
 
-import { StatusRepository } from "@inf/repositories/status.repository.impl";
-import { StatusRequestsToCreate } from "@app/use-cases/status-cases/requests/create.requests";
-import { StatusRequestsToDelete } from "@app/use-cases/status-cases/requests/delete.requests";
-import { StatusRequestsToUpdate } from "@app/use-cases/status-cases/requests/update.requests";
-import { StatusRequestsToGetById } from "@app/use-cases/status-cases/requests/get-by-id.requests";
+import { StatusRepository } from "infra/repositories/status.repository.impl";
+import { StatusRequestsToCreate } from "app/use-cases/status-cases/requests/create.requests";
+import { StatusRequestsToDelete } from "app/use-cases/status-cases/requests/delete.requests";
+import { StatusRequestsToUpdate } from "app/use-cases/status-cases/requests/update.requests";
+import { StatusRequestsToGetById } from "app/use-cases/status-cases/requests/get-by-id.requests";
 
-import { createCase } from "@app/use-cases/status-cases/create.case";
-import { deleteCase } from "@app/use-cases/status-cases/delete.case";
-import { getByIdCase } from "@app/use-cases/status-cases/get-by-id.case";
-import { updateCase } from "@app/use-cases/status-cases/update.case";
+import { createCase } from "app/use-cases/status-cases/create.case";
+import { deleteCase } from "app/use-cases/status-cases/delete.case";
+import { getByIdCase } from "app/use-cases/status-cases/get-by-id.case";
+import { updateCase } from "app/use-cases/status-cases/update.case";
 
 export const StatusHandler = {
   async getStatusById(req: Request) {

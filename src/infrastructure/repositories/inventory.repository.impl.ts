@@ -1,9 +1,9 @@
-import type { IInventoryRepository } from "@app/use-cases/inventory-cases/repository/inventory.repository.interfaces";
+import type { IInventoryRepository } from "app/use-cases/inventory-cases/repository/inventory.repository.interfaces";
 import type {
   InventoryUpdateProps,
   InventoryProps,
-} from "@app/use-cases/inventory-cases/repository/inventory.props";
-import { InventoriesModel as model } from "@inf/models/inventories.model";
+} from "app/use-cases/inventory-cases/repository/inventory.props";
+import { InventoriesModel as model } from "infra/models/inventories.model";
 
 export class InventoryRepository implements IInventoryRepository {
   async findById(sub: string): Promise<InventoryProps | null> {

@@ -1,6 +1,6 @@
 import type { NextFunction, Request, Response } from "express";
-import { CommonValidators } from "@app/validators/common.validators";
-import { decode, PropsToken } from "@inf/security/token/decode.impl";
+import { CommonValidators } from "app/validators/common.validators";
+import { decode, PropsToken } from "infra/security/token/decode.impl";
 
 export const sessionMiddleware = async (
   req: Request,

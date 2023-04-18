@@ -1,6 +1,6 @@
 import type { NextFunction, Request, Response } from "express";
-import { decode } from "@inf/security/token/decode.impl";
-import { Unauthorized } from "@src/utils/http.exceptions";
+import { decode } from "infra/security/token/decode.impl";
+import { Unauthorized } from "utils/http.exceptions";
 
 export const apiSecretMiddleware = async (
   req: Request,

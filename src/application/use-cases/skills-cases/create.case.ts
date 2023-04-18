@@ -1,7 +1,7 @@
 import type { ISkillsRepository } from "./repository/skills.repository.interfaces";
 import type { ISkillsRequestsToCreate } from "./repository/skills.requests.interfaces";
-import { Skill } from "@dom/entities/skills/skills";
-import { BadRequest } from "@src/utils/http.exceptions";
+import { Skill } from "domain/entities/skills/skills";
+import { BadRequest } from "utils/http.exceptions";
 
 export const createCase = async (
   requests: ISkillsRequestsToCreate,

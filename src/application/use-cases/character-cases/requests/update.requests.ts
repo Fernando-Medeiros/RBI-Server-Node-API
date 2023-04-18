@@ -2,7 +2,7 @@ import type { CharacterUpdateProps } from "../repository/character.props";
 import type { ICharacterRequestsToUpdate } from "../repository/character.requests.interfaces";
 import { CharacterValidators } from "../validators/validators";
 
-import { BadRequest } from "@src/utils/http.exceptions";
+import { BadRequest } from "utils/http.exceptions";
 
 export class CharacterRequestsToUpdate implements ICharacterRequestsToUpdate {
   constructor(

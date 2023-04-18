@@ -1,7 +1,7 @@
 import type { IInventoryRepository } from "./repository/inventory.repository.interfaces";
 import type { IInventoryRequestsToCreate } from "./repository/inventory.requests.interfaces";
-import { Inventory } from "@dom/entities/inventory/inventory";
-import { BadRequest } from "@src/utils/http.exceptions";
+import { Inventory } from "domain/entities/inventory/inventory";
+import { BadRequest } from "utils/http.exceptions";
 
 export const createCase = async (
   requests: IInventoryRequestsToCreate,
