@@ -1,23 +1,28 @@
-import { describe, expect, it } from "vitest";
-import { app } from "@tes/config/config";
+import { describe, expect, it, beforeAll, afterAll } from "vitest";
+import { app, secretHeader } from "@tes/config/config";
 import { CharacterMock } from "../mock/character.mock";
-import {
-  HelperInsertRemove as helpers,
-  HelperHeaders as helperHeader,
-} from "@tes/config/helpers";
+import { HelperHeaders } from "@tes/config/helpers/get-auth-header";
+import { Helpers } from "@tes/config/helpers/insert-remove";
 
 const mock = new CharacterMock("FakeNameNewOk");
+const headers = { ...secretHeader, ...{ Authorization: "" } };
 
 describe("Character - Create - Success", async () => {
-  const header = await helperHeader.getAuthorizationHeader(mock.pubId);
-
-  helpers.removeAfterAll("/characters", header);
+  beforeAll(async () => {
+    Object.assign(
+      headers,
+      await HelperHeaders.mockAuthorizationHeader(mock.pubId)
+    );
+  });
+  afterAll(async () => {
+    await Helpers.removeAfterAll("/characters", headers);
+  });
 
   it("Should return 201 when creating new character", async () => {
     const res = await app
       .post("/characters")
       .send(mock.dataToCreate)
-      .set(header);
+      .set(headers);
 
     expect(res.statusCode).toEqual(201);
   });

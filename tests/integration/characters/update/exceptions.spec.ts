@@ -1,23 +1,29 @@
-import { describe, expect, it } from "vitest";
-import { app } from "@tes/config/config";
+import { describe, it, expect, beforeAll, afterAll } from "vitest";
+import { app, secretHeader } from "@tes/config/config";
 import { CharacterMock } from "../mock/character.mock";
-import {
-  HelperInsertRemove as helpers,
-  HelperHeaders as helperHeader,
-} from "@tes/config/helpers";
+import { HelperHeaders } from "@tes/config/helpers/get-auth-header";
+import { Helpers } from "@tes/config/helpers/insert-remove";
 
 const mock = new CharacterMock("FakeNameUpEx");
+const headers = { ...secretHeader, ...{ Authorization: "" } };
 
 describe("Character - Update - Exceptions", async () => {
-  const header = await helperHeader.getAuthorizationHeader(mock.pubId);
+  beforeAll(async () => {
+    Object.assign(
+      headers,
+      await HelperHeaders.mockAuthorizationHeader(mock.pubId)
+    );
+    await Helpers.insertBeforeAll("/characters", mock.dataToCreate, headers);
+  });
 
-  helpers.insertBeforeAll("/characters", mock.dataToCreate, header);
-  helpers.removeAfterAll("/characters", header);
+  afterAll(async () => {
+    await Helpers.removeAfterAll("/characters", headers);
+  });
 
   it("Should return 401 when sending invalid or null token", async () => {
     const res = await app
       .patch("/characters")
-      .set({ Authorization: "Bearer 000000" });
+      .set({ ...secretHeader, Authorization: "Bearer 000000" });
 
     expect(res.statusCode).toEqual(401);
     expect(res.body).toBeTypeOf("object");
@@ -26,7 +32,7 @@ describe("Character - Update - Exceptions", async () => {
   it("Should return 400 when trying to update invalid level", async () => {
     const toUpdate = { level: {} };
 
-    const res = await app.patch("/characters").send(toUpdate).set(header);
+    const res = await app.patch("/characters").send(toUpdate).set(headers);
 
     expect(res.statusCode).toEqual(400);
     expect(res.body).toBeTypeOf("object");
@@ -35,7 +41,7 @@ describe("Character - Update - Exceptions", async () => {
   it("Should return 400 when trying to update invalid charName", async () => {
     const toUpdate = { charName: "Example00" };
 
-    const res = await app.patch("/characters").send(toUpdate).set(header);
+    const res = await app.patch("/characters").send(toUpdate).set(headers);
 
     expect(res.statusCode).toEqual(400);
     expect(res.body).toBeTypeOf("object");
@@ -44,7 +50,7 @@ describe("Character - Update - Exceptions", async () => {
   it("Should return 400 when trying to update invalid className", async () => {
     const toUpdate = { className: "M@ge" };
 
-    const res = await app.patch("/characters").send(toUpdate).set(header);
+    const res = await app.patch("/characters").send(toUpdate).set(headers);
 
     expect(res.statusCode).toEqual(400);
     expect(res.body).toBeTypeOf("object");
@@ -57,7 +63,7 @@ describe("Character - Update - Exceptions", async () => {
       className: "M@ge",
     };
 
-    const res = await app.patch("/characters").send(toUpdate).set(header);
+    const res = await app.patch("/characters").send(toUpdate).set(headers);
 
     expect(res.statusCode).toEqual(400);
     expect(res.body).toBeTypeOf("object");
@@ -66,7 +72,7 @@ describe("Character - Update - Exceptions", async () => {
   it("Should return 400 when trying to update with a name already in use", async () => {
     const toUpdate = { charName: mock.charName };
 
-    const res = await app.patch("/characters").send(toUpdate).set(header);
+    const res = await app.patch("/characters").send(toUpdate).set(headers);
 
     expect(res.statusCode).toEqual(400);
     expect(res.body).toBeTypeOf("object");
@@ -75,7 +81,7 @@ describe("Character - Update - Exceptions", async () => {
   it("Should return 400 when not passing data to update", async () => {
     const toUpdate = {};
 
-    const res = await app.patch("/characters").send(toUpdate).set(header);
+    const res = await app.patch("/characters").send(toUpdate).set(headers);
 
     expect(res.statusCode).toEqual(400);
     expect(res.body).toBeTypeOf("object");

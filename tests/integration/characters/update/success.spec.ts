@@ -1,23 +1,29 @@
-import { describe, expect, it } from "vitest";
-import { app } from "@tes/config/config";
+import { describe, it, expect, beforeAll, afterAll } from "vitest";
+import { app, secretHeader } from "@tes/config/config";
 import { CharacterMock } from "../mock/character.mock";
-import {
-  HelperInsertRemove as helpers,
-  HelperHeaders as helperHeader,
-} from "@tes/config/helpers";
+import { HelperHeaders } from "@tes/config/helpers/get-auth-header";
+import { Helpers } from "@tes/config/helpers/insert-remove";
 
 const mock = new CharacterMock("FakeNameUpOk");
+const headers = { ...secretHeader, ...{ Authorization: "" } };
 
 describe("Character - Update - Success", async () => {
-  const header = await helperHeader.getAuthorizationHeader(mock.pubId);
+  beforeAll(async () => {
+    Object.assign(
+      headers,
+      await HelperHeaders.mockAuthorizationHeader(mock.pubId)
+    );
+    await Helpers.insertBeforeAll("/characters", mock.dataToCreate, headers);
+  });
 
-  helpers.insertBeforeAll("/characters", mock.dataToCreate, header);
-  helpers.removeAfterAll("/characters", header);
+  afterAll(async () => {
+    await Helpers.removeAfterAll("/characters", headers);
+  });
 
   it("Should update the charName", async () => {
     const toUpdate = { charName: "NewCharNameOK" };
 
-    const res = await app.patch("/characters").send(toUpdate).set(header);
+    const res = await app.patch("/characters").send(toUpdate).set(headers);
 
     expect(res.statusCode).toEqual(204);
     expect(res.body).toBeNull;
@@ -26,7 +32,7 @@ describe("Character - Update - Success", async () => {
   it("Should update the className", async () => {
     const toUpdate = { className: "Warrior" };
 
-    const res = await app.patch("/characters").send(toUpdate).set(header);
+    const res = await app.patch("/characters").send(toUpdate).set(headers);
 
     expect(res.statusCode).toEqual(204);
     expect(res.body).toBeNull;
@@ -35,7 +41,7 @@ describe("Character - Update - Success", async () => {
   it("Should update the level", async () => {
     const toUpdate = { level: 2 };
 
-    const res = await app.patch("/characters").send(toUpdate).set(header);
+    const res = await app.patch("/characters").send(toUpdate).set(headers);
 
     expect(res.statusCode).toEqual(204);
     expect(res.body).toBeNull;
@@ -48,7 +54,7 @@ describe("Character - Update - Success", async () => {
       className: "Rogue",
     };
 
-    const res = await app.patch("/characters").send(toUpdate).set(header);
+    const res = await app.patch("/characters").send(toUpdate).set(headers);
 
     expect(res.statusCode).toEqual(204);
     expect(res.body).toBeNull;

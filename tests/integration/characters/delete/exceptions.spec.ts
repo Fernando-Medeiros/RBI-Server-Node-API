@@ -1,31 +1,34 @@
-import { describe, expect, it } from "vitest";
-import { app } from "@tes/config/config";
+import { describe, it, expect, beforeAll } from "vitest";
+import { app, secretHeader } from "@tes/config/config";
 import { CharacterMock } from "../mock/character.mock";
-import {
-  HelperInsertRemove as helpers,
-  HelperHeaders as helperHeader,
-} from "@tes/config/helpers";
+import { HelperHeaders } from "@tes/config/helpers/get-auth-header";
+import { Helpers } from "@tes/config/helpers/insert-remove";
 
 const mock = new CharacterMock("FakeNameDelEx");
+const headers = { ...secretHeader, Authorization: "" };
 
 describe("Character - Delete - Exceptions", async () => {
-  const header = await helperHeader.getAuthorizationHeader(mock.pubId);
-
-  helpers.insertBeforeAll("/characters", mock.dataToCreate, header);
+  beforeAll(async () => {
+    Object.assign(
+      headers,
+      await HelperHeaders.mockAuthorizationHeader(mock.pubId)
+    );
+    await Helpers.insertBeforeAll("/characters", mock.dataToCreate, headers);
+  });
 
   it("Should return 401 when sending invalid or null token", async () => {
     const res = await app
       .delete("/characters")
-      .set({ Authorization: "Bearer 000000" });
+      .set({ ...secretHeader, Authorization: "Bearer 000000" });
 
     expect(res.statusCode).toEqual(401);
     expect(res.body).toHaveProperty("message");
   });
 
   it("Should return 404 when trying to delete non-existent character", async () => {
-    await app.delete("/characters").set(header);
+    await app.delete("/characters").set(headers);
 
-    const res = await app.delete("/characters").set(header);
+    const res = await app.delete("/characters").set(headers);
 
     expect(res.statusCode).toEqual(404);
     expect(res.body).toHaveProperty("message");
