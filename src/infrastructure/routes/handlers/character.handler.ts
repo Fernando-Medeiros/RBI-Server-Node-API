@@ -58,10 +58,10 @@ export const CharacterHandler = {
 
   async updateCharacter(req: Request) {
     const { sub } = req.headers;
-    const { charName, className, level } = req.body;
+    const { charName, className, level, gender } = req.body;
 
     return await updateCase(
-      new CharacterRequestsToUpdate(sub as string, charName, className, level),
+      new CharacterRequestsToUpdate(sub as string, charName, className, level, gender),
       new CharacterRepository()
     );
   },

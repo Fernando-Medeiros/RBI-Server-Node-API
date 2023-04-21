@@ -9,7 +9,8 @@ export class CharacterRequestsToUpdate implements ICharacterRequestsToUpdate {
     protected sub: string,
     protected charName?: string,
     protected className?: string,
-    protected level?: number
+    protected level?: number,
+    protected gender?: string
   ) {}
 
   getRequestToUpdate(): { sub: string; toUpdate: CharacterUpdateProps } {
@@ -23,6 +24,7 @@ export class CharacterRequestsToUpdate implements ICharacterRequestsToUpdate {
       ...(this.level && { level: this.level }),
       ...(this.charName && { charName: this.charName }),
       ...(this.className && { className: this.className }),
+      ...(this.gender && { gender: this.gender }),
     };
 
     if (!Object.values(data).length ? true : null) {
