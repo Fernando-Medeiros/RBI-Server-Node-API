@@ -20,7 +20,7 @@ export const server = express();
 
 server.use(express.json());
 
-server.use(cors());
+server.use(cors({ origin: process.env["CORS_ORIGIN"] }));
 
 server.use(requestLimiterMiddleware);
 
