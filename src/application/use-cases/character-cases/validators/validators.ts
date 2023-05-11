@@ -11,25 +11,28 @@ class RegexValidator {
 }
 
 export class CharacterValidators {
-  static validateLevel = (level?: number): void => {
+  static level = (level: number): number => {
     if (typeof level != "number" || level > 1000 || level <= 0) {
       throw new BadRequest("Level format is invalid!");
     }
+    return level;
   };
 
-  static validateCharName = (name?: string): void => {
+  static charName = (name: string): string => {
     new RegexValidator(
       name,
       /^[a-zA-Z]{4,15}?$/g,
       "Character name format is invalid!"
     );
+    return name;
   };
 
-  static validateClassName = (name?: string): void => {
+  static className = (name: string): string => {
     new RegexValidator(
       name,
       /^[a-zA-Z]{4,10}(\s[a-zA-Z]{4,10})?$/g,
       "Class name format is invalid!"
     );
+    return name;
   };
 }

@@ -1,6 +1,5 @@
 import type { ICharacterRepository } from "./repository/character.repository.interfaces";
 import type { ICharacterRequestsToGetByName } from "./repository/character.requests.interfaces";
-
 import { NotFound } from "utils/http.exceptions";
 
 export const getByNameCase = async (
@@ -11,14 +10,11 @@ export const getByNameCase = async (
 
   const character = await repository.findByName(name);
 
-  if (character === null) {
+  if (!character) {
     throw new NotFound("Character not found!");
   }
 
-  return {
-    pubId: character.pubId,
-    level: character.level,
-    charName: character.charName,
-    className: character.className,
-  };
+  const { pubId, level, charName, className, gender } = character;
+
+  return { pubId, level, charName, className, gender };
 };

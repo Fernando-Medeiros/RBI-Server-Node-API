@@ -4,11 +4,9 @@ import { CharacterValidators } from "../validators/validators";
 export class CharacterRequestsToGetByName
   implements ICharacterRequestsToGetByName
 {
-  constructor(protected name?: string) {}
+  constructor(readonly payload: { name?: string }) {}
 
   getRequestToGetByName(): { name: string } {
-    CharacterValidators.validateCharName(this.name);
-
-    return { name: this.name as string };
+    return { name: CharacterValidators.charName(String(this.payload.name)) };
   }
 }

@@ -1,35 +1,25 @@
 import type { CharacterUpdateProps } from "../repository/character.props";
 import type { ICharacterRequestsToUpdate } from "../repository/character.requests.interfaces";
-import { CharacterValidators } from "../validators/validators";
-
+import { CharacterValidators as validators } from "../validators/validators";
 import { BadRequest } from "utils/http.exceptions";
 
 export class CharacterRequestsToUpdate implements ICharacterRequestsToUpdate {
-  constructor(
-    protected sub: string,
-    protected charName?: string,
-    protected className?: string,
-    protected level?: number,
-    protected gender?: string
-  ) {}
+  constructor(readonly payload: CharacterUpdateProps & { sub: string }) {}
 
   getRequestToUpdate(): { sub: string; toUpdate: CharacterUpdateProps } {
-    this.charName ? CharacterValidators.validateCharName(this.charName) : null;
-    this.className
-      ? CharacterValidators.validateClassName(this.className)
-      : null;
-    this.level ? CharacterValidators.validateLevel(this.level) : null;
+    const { sub, level, charName, className, gender } = this.payload;
 
-    const data = {
-      ...(this.level && { level: this.level }),
-      ...(this.charName && { charName: this.charName }),
-      ...(this.className && { className: this.className }),
-      ...(this.gender && { gender: this.gender }),
+    const toUpdate = {
+      ...(level && { level: validators.level(level) }),
+      ...(charName && { charName: validators.charName(charName) }),
+      ...(className && { className: validators.className(className) }),
+      ...(gender && { gender: gender }),
     };
 
-    if (!Object.values(data).length ? true : null) {
+    if (!Object.values(toUpdate).length) {
       throw new BadRequest("No data to be updated!");
     }
-    return { sub: this.sub, toUpdate: data };
+
+    return { sub, toUpdate };
   }
 }

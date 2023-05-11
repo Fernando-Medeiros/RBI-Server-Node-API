@@ -1,6 +1,5 @@
 import type { ICharacterRepository } from "./repository/character.repository.interfaces";
 import type { ICharacterRequestsToUpdate } from "./repository/character.requests.interfaces";
-
 import { BadRequest, NotFound } from "utils/http.exceptions";
 
 export const updateCase = async (
@@ -13,13 +12,13 @@ export const updateCase = async (
     ? await repository.findByName(toUpdate.charName)
     : null;
 
-  if (nameExists != null) {
+  if (nameExists) {
     throw new BadRequest("Character name is already in use!");
   }
 
-  const result = await repository.findByIdAndUpdate(sub as string, toUpdate);
+  const result = await repository.findByIdAndUpdate(sub, toUpdate);
 
-  if (result === null) {
+  if (!result) {
     throw new NotFound("Character not found!");
   }
 };

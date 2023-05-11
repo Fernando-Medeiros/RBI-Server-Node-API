@@ -2,16 +2,12 @@ import type { ICharacterRepository } from "./repository/character.repository.int
 
 export const getAllCase = async (repository: ICharacterRepository) => {
   const characters = await repository.find();
-
   const toResponse = [];
 
-  for (const C of characters) {
-    toResponse.push({
-      pubId: C.pubId,
-      level: C.level,
-      charName: C.charName,
-      className: C.className,
-    });
+  for (const char of characters) {
+    const { pubId, level, charName, className, gender } = char;
+
+    toResponse.push({ pubId, level, charName, className, gender });
   }
 
   return toResponse;

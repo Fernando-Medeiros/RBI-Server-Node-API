@@ -2,11 +2,13 @@ import type { ICharacterRequestsToGetById } from "../repository/character.reques
 import { CommonValidators } from "app/validators/common.validators";
 
 export class CharacterRequestsToGetById implements ICharacterRequestsToGetById {
-  constructor(protected id: string) {}
+  constructor(readonly payload: { id?: string }) {}
 
   getRequestToGetById(): { id: string } {
-    CommonValidators.validateID(this.id);
+    const { id } = this.payload;
 
-    return { id: this.id };
+    CommonValidators.validateID(id);
+
+    return { id: String(id) };
   }
 }

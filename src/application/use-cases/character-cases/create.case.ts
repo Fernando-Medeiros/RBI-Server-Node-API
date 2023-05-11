@@ -1,6 +1,5 @@
 import type { ICharacterRepository } from "./repository/character.repository.interfaces";
 import type { ICharacterRequestsToCreate } from "./repository/character.requests.interfaces";
-
 import { BadRequest } from "utils/http.exceptions";
 
 export const createCase = async (
@@ -9,11 +8,11 @@ export const createCase = async (
 ) => {
   const { sub, toCreate } = requests.getRequestToCreate();
 
-  toCreate.pubId = sub as string;
+  toCreate.pubId = sub;
 
   const nameExists = await repository.findByName(toCreate.charName);
 
-  if (nameExists != null) {
+  if (nameExists) {
     throw new BadRequest("Character name is already in use!");
   }
 

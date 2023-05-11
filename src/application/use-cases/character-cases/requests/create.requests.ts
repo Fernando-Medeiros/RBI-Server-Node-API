@@ -1,24 +1,18 @@
 import type { CharacterCreateProps } from "../repository/character.props";
 import type { ICharacterRequestsToCreate } from "../repository/character.requests.interfaces";
-import { CharacterValidators } from "../validators/validators";
+import { CharacterValidators as validators } from "../validators/validators";
 
 export class CharacterRequestsToCreate implements ICharacterRequestsToCreate {
-  constructor(
-    protected sub: string,
-    protected charName?: string,
-    protected className?: string
-  ) {}
+  constructor(readonly payload: CharacterCreateProps & { sub: string }) {}
 
   getRequestToCreate(): { sub: string; toCreate: CharacterCreateProps } {
-    CharacterValidators.validateCharName(this.charName);
-    CharacterValidators.validateClassName(this.className);
+    const { sub, charName, className } = this.payload;
 
-    return {
-      sub: this.sub,
-      toCreate: {
-        charName: this.charName as string,
-        className: this.className as string,
-      },
+    const toCreate = {
+      charName: validators.charName(charName),
+      className: validators.className(className),
     };
+
+    return { sub, toCreate };
   }
 }
