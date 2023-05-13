@@ -1,5 +1,5 @@
-import type { PropsSkills } from "domain/entities/skills/skills.interface";
+import type { Skills } from "domain/entities/skills.entity";
 
-export type SkillsProps = PropsSkills;
+export type SkillsProps = Skills;
 
-export type SkillsUpdateProps = Partial<Omit<PropsSkills, "_id" | "pubId">>;
+export type SkillsUpdateProps = Partial<Omit<Skills, "_id" | "pubId">>;

@@ -1,21 +1,24 @@
-import { InMemoryCharacterRepository } from "./inMemoryCharacterRepository";
-
+import type { ICharacterRepository } from "../../repository/character.repository.interfaces";
 import characterDataMock from "example/character.data.mock.json";
 
-const database = new InMemoryCharacterRepository();
-
 export class UseCaseCharacterHelpers {
-  public static insertOneCharacterToDatabase = async (): Promise<void> => {
-    await database.save(characterDataMock);
+  constructor(private database: ICharacterRepository) {}
+
+  insertOneCharacterToDatabase = async (): Promise<void> => {
+    await this.database.save(characterDataMock);
   };
 
-  public static removeOneCharacterToDatabase = async (): Promise<void> => {
+  removeOneCharacterToDatabase = async (): Promise<void> => {
     const { pubId: id } = characterDataMock;
 
-    await database.findByIdAndDelete(id);
+    await this.database.findByIdAndDelete(id);
   };
 
-  public static getCharacterDataMock() {
+  getCharacterDataMock() {
     return characterDataMock;
+  }
+
+  pubId(): string {
+    return characterDataMock.pubId;
   }
 }

@@ -1,37 +1,39 @@
-import { InMemoryEquipmentRepository } from "./inMemoryEquipmentRepository";
-
+import type { IEquipmentRepository } from "../../repository/equipment.repository.interfaces";
 import equipmentDataMock from "example/equipment.data.mock.json";
-
 import accessoryExample from "example/items/accessory.example.json";
 import armorExample from "example/items/armor.example.json";
 import weaponExample from "example/items/weapon.example.json";
 
-const database = new InMemoryEquipmentRepository();
-
 export class UseCaseEquipmentsHelpers {
-  public static insertOneToDatabase = async (): Promise<void> => {
-    await database.save(equipmentDataMock);
+  constructor(protected database: IEquipmentRepository) {}
+
+  insertOneToDatabase = async (): Promise<void> => {
+    await this.database.save(equipmentDataMock);
   };
 
-  public static removeOneToDatabase = async (): Promise<void> => {
+  removeOneToDatabase = async (): Promise<void> => {
     const { pubId: id } = equipmentDataMock;
 
-    await database.findByIdAndDelete(id);
+    await this.database.findByIdAndDelete(id);
   };
 
-  public static getDataMock() {
+  pubId(): string {
+    return equipmentDataMock.pubId;
+  }
+
+  getDataMock() {
     return Object.assign({}, equipmentDataMock);
   }
 
-  public static getFakeArmor() {
+  getFakeArmor() {
     return armorExample;
   }
 
-  public static getFakeWeapon() {
+  getFakeWeapon() {
     return weaponExample;
   }
 
-  public static getFakeAccessory() {
+  getFakeAccessory() {
     return accessoryExample;
   }
 }

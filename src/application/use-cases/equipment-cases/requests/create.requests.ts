@@ -1,9 +1,9 @@
 import type { IEquipmentRequestsToCreate } from "../repository/equipment.requests.interfaces";
 
 export class EquipmentRequestsToCreate implements IEquipmentRequestsToCreate {
-  constructor(protected sub: string) {}
+  constructor(readonly payload: { sub: string }) {}
 
   getRequestToCreate(): { sub: string } {
-    return { sub: this.sub };
+    return { sub: this.payload.sub };
   }
 }

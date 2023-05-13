@@ -1,6 +1,5 @@
 import type { IStatusRepository } from "./repository/status.repository.interfaces";
 import type { IStatusRequestsToCreate } from "./repository/status.requests.interfaces";
-import { Status } from "domain/entities/status/status";
 import { BadRequest } from "utils/http.exceptions";
 
 export const createCase = async (
@@ -13,7 +12,7 @@ export const createCase = async (
     throw new BadRequest("Only one status allowed per character!");
   }
 
-  const status = new Status({
+  const status = {
     pubId: sub,
     points: 15,
     experience: 1,
@@ -25,7 +24,7 @@ export const createCase = async (
     energy: 1,
     currentHealth: 1,
     currentEnergy: 1,
-  });
+  };
 
-  await repository.save(status.getDataToSave());
+  await repository.save(status);
 };

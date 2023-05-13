@@ -1,46 +1,46 @@
 import { describe, it, expect } from "vitest";
-import { UseCaseCharacterHelpers as helpers } from "./mock/utils";
-import { getByIdCase } from "../get-by-id.case";
 import { CharacterRequestsToGetById } from "../requests/get-by-id.requests";
 import { InMemoryCharacterRepository } from "./mock/inMemoryCharacterRepository";
+import { UseCaseCharacterHelpers } from "./mock/utils";
+import { getByIdCase } from "../get-by-id.case";
 
-const InMemoryRepository = new InMemoryCharacterRepository();
+const Repository = new InMemoryCharacterRepository();
+const Helpers = new UseCaseCharacterHelpers(Repository);
 
-describe("UseCases - Character - Get By Id - OK", () => {
-  helpers.insertOneCharacterToDatabase();
+describe("Get-By-Id-> Character-OK", () => {
+  Helpers.insertOneCharacterToDatabase();
 
   it("Should get a character by id", async () => {
-    const { pubId: id } = helpers.getCharacterDataMock();
-
     const res = await getByIdCase(
-      new CharacterRequestsToGetById({ id }),
-      InMemoryRepository
+      new CharacterRequestsToGetById({ id: Helpers.pubId() }),
+      Repository
     );
 
-    expect(res).toContain({ pubId: id });
+    expect(res).toContain({ pubId: Helpers.pubId() });
   });
 });
 
-describe("UseCases - Character - Get By Id - Exceptions", () => {
+describe("Get-By-Id-> Character-Exceptions", () => {
   it("Should return error when passing an invalid id", async () => {
-    const id = "000-000";
-
     await expect(() =>
-      getByIdCase(new CharacterRequestsToGetById({ id }), InMemoryRepository)
+      getByIdCase(new CharacterRequestsToGetById({ id: "000-000" }), Repository)
     ).rejects.toThrowError("Could not verify credentials");
   });
 
   it("Should return error when passing an null id", async () => {
     await expect(() =>
-      getByIdCase(new CharacterRequestsToGetById({}), InMemoryRepository)
+      getByIdCase(new CharacterRequestsToGetById({}), Repository)
     ).rejects.toThrowError("Could not verify credentials");
   });
 
   it("Should return [not found] when entering a valid but non-existent id", async () => {
-    const id = "b2cd80d6-825d-4b67-a7a5-3cface4f19b9";
-
     await expect(() =>
-      getByIdCase(new CharacterRequestsToGetById({ id }), InMemoryRepository)
+      getByIdCase(
+        new CharacterRequestsToGetById({
+          id: "b2cd80d6-825d-4b67-a7a5-3cface4f19b9",
+        }),
+        Repository
+      )
     ).rejects.toThrowError("not found");
   });
 });

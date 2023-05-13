@@ -1,67 +1,42 @@
 import type { Request } from "express";
-
 import { EquipmentRepository } from "infra/repositories/equipment.repository.impl";
 import { EquipmentRequestsToCreate } from "app/use-cases/equipment-cases/requests/create.requests";
 import { EquipmentRequestsToDelete } from "app/use-cases/equipment-cases/requests/delete.requests";
 import { EquipmentRequestsToUpdate } from "app/use-cases/equipment-cases/requests/update.requests";
 import { EquipmentRequestsToGetById } from "app/use-cases/equipment-cases/requests/get-by-id.requests";
-
 import { createCase } from "app/use-cases/equipment-cases/create.case";
 import { deleteCase } from "app/use-cases/equipment-cases/delete.case";
 import { getByIdCase } from "app/use-cases/equipment-cases/get-by-id.case";
 import { updateCase } from "app/use-cases/equipment-cases/update.case";
 
-export const EquipmentHandler = {
-  async getEquipmentById(req: Request) {
-    const { id } = req.params;
+export class EquipmentHandler {
+  private readonly Repository = new EquipmentRepository();
 
+  async getEquipmentById(req: Request) {
     return await getByIdCase(
-      new EquipmentRequestsToGetById(id as string),
-      new EquipmentRepository()
+      new EquipmentRequestsToGetById(Object(req.params)),
+      this.Repository
     );
-  },
+  }
 
   async createEquipment(req: Request) {
-    const { sub } = req.headers;
-
     return await createCase(
-      new EquipmentRequestsToCreate(sub as string),
-      new EquipmentRepository()
+      new EquipmentRequestsToCreate(Object(req.headers)),
+      this.Repository
     );
-  },
+  }
 
   async deleteEquipment(req: Request) {
-    const { sub } = req.headers;
-
     return await deleteCase(
-      new EquipmentRequestsToDelete(sub as string),
-      new EquipmentRepository()
+      new EquipmentRequestsToDelete(Object(req.headers)),
+      this.Repository
     );
-  },
+  }
 
   async updateEquipment(req: Request) {
-    const { sub } = req.headers;
-    const {
-      head,
-      body,
-      leg,
-      handLeft,
-      handRight,
-      accessoryLeft,
-      accessoryRight,
-    } = req.body;
-
     return await updateCase(
-      new EquipmentRequestsToUpdate(sub as string, {
-        head,
-        body,
-        leg,
-        handLeft,
-        handRight,
-        accessoryLeft,
-        accessoryRight,
-      }),
-      new EquipmentRepository()
+      new EquipmentRequestsToUpdate(Object.assign({}, req.headers, req.body)),
+      this.Repository
     );
-  },
-};
+  }
+}

@@ -8,9 +8,7 @@ export const deleteCase = async (
 ) => {
   const { sub } = requests.getRequestToDelete();
 
-  const result = await repository.findByIdAndDelete(sub);
-
-  if (result === null) {
+  if (!(await repository.findByIdAndDelete(sub))) {
     throw new NotFound("Skills not found!");
   }
 };

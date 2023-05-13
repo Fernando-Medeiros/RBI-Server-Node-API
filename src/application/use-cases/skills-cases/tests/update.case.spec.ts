@@ -1,133 +1,120 @@
 import { describe, it, expect } from "vitest";
-import { UseCaseSkillsHelpers as helpers } from "./mock/utils";
-
-import { updateCase } from "../update.case";
 import { SkillsRequestsToUpdate } from "../requests/update.requests";
 import { InMemorySkillsRepository } from "./mock/inMemorySkillsRepository";
+import { UseCaseSkillsHelpers } from "./mock/utils";
+import { updateCase } from "../update.case";
 
-const sub = helpers.getPubId();
+const Repository = new InMemorySkillsRepository();
+const Helpers = new UseCaseSkillsHelpers(Repository);
+const sub = Helpers.pubId();
 
-describe("UseCases - Skills - Update - OK", () => {
-  helpers.insertOneToDatabase();
+describe("Update-> Skills-OK", () => {
+  Helpers.insertOneToDatabase();
 
-  const data = helpers.getDataMock();
+  const data = Helpers.getDataMock();
 
   it("Should update all Skills", async () => {
     const res = await updateCase(
-      new SkillsRequestsToUpdate(sub, data),
-      new InMemorySkillsRepository()
+      new SkillsRequestsToUpdate({ sub, ...data }),
+      Repository
     );
     expect(res).toBeUndefined();
   });
 
   it("Should update one offensive skill", async () => {
-    data.offensive.push(helpers.getFakeOffensive());
+    const offensive = [Helpers.getFakeOffensive()];
 
     const res = await updateCase(
-      new SkillsRequestsToUpdate(sub, data),
-      new InMemorySkillsRepository()
+      new SkillsRequestsToUpdate({ sub, offensive }),
+      Repository
     );
     expect(res).toBeUndefined();
   });
 
   it("Should update two offensive skills", async () => {
-    data.offensive.push(helpers.getFakeOffensive(), helpers.getFakeOffensive());
+    const offensive = [Helpers.getFakeOffensive(), Helpers.getFakeOffensive()];
 
     const res = await updateCase(
-      new SkillsRequestsToUpdate(sub, data),
-      new InMemorySkillsRepository()
+      new SkillsRequestsToUpdate({ sub, offensive }),
+      Repository
     );
     expect(res).toBeUndefined();
   });
 
   it("Should update one defensive skill", async () => {
-    data.defensive.push(helpers.getFakeDefensive());
+    const defensive = [Helpers.getFakeDefensive()];
 
     const res = await updateCase(
-      new SkillsRequestsToUpdate(sub, data),
-      new InMemorySkillsRepository()
+      new SkillsRequestsToUpdate({ sub, defensive }),
+      Repository
     );
     expect(res).toBeUndefined();
   });
 
   it("Should update tow defensive skills", async () => {
-    data.defensive.push(helpers.getFakeDefensive(), helpers.getFakeDefensive());
+    const defensive = [Helpers.getFakeDefensive(), Helpers.getFakeDefensive()];
 
     const res = await updateCase(
-      new SkillsRequestsToUpdate(sub, data),
-      new InMemorySkillsRepository()
+      new SkillsRequestsToUpdate({ sub, defensive }),
+      Repository
     );
     expect(res).toBeUndefined();
   });
 
   it("Should update tow offensive and defensive skills", async () => {
-    data.offensive.push(helpers.getFakeOffensive(), helpers.getFakeOffensive());
-    data.defensive.push(helpers.getFakeDefensive(), helpers.getFakeDefensive());
+    const [offensive, defensive] = [
+      [Helpers.getFakeOffensive(), Helpers.getFakeOffensive()],
+      [Helpers.getFakeDefensive(), Helpers.getFakeDefensive()],
+    ];
 
     const res = await updateCase(
-      new SkillsRequestsToUpdate(sub, data),
-      new InMemorySkillsRepository()
+      new SkillsRequestsToUpdate({ sub, offensive, defensive }),
+      Repository
     );
     expect(res).toBeUndefined();
   });
 });
 
-describe("UseCases - Skills - Update - Exceptions", () => {
-  let data = helpers.getDataMock();
-
+describe("Update-> Skills-Exceptions", () => {
   it("Should return [no data] when passing an empty object", async () => {
     await expect(() =>
-      updateCase(
-        new SkillsRequestsToUpdate(sub, {}),
-        new InMemorySkillsRepository()
-      )
+      updateCase(new SkillsRequestsToUpdate({ sub }), Repository)
     ).rejects.toThrowError("No data");
   });
 
   it("Should return an error when sending invalid offensive skill", async () => {
-    data = helpers.getDataMock();
-    data.offensive.push({
-      name: "missing fields",
-      invalidField0: 2,
-      invalidField1: true,
-      invalidField2: "...",
-    });
+    const offensive = [
+      Object({
+        name: "missing fields",
+        invalidField0: 2,
+        invalidField1: true,
+        invalidField2: "...",
+      }),
+    ];
 
     await expect(() =>
-      updateCase(
-        new SkillsRequestsToUpdate(sub, data),
-        new InMemorySkillsRepository()
-      )
+      updateCase(new SkillsRequestsToUpdate({ sub, offensive }), Repository)
     ).rejects.toThrowError("Missing fields");
   });
 
   it("Should return an error when sending invalid defensive skill", async () => {
-    data = helpers.getDataMock();
-    data.defensive.push({
-      name: "missing fields",
-      invalidField0: 2,
-      invalidField1: true,
-      invalidField2: "...",
-    });
+    const defensive = [
+      Object({
+        name: "missing fields",
+        invalidField0: 2,
+        invalidField1: true,
+        invalidField2: "...",
+      }),
+    ];
 
     await expect(() =>
-      updateCase(
-        new SkillsRequestsToUpdate(sub, data),
-        new InMemorySkillsRepository()
-      )
+      updateCase(new SkillsRequestsToUpdate({ sub, defensive }), Repository)
     ).rejects.toThrowError("Missing fields");
   });
 
   it("Should return an error when sending offensive and defensive skill without content", async () => {
-    data = helpers.getDataMock();
-    data.offensive.push({});
-    data.defensive.push({});
-
     await expect(() =>
-      updateCase(
-        new SkillsRequestsToUpdate(sub, data),
-        new InMemorySkillsRepository()
-      )
-    ).rejects.toThrowError("Missing fields");
+      updateCase(new SkillsRequestsToUpdate({ sub }), Repository)
+    ).rejects.toThrowError("No data");
   });
 });

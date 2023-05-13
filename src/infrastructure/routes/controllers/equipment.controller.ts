@@ -1,10 +1,12 @@
 import type { Request, Response } from "express";
-import { EquipmentHandler as handler } from "../handlers/equipment.handler";
+import { EquipmentHandler } from "../handlers/equipment.handler";
 import {
   StatusCreated,
   StatusOK,
   StatusOkNoContent,
 } from "utils/http.protocols";
+
+const handler = new EquipmentHandler();
 
 export const getEquipmentById = async (req: Request, res: Response) => {
   const equipments = await handler.getEquipmentById(req);

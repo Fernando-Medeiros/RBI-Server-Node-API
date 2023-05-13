@@ -1,7 +1,5 @@
-import type { PropsEquipment } from "domain/entities/equipment/equipment.interface";
+import type { Equipment } from "domain/entities/equipment.entity";
 
-export type EquipmentProps = PropsEquipment;
+export type EquipmentProps = Equipment;
 
-export type EquipmentUpdateProps = Partial<
-  Omit<PropsEquipment, "_id" | "pubId">
->;
+export type EquipmentUpdateProps = Partial<Omit<Equipment, "_id" | "pubId">>;

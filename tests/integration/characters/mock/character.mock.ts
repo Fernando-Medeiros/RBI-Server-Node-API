@@ -1,27 +1,23 @@
-import { v4 } from "uuid";
-import { Character } from "domain/entities/character/character";
+import type { CharacterProps } from "app/use-cases/character-cases/repository/character.props";
 import characterDataMock from "example/character.data.mock.json";
-
-characterDataMock.pubId = v4();
+import { v4 } from "uuid";
 
 export class CharacterMock {
-  private props: Character;
+  protected props: CharacterProps;
 
   constructor(charName: string) {
-    this.props = new Character(characterDataMock);
-
-    this.props.setName = charName;
+    this.props = { ...characterDataMock, ...{ pubId: v4() }, ...{ charName } };
   }
 
   get pubId(): string {
-    return this.props.getPubId;
+    return this.props.pubId;
   }
 
   get charName(): string {
-    return this.props.getName;
+    return this.props.charName;
   }
 
-  get dataToCreate() {
-    return this.props.getDataToSave();
+  get dataToCreate(): CharacterProps {
+    return this.props;
   }
 }

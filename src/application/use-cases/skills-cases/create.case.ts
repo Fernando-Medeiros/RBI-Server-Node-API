@@ -1,6 +1,5 @@
 import type { ISkillsRepository } from "./repository/skills.repository.interfaces";
 import type { ISkillsRequestsToCreate } from "./repository/skills.requests.interfaces";
-import { Skill } from "domain/entities/skills/skills";
 import { BadRequest } from "utils/http.exceptions";
 
 export const createCase = async (
@@ -12,11 +11,12 @@ export const createCase = async (
   if (await repository.findById(sub)) {
     throw new BadRequest("Only one Skills allowed per character!");
   }
-  const skills = new Skill({
+
+  const skills = {
     pubId: sub,
     offensive: [],
     defensive: [],
-  });
+  };
 
-  await repository.save(skills.getDataToSave());
+  await repository.save(skills);
 };

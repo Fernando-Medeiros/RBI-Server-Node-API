@@ -1,6 +1,6 @@
-import type { PCharacter } from "domain/entities/character/character.interface";
+import type { Character } from "domain/entities/character.entity";
 
-export type CharacterProps = PCharacter;
+export type CharacterProps = Character;
 
 export type CharacterCreateProps = {
   pubId?: string;

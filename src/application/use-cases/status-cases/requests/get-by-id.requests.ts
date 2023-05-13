@@ -2,11 +2,13 @@ import type { IStatusRequestsToGetById } from "../repository/status.requests.int
 import { CommonValidators } from "app/validators/common.validators";
 
 export class StatusRequestsToGetById implements IStatusRequestsToGetById {
-  constructor(protected sub: string) {}
+  constructor(readonly payload: { id: string }) {}
 
   getRequestToGetById(): { sub: string } {
-    CommonValidators.validateID(this.sub);
+    const { id: sub } = this.payload;
 
-    return { sub: this.sub };
+    CommonValidators.validateID(sub);
+
+    return { sub };
   }
 }

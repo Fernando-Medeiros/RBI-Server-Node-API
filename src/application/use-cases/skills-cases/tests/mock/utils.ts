@@ -1,41 +1,38 @@
-import { InMemorySkillsRepository } from "./inMemorySkillsRepository";
-
+import type { ISkillsRepository } from "../../repository/skills.repository.interfaces";
+import type { Defensive, Offensive } from "domain/skills/skills.interface";
 import SkillsDataMock from "example/skills.data.mock.json";
-
 import offensiveExample from "example/skills/offensive.example.json";
 import defensiveExample from "example/skills/defensive.example.json";
 
-const database = new InMemorySkillsRepository();
-
-const skills = {
-  offensive: [] as object[],
-  defensive: [] as object[],
-};
-
 export class UseCaseSkillsHelpers {
-  public static insertOneToDatabase = async (): Promise<void> => {
-    await database.save(SkillsDataMock);
+  constructor(private database: ISkillsRepository) {}
+
+  insertOneToDatabase = async (): Promise<void> => {
+    await this.database.save(SkillsDataMock);
   };
 
-  public static removeOneToDatabase = async (): Promise<void> => {
+  removeOneToDatabase = async (): Promise<void> => {
     const { pubId: id } = SkillsDataMock;
 
-    await database.findByIdAndDelete(id);
+    await this.database.findByIdAndDelete(id);
   };
 
-  public static getPubId(): string {
+  pubId(): string {
     return SkillsDataMock.pubId;
   }
 
-  public static getDataMock() {
-    return Object.assign({}, skills);
+  getDataMock() {
+    return Object.assign(
+      {},
+      { offensive: [] as Offensive[], defensive: [] as Defensive[] }
+    );
   }
 
-  public static getFakeOffensive() {
+  getFakeOffensive() {
     return offensiveExample;
   }
 
-  public static getFakeDefensive() {
+  getFakeDefensive() {
     return defensiveExample;
   }
 }

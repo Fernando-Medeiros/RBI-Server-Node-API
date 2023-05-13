@@ -1,18 +1,19 @@
 import { it, expect, describe } from "vitest";
-import { UseCaseCharacterHelpers as helpers } from "./mock/utils";
-import { createCase } from "../create.case";
-import { CharacterRequestsToCreate } from "../requests/create.requests";
 import { InMemoryCharacterRepository } from "./mock/inMemoryCharacterRepository";
+import { UseCaseCharacterHelpers } from "./mock/utils";
+import { CharacterRequestsToCreate } from "../requests/create.requests";
+import { createCase } from "../create.case";
 
-const InMemoryRepository = new InMemoryCharacterRepository();
+const Repository = new InMemoryCharacterRepository();
+const Helpers = new UseCaseCharacterHelpers(Repository);
 
 describe("UseCases - Character - Create - OK", () => {
-  const { pubId: sub, ...payload } = helpers.getCharacterDataMock();
+  const { pubId: sub, ...payload } = Helpers.getCharacterDataMock();
 
   it("Should create the character", async () => {
     const res = await createCase(
       new CharacterRequestsToCreate({ sub, ...payload }),
-      InMemoryRepository
+      Repository
     );
 
     expect(res).toBeUndefined();
@@ -20,16 +21,13 @@ describe("UseCases - Character - Create - OK", () => {
 });
 
 describe("UseCases - Character - Create - Exceptions", () => {
-  const { pubId: sub, ...payload } = helpers.getCharacterDataMock();
+  const { pubId: sub, ...payload } = Helpers.getCharacterDataMock();
 
   it("Should return [invalid format] when entering an invalid charName", async () => {
     payload.charName = "Fake-Name-@@";
 
     await expect(() =>
-      createCase(
-        new CharacterRequestsToCreate({ sub, ...payload }),
-        InMemoryRepository
-      )
+      createCase(new CharacterRequestsToCreate({ sub, ...payload }), Repository)
     ).rejects.toThrowError("format is invalid");
   });
 
@@ -37,21 +35,15 @@ describe("UseCases - Character - Create - Exceptions", () => {
     payload.className = "M@ge";
 
     await expect(() =>
-      createCase(
-        new CharacterRequestsToCreate({ sub, ...payload }),
-        InMemoryRepository
-      )
+      createCase(new CharacterRequestsToCreate({ sub, ...payload }), Repository)
     ).rejects.toThrowError("format is invalid");
   });
 
   it("Should return [already in use] when informing a name in use", async () => {
-    const { pubId: sub, ...payload } = helpers.getCharacterDataMock();
+    const { pubId: sub, ...payload } = Helpers.getCharacterDataMock();
 
     await expect(() =>
-      createCase(
-        new CharacterRequestsToCreate({ sub, ...payload }),
-        InMemoryRepository
-      )
+      createCase(new CharacterRequestsToCreate({ sub, ...payload }), Repository)
     ).rejects.toThrowError("name is already in use");
   });
 
@@ -61,14 +53,14 @@ describe("UseCases - Character - Create - Exceptions", () => {
     await expect(() =>
       createCase(
         new CharacterRequestsToCreate(Object({ charName, className, sub })),
-        InMemoryRepository
+        Repository
       )
     ).rejects.toThrowError("format is invalid");
   });
 });
 
 describe("UseCases - Character - Create - Loop-Exceptions", () => {
-  const { pubId: sub, ...payload } = helpers.getCharacterDataMock();
+  const { pubId: sub, ...payload } = Helpers.getCharacterDataMock();
 
   const invalidNamesForTest = [
     ["fake22", "fake()", "fake**", "fake&&", "fake##", "fake@@", "fake%%"],
@@ -84,7 +76,7 @@ describe("UseCases - Character - Create - Loop-Exceptions", () => {
         await expect(() =>
           createCase(
             new CharacterRequestsToCreate({ sub, ...payload, charName }),
-            InMemoryRepository
+            Repository
           )
         ).rejects.toThrowError("format is invalid");
       }
@@ -97,7 +89,7 @@ describe("UseCases - Character - Create - Loop-Exceptions", () => {
         await expect(() =>
           createCase(
             new CharacterRequestsToCreate({ sub, ...payload, charName }),
-            InMemoryRepository
+            Repository
           )
         ).rejects.toThrowError("format is invalid");
       }

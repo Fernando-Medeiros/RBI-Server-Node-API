@@ -4,32 +4,20 @@ import { SkillsValidators as validate } from "../validators/validators";
 import { BadRequest } from "utils/http.exceptions";
 
 export class SkillsRequestsToUpdate implements ISkillsRequestsToUpdate {
-  constructor(
-    protected sub: string,
-    protected props: {
-      offensive?: [] | object[];
-      defensive?: [] | object[];
-    }
-  ) {}
+  constructor(readonly payload: SkillsUpdateProps & { sub: string }) {}
 
   getRequestToUpdate(): { sub: string; toUpdate: SkillsUpdateProps } {
-    const { offensive, defensive } = this.props;
+    const { sub, offensive, defensive } = this.payload;
 
-    const skills = {
+    const toUpdate = {
       ...(offensive && { offensive: validate.offensive(offensive) }),
       ...(defensive && { defensive: validate.defensive(defensive) }),
     };
 
-    const items = Object.values(skills).filter((I) => I?.values != undefined);
-
-    if (items.length === 0) {
+    if (!Object.values(toUpdate).length) {
       throw new BadRequest("No data to be updated!");
     }
 
-    const dataToUpdate = {};
-
-    Object.assign(dataToUpdate, skills);
-
-    return { sub: this.sub, toUpdate: dataToUpdate };
+    return { sub, toUpdate: Object(toUpdate) };
   }
 }

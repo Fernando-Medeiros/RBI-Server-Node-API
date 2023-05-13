@@ -4,21 +4,11 @@ import { EquipmentValidators as validate } from "../validators/validators";
 import { BadRequest } from "utils/http.exceptions";
 
 export class EquipmentRequestsToUpdate implements IEquipmentRequestsToUpdate {
-  constructor(
-    protected sub: string,
-    protected props: {
-      head?: object;
-      body?: object;
-      leg?: object;
-      handLeft?: object;
-      handRight?: object;
-      accessoryLeft?: object;
-      accessoryRight?: object;
-    }
-  ) {}
+  constructor(readonly payload: EquipmentUpdateProps & { sub: string }) {}
 
   getRequestToUpdate(): { sub: string; toUpdate: EquipmentUpdateProps } {
     const {
+      sub,
       head,
       body,
       leg,
@@ -26,9 +16,9 @@ export class EquipmentRequestsToUpdate implements IEquipmentRequestsToUpdate {
       handRight,
       accessoryLeft: accLeft,
       accessoryRight: accRight,
-    } = this.props;
+    } = this.payload;
 
-    const equipments = {
+    const toUpdate = {
       ...(head && { head: validate.armor(head) }),
       ...(body && { body: validate.armor(body) }),
       ...(leg && { leg: validate.armor(leg) }),
@@ -38,10 +28,10 @@ export class EquipmentRequestsToUpdate implements IEquipmentRequestsToUpdate {
       ...(accRight && { accessoryRight: validate.accessory(accRight) }),
     };
 
-    if (Object.values(equipments).filter((V) => V != undefined).length === 0) {
+    if (!Object.values(toUpdate).length) {
       throw new BadRequest("No data to be updated!");
     }
 
-    return { sub: this.sub, toUpdate: equipments };
+    return { sub, toUpdate };
   }
 }

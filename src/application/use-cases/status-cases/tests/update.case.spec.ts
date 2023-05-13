@@ -1,252 +1,182 @@
 import { describe, it, expect } from "vitest";
-import { UseCaseStatusHelpers as helpers } from "./mock/utils";
-
-import { updateCase } from "../update.case";
 import { StatusRequestsToUpdate } from "../requests/update.requests";
 import { InMemoryStatusRepository } from "./mock/inMemoryStatusRepository";
+import { UseCaseStatusHelpers } from "./mock/utils";
+import { updateCase } from "../update.case";
 
-const { pubId: sub } = helpers.getDataMock();
+const Repository = new InMemoryStatusRepository();
+const Helpers = new UseCaseStatusHelpers(Repository);
+const sub = Helpers.pubId();
 
-let data = helpers.getDataMock();
+describe("Update-> Status-OK", () => {
+  Helpers.insertOneToDatabase();
 
-describe("UseCases - Status - Update - OK", () => {
-  helpers.insertOneToDatabase();
+  const data = Helpers.getDataMock();
 
   it("Should update all status", async () => {
     const res = await updateCase(
-      new StatusRequestsToUpdate(sub, data),
-      new InMemoryStatusRepository()
+      new StatusRequestsToUpdate({ sub, ...data }),
+      Repository
     );
     expect(res).toBeUndefined();
   });
 
   it("Should update points to assign", async () => {
-    data.points = 10;
-
     const res = await updateCase(
-      new StatusRequestsToUpdate(sub, data),
-      new InMemoryStatusRepository()
+      new StatusRequestsToUpdate({ sub, points: 10 }),
+      Repository
     );
     expect(res).toBeUndefined();
   });
 
   it("Should update experience", async () => {
-    data.experience = 500;
-
     const res = await updateCase(
-      new StatusRequestsToUpdate(sub, data),
-      new InMemoryStatusRepository()
+      new StatusRequestsToUpdate({ sub, experience: 500 }),
+      Repository
     );
     expect(res).toBeUndefined();
   });
 
   it("Should update strength", async () => {
-    data.strength = 2;
-
     const res = await updateCase(
-      new StatusRequestsToUpdate(sub, data),
-      new InMemoryStatusRepository()
+      new StatusRequestsToUpdate({ sub, strength: 2 }),
+      Repository
     );
     expect(res).toBeUndefined();
   });
 
   it("Should update intelligence", async () => {
-    data.intelligence = 10;
-
     const res = await updateCase(
-      new StatusRequestsToUpdate(sub, data),
-      new InMemoryStatusRepository()
+      new StatusRequestsToUpdate({ sub, intelligence: 10 }),
+      Repository
     );
     expect(res).toBeUndefined();
   });
 
   it("Should update dexterity", async () => {
-    data.dexterity = 80;
-
     const res = await updateCase(
-      new StatusRequestsToUpdate(sub, data),
-      new InMemoryStatusRepository()
+      new StatusRequestsToUpdate({ sub, dexterity: 80 }),
+      Repository
     );
     expect(res).toBeUndefined();
   });
 
   it("Should update vitality", async () => {
-    data.vitality = 99;
-
     const res = await updateCase(
-      new StatusRequestsToUpdate(sub, data),
-      new InMemoryStatusRepository()
+      new StatusRequestsToUpdate({ sub, vitality: 99 }),
+      Repository
     );
     expect(res).toBeUndefined();
   });
 
   it("Should update health", async () => {
-    data.health = 1;
-
     const res = await updateCase(
-      new StatusRequestsToUpdate(sub, data),
-      new InMemoryStatusRepository()
+      new StatusRequestsToUpdate({ sub, health: 1 }),
+      Repository
     );
     expect(res).toBeUndefined();
   });
 
   it("Should update energy", async () => {
-    data.energy = 400;
-
     const res = await updateCase(
-      new StatusRequestsToUpdate(sub, data),
-      new InMemoryStatusRepository()
+      new StatusRequestsToUpdate({ sub, energy: 400 }),
+      Repository
     );
     expect(res).toBeUndefined();
   });
 
   it("Should update currentHealth", async () => {
-    data.currentHealth = 111;
-
     const res = await updateCase(
-      new StatusRequestsToUpdate(sub, data),
-      new InMemoryStatusRepository()
+      new StatusRequestsToUpdate({ sub, currentHealth: 111 }),
+      Repository
     );
     expect(res).toBeUndefined();
   });
 
   it("Should update currentEnergy", async () => {
-    data.currentEnergy = 222;
-
     const res = await updateCase(
-      new StatusRequestsToUpdate(sub, data),
-      new InMemoryStatusRepository()
+      new StatusRequestsToUpdate({ sub, currentEnergy: 222 }),
+      Repository
     );
     expect(res).toBeUndefined();
   });
 });
 
-describe("UseCases - Status - Update - Exceptions", () => {
+describe("Update-> Status-Exceptions", () => {
   it("Should return [no data] when passing an empty object", async () => {
     await expect(() =>
-      updateCase(
-        new StatusRequestsToUpdate(sub, {}),
-        new InMemoryStatusRepository()
-      )
+      updateCase(new StatusRequestsToUpdate({ sub }), Repository)
     ).rejects.toThrowError("No data");
   });
 
   it("Should return an error when sending invalid points", async () => {
-    data = helpers.getDataMock();
-    data.points = -1;
-
     await expect(() =>
-      updateCase(
-        new StatusRequestsToUpdate(sub, data),
-        new InMemoryStatusRepository()
-      )
+      updateCase(new StatusRequestsToUpdate({ sub, points: -1 }), Repository)
     ).rejects.toThrowError("format must be a number");
   });
 
   it("Should return an error when sending invalid experience", async () => {
-    data = helpers.getDataMock();
-    data.experience = -1;
-
     await expect(() =>
       updateCase(
-        new StatusRequestsToUpdate(sub, data),
-        new InMemoryStatusRepository()
+        new StatusRequestsToUpdate({ sub, experience: -1 }),
+        Repository
       )
     ).rejects.toThrowError("format must be a number");
   });
 
   it("Should return an error when sending invalid strength", async () => {
-    data = helpers.getDataMock();
-    data.strength = -1;
-
     await expect(() =>
-      updateCase(
-        new StatusRequestsToUpdate(sub, data),
-        new InMemoryStatusRepository()
-      )
+      updateCase(new StatusRequestsToUpdate({ sub, strength: -1 }), Repository)
     ).rejects.toThrowError("format must be a number");
   });
 
   it("Should return an error when sending invalid intelligence", async () => {
-    data = helpers.getDataMock();
-    data.intelligence = -1;
-
     await expect(() =>
       updateCase(
-        new StatusRequestsToUpdate(sub, data),
-        new InMemoryStatusRepository()
+        new StatusRequestsToUpdate({ sub, intelligence: -1 }),
+        Repository
       )
     ).rejects.toThrowError("format must be a number");
   });
 
   it("Should return an error when sending invalid dexterity", async () => {
-    data = helpers.getDataMock();
-    data.dexterity = -1;
-
     await expect(() =>
-      updateCase(
-        new StatusRequestsToUpdate(sub, data),
-        new InMemoryStatusRepository()
-      )
+      updateCase(new StatusRequestsToUpdate({ sub, dexterity: -1 }), Repository)
     ).rejects.toThrowError("format must be a number");
   });
 
   it("Should return an error when sending invalid vitality", async () => {
-    data = helpers.getDataMock();
-    data.vitality = -1;
-
     await expect(() =>
-      updateCase(
-        new StatusRequestsToUpdate(sub, data),
-        new InMemoryStatusRepository()
-      )
+      updateCase(new StatusRequestsToUpdate({ sub, vitality: -1 }), Repository)
     ).rejects.toThrowError("format must be a number");
   });
 
   it("Should return an error when sending invalid health", async () => {
-    data = helpers.getDataMock();
-    data.health = -1;
-
     await expect(() =>
-      updateCase(
-        new StatusRequestsToUpdate(sub, data),
-        new InMemoryStatusRepository()
-      )
+      updateCase(new StatusRequestsToUpdate({ sub, health: -1 }), Repository)
     ).rejects.toThrowError("format must be a number");
   });
 
   it("Should return an error when sending invalid energy", async () => {
-    data = helpers.getDataMock();
-    data.energy = -1;
-
     await expect(() =>
-      updateCase(
-        new StatusRequestsToUpdate(sub, data),
-        new InMemoryStatusRepository()
-      )
+      updateCase(new StatusRequestsToUpdate({ sub, energy: -1 }), Repository)
     ).rejects.toThrowError("format must be a number");
   });
 
   it("Should return an error when sending invalid currentHealth", async () => {
-    data = helpers.getDataMock();
-    data.currentHealth = -1;
-
     await expect(() =>
       updateCase(
-        new StatusRequestsToUpdate(sub, data),
-        new InMemoryStatusRepository()
+        new StatusRequestsToUpdate({ sub, currentHealth: -1 }),
+        Repository
       )
     ).rejects.toThrowError("format must be a number");
   });
 
   it("Should return an error when sending invalid currentEnergy", async () => {
-    data = helpers.getDataMock();
-    data.currentEnergy = -1;
-
     await expect(() =>
       updateCase(
-        new StatusRequestsToUpdate(sub, data),
-        new InMemoryStatusRepository()
+        new StatusRequestsToUpdate({ sub, currentEnergy: -1 }),
+        Repository
       )
     ).rejects.toThrowError("format must be a number");
   });

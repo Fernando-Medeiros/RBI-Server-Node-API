@@ -1,17 +1,19 @@
-import { v4 } from "uuid";
-import { Status } from "domain/entities/status/status";
+import type { StatusProps } from "app/use-cases/status-cases/repository/status.props";
 import statusDataMock from "example/status.data.mock.json";
-
-statusDataMock.pubId = v4();
+import { v4 } from "uuid";
 
 export class StatusMock {
-  constructor(private props = new Status(statusDataMock)) {}
+  private props: StatusProps;
 
-  get pubId(): string {
-    return statusDataMock.pubId;
+  constructor() {
+    this.props = { ...statusDataMock, ...{ pubId: v4() } };
   }
 
-  get dataToCreate() {
-    return this.props.getDataToSave();
+  get pubId(): string {
+    return this.props.pubId;
+  }
+
+  get dataToCreate(): StatusProps {
+    return this.props;
   }
 }

@@ -1,9 +1,9 @@
 import type { IEquipmentRequestsToDelete } from "../repository/equipment.requests.interfaces";
 
 export class EquipmentRequestsToDelete implements IEquipmentRequestsToDelete {
-  constructor(protected sub: string) {}
+  constructor(readonly payload: { sub: string }) {}
 
   getRequestToDelete(): { sub: string } {
-    return { sub: this.sub };
+    return { sub: this.payload.sub };
   }
 }

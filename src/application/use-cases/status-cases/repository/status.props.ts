@@ -1,5 +1,5 @@
-import type { PropsStatus } from "domain/entities/status/status.interface";
+import type { Status } from "domain/entities/status.entity";
 
-export type StatusProps = PropsStatus;
+export type StatusProps = Status;
 
-export type StatusUpdateProps = Partial<Omit<PropsStatus, "_id" | "pubId">>;
+export type StatusUpdateProps = Partial<Omit<Status, "_id" | "pubId">>;

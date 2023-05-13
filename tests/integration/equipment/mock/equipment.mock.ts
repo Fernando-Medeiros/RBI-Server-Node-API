@@ -1,17 +1,19 @@
-import { v4 } from "uuid";
-import { Equipment } from "domain/entities/equipment/equipment";
+import type { EquipmentProps } from "app/use-cases/equipment-cases/repository/equipment.props";
 import equipmentDataMock from "example/equipment.data.mock.json";
-
-equipmentDataMock.pubId = v4();
+import { v4 } from "uuid";
 
 export class EquipmentMock {
-  constructor(private props = new Equipment(equipmentDataMock)) {}
+  protected props: EquipmentProps;
 
-  get pubId(): string {
-    return equipmentDataMock.pubId;
+  constructor() {
+    this.props = { ...equipmentDataMock, ...{ pubId: v4() } };
   }
 
-  get dataToCreate() {
-    return this.props.getDataToSave();
+  get pubId(): string {
+    return this.props.pubId;
+  }
+
+  get dataToCreate():EquipmentProps {
+    return this.props;
   }
 }

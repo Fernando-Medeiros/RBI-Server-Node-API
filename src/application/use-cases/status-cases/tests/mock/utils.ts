@@ -1,21 +1,24 @@
-import { InMemoryStatusRepository } from "./inMemoryStatusRepository";
-
+import type { IStatusRepository } from "../../repository/status.repository.interfaces";
 import statusDataMock from "example/status.data.mock.json";
 
-const database = new InMemoryStatusRepository();
-
 export class UseCaseStatusHelpers {
-  public static insertOneToDatabase = async (): Promise<void> => {
-    await database.save(statusDataMock);
+  constructor(private database: IStatusRepository) {}
+
+  insertOneToDatabase = async (): Promise<void> => {
+    await this.database.save(statusDataMock);
   };
 
-  public static removeOneToDatabase = async (): Promise<void> => {
+  removeOneToDatabase = async (): Promise<void> => {
     const { pubId: id } = statusDataMock;
 
-    await database.findByIdAndDelete(id);
+    await this.database.findByIdAndDelete(id);
   };
 
-  public static getDataMock() {
+  pubId(): string {
+    return statusDataMock.pubId;
+  }
+
+  getDataMock() {
     return Object.assign({}, statusDataMock);
   }
 }

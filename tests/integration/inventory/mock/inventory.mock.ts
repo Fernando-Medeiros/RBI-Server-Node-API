@@ -1,17 +1,19 @@
-import { v4 } from "uuid";
-import { Inventory } from "domain/entities/inventory/inventory";
+import type { InventoryProps } from "app/use-cases/inventory-cases/repository/inventory.props";
 import inventoryDataMock from "example/inventory.data.mock.json";
-
-inventoryDataMock.pubId = v4();
+import { v4 } from "uuid";
 
 export class InventoryMock {
-  constructor(private props = new Inventory(inventoryDataMock)) {}
+  private props: InventoryProps;
 
-  get pubId(): string {
-    return inventoryDataMock.pubId;
+  constructor() {
+    this.props = { ...inventoryDataMock, ...{ pubId: v4() } };
   }
 
-  get dataToCreate() {
-    return this.props.getDataToSave();
+  get pubId(): string {
+    return this.props.pubId;
+  }
+
+  get dataToCreate(): InventoryProps {
+    return this.props;
   }
 }

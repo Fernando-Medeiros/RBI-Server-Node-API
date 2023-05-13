@@ -10,13 +10,15 @@ export const getByIdCase = async (
 
   const skills = await repository.findById(sub);
 
-  if (skills === null) {
+  if (!skills) {
     throw new NotFound("Skills not found!");
   }
 
+  const { pubId, offensive, defensive } = skills;
+
   return {
-    pubId: skills.pubId,
-    offensive: skills.offensive,
-    defensive: skills.defensive,
+    pubId,
+    offensive,
+    defensive,
   };
 };

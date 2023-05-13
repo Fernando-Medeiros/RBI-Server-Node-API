@@ -10,18 +10,29 @@ export const getByIdCase = async (
 
   const equipments = await repository.findById(sub);
 
-  if (equipments === null) {
+  if (!equipments) {
     throw new NotFound("Equipments not found!");
   }
 
+  const {
+    pubId,
+    head,
+    body,
+    leg,
+    handLeft,
+    handRight,
+    accessoryLeft,
+    accessoryRight,
+  } = equipments;
+
   return {
-    pubId: equipments.pubId,
-    head: equipments.head,
-    body: equipments.body,
-    leg: equipments.leg,
-    handLeft: equipments.handLeft,
-    handRight: equipments.handRight,
-    accessoryLeft: equipments.accessoryLeft,
-    accessoryRight: equipments.accessoryRight,
+    pubId,
+    head,
+    body,
+    leg,
+    handLeft,
+    handRight,
+    accessoryLeft,
+    accessoryRight,
   };
 };

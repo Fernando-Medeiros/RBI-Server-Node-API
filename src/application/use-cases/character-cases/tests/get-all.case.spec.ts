@@ -1,22 +1,23 @@
 import { describe, it, expect } from "vitest";
-import { UseCaseCharacterHelpers as helpers } from "./mock/utils";
-import { getAllCase } from "../get-all.case";
 import { InMemoryCharacterRepository } from "./mock/inMemoryCharacterRepository";
+import { UseCaseCharacterHelpers } from "./mock/utils";
+import { getAllCase } from "../get-all.case";
 
-const InMemoryRepository = new InMemoryCharacterRepository();
+const Repository = new InMemoryCharacterRepository();
+const Helpers = new UseCaseCharacterHelpers(Repository);
 
-describe("UseCases - Character - Get All - OK", () => {
+describe("Get-All-> Character-OK", () => {
   it("Should get an empty array", async () => {
-    const res = await getAllCase(InMemoryRepository);
+    const res = await getAllCase(Repository);
 
     expect(res).instanceOf(Array);
     expect(res.length).toBe(0);
   });
 
   it("Should return a list of characters", async () => {
-    helpers.insertOneCharacterToDatabase();
+    Helpers.insertOneCharacterToDatabase();
 
-    const res = await getAllCase(InMemoryRepository);
+    const res = await getAllCase(Repository);
 
     expect(res[0]).toBeTypeOf("object");
     expect(res[0]).toHaveProperty("pubId");

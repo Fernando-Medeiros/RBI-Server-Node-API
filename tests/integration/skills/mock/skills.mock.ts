@@ -1,17 +1,19 @@
-import { v4 } from "uuid";
-import { Skill } from "domain/entities/skills/skills";
+import type { SkillsProps } from "app/use-cases/skills-cases/repository/skills.props";
 import skillsDataMock from "example/skills.data.mock.json";
-
-skillsDataMock.pubId = v4();
+import { v4 } from "uuid";
 
 export class SkillsMock {
-  constructor(private props = new Skill(skillsDataMock)) {}
+  private props: SkillsProps;
 
-  get pubId(): string {
-    return skillsDataMock.pubId;
+  constructor() {
+    this.props = { ...skillsDataMock, ...{ pubId: v4() } };
   }
 
-  get dataToCreate() {
-    return this.props.getDataToSave();
+  get pubId(): string {
+    return this.props.pubId;
+  }
+
+  get dataToCreate(): SkillsProps {
+    return this.props;
   }
 }

@@ -13,7 +13,7 @@ import { getByNameCase } from "app/use-cases/character-cases/get-by-name.case";
 import { updateCase } from "app/use-cases/character-cases/update.case";
 
 export class CharacterHandler {
-  readonly Repository = new CharacterRepository();
+  private readonly Repository = new CharacterRepository();
 
   async getAllCharacters() {
     return await getAllCase(this.Repository);
@@ -21,38 +21,35 @@ export class CharacterHandler {
 
   async getCharacterById(req: Request) {
     return await getByIdCase(
-      new CharacterRequestsToGetById({ ...req.params }),
+      new CharacterRequestsToGetById(Object(req.params)),
       this.Repository
     );
   }
 
   async getCharacterByName(req: Request) {
     return await getByNameCase(
-      new CharacterRequestsToGetByName({ ...req.params }),
+      new CharacterRequestsToGetByName(Object(req.params)),
       this.Repository
     );
   }
 
   async createCharacter(req: Request) {
     return await createCase(
-      new CharacterRequestsToCreate({ ...req.headers, ...req.body }),
+      new CharacterRequestsToCreate(Object.assign({}, req.headers, req.body)),
       this.Repository
     );
   }
 
   async deleteCharacter(req: Request) {
     return await deleteCase(
-      new CharacterRequestsToDelete({ ...req.headers }),
+      new CharacterRequestsToDelete(Object(req.headers)),
       this.Repository
     );
   }
 
   async updateCharacter(req: Request) {
     return await updateCase(
-      new CharacterRequestsToUpdate({
-        ...req.headers,
-        ...req.body,
-      }),
+      new CharacterRequestsToUpdate(Object.assign({}, req.headers, req.body)),
       this.Repository
     );
   }

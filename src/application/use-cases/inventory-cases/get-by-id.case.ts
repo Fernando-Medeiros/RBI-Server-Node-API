@@ -10,16 +10,12 @@ export const getByIdCase = async (
 
   const inventory = await repository.findById(sub);
 
-  if (inventory === null) {
+  if (!inventory) {
     throw new NotFound("Inventory not found!");
   }
 
-  return {
-    pubId: inventory.pubId,
-    armors: inventory.armors,
-    accessories: inventory.accessories,
-    consumables: inventory.consumables,
-    materials: inventory.materials,
-    weapons: inventory.weapons,
-  };
+  const { pubId, armors, accessories, consumables, materials, weapons } =
+    inventory;
+
+  return { pubId, armors, accessories, consumables, materials, weapons };
 };

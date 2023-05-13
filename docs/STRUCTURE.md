@@ -118,7 +118,6 @@
 │   │   │   │   └── update.case.ts
 │   │   │   ├── inventory-cases
 │   │   │   │   ├── repository
-│   │   │   │   │   ├── inventory.props.ts
 │   │   │   │   │   ├── inventory.repository.interfaces.ts
 │   │   │   │   │   └── inventory.requests.interfaces.ts
 │   │   │   │   ├── requests
@@ -192,26 +191,11 @@
 │   │       └── common.validators.ts
 │   ├── domain
 │   │   ├── entities
-│   │   │   ├── character
-│   │   │   │   ├── character.interface.ts
-│   │   │   │   ├── character.spec.ts
-│   │   │   │   └── character.ts
-│   │   │   ├── equipment
-│   │   │   │   ├── equipment.interface.ts
-│   │   │   │   ├── equipment.spec.ts
-│   │   │   │   └── equipment.ts
-│   │   │   ├── inventory
-│   │   │   │   ├── inventory.interface.ts
-│   │   │   │   ├── inventory.spec.ts
-│   │   │   │   └── inventory.ts
-│   │   │   ├── skills
-│   │   │   │   ├── skills.interface.ts
-│   │   │   │   ├── skills.spec.ts
-│   │   │   │   └── skills.ts
-│   │   │   └── status
-│   │   │       ├── status.interface.ts
-│   │   │       ├── status.spec.ts
-│   │   │       └── status.ts
+│   │   │   ├── character.entity.ts
+│   │   │   ├── equipment.entity.ts
+│   │   │   ├── inventory.entity.ts
+│   │   │   ├── skills.entity.ts
+│   │   │   └── status.entity.ts
 │   │   ├── items
 │   │   │   └── items.interface.ts
 │   │   └── skills
@@ -374,6 +358,6 @@
 ├── vitest.config.ts
 └── yarn.lock
 
-112 directories, 258 files
+107 directories, 247 files
 
 ```

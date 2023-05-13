@@ -1,29 +1,29 @@
 import { describe, it, expect } from "vitest";
-import { UseCaseSkillsHelpers as helpers } from "./mock/utils";
-
-import { createCase } from "../create.case";
 import { SkillsRequestsToCreate } from "../requests/create.requests";
 import { InMemorySkillsRepository } from "./mock/inMemorySkillsRepository";
+import { UseCaseSkillsHelpers } from "./mock/utils";
+import { createCase } from "../create.case";
 
-const sub = helpers.getPubId();
+const Repository = new InMemorySkillsRepository();
+const Helpers = new UseCaseSkillsHelpers(Repository);
 
-describe("UseCases - Skills - Create - OK", () => {
+describe("Create-> Skills-OK", () => {
   it("Should create the Skills", async () => {
     const res = await createCase(
-      new SkillsRequestsToCreate(sub),
-      new InMemorySkillsRepository()
+      new SkillsRequestsToCreate({ sub: Helpers.pubId() }),
+      Repository
     );
 
     expect(res).toBeUndefined();
   });
 });
 
-describe("UseCases - Skills - Create - Exceptions", () => {
+describe("Create-> Skills-Exceptions", () => {
   it("Should return error when trying to duplicate a Skills in use", async () => {
     await expect(() =>
       createCase(
-        new SkillsRequestsToCreate(sub),
-        new InMemorySkillsRepository()
+        new SkillsRequestsToCreate({ sub: Helpers.pubId() }),
+        Repository
       )
     ).rejects.toThrowError("one Skills allowed per character");
   });

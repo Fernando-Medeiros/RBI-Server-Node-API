@@ -1,10 +1,12 @@
 import type { Request, Response } from "express";
-import { StatusHandler as handler } from "../handlers/status.handler";
+import { StatusHandler } from "../handlers/status.handler";
 import {
   StatusCreated,
   StatusOK,
   StatusOkNoContent,
 } from "utils/http.protocols";
+
+const handler = new StatusHandler();
 
 export const getStatusById = async (req: Request, res: Response) => {
   const status = await handler.getStatusById(req);

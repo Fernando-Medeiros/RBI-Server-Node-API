@@ -2,11 +2,13 @@ import type { ISkillsRequestsToGetById } from "../repository/skills.requests.int
 import { CommonValidators } from "app/validators/common.validators";
 
 export class SkillsRequestsToGetById implements ISkillsRequestsToGetById {
-  constructor(protected sub: string) {}
+  constructor(readonly payload: { id: string }) {}
 
   getRequestToGetById(): { sub: string } {
-    CommonValidators.validateID(this.sub);
+    const { id: sub } = this.payload;
 
-    return { sub: this.sub };
+    CommonValidators.validateID(sub);
+
+    return { sub };
   }
 }

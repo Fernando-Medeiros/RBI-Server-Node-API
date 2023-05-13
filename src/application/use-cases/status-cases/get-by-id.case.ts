@@ -10,21 +10,35 @@ export const getByIdCase = async (
 
   const status = await repository.findById(sub);
 
-  if (status === null) {
+  if (!status) {
     throw new NotFound("Status not found!");
   }
 
+  const {
+    pubId,
+    points,
+    experience,
+    strength,
+    intelligence,
+    dexterity,
+    vitality,
+    health,
+    energy,
+    currentHealth,
+    currentEnergy,
+  } = status;
+
   return {
-    pubId: status.pubId,
-    points: status.points,
-    experience: status.experience,
-    strength: status.strength,
-    intelligence: status.intelligence,
-    dexterity: status.dexterity,
-    vitality: status.vitality,
-    health: status.health,
-    energy: status.energy,
-    currentHealth: status.currentHealth,
-    currentEnergy: status.currentEnergy,
+    pubId,
+    points,
+    experience,
+    strength,
+    intelligence,
+    dexterity,
+    vitality,
+    health,
+    energy,
+    currentHealth,
+    currentEnergy,
   };
 };

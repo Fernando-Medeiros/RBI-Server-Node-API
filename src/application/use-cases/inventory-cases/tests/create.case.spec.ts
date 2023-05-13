@@ -1,29 +1,29 @@
 import { describe, it, expect } from "vitest";
-import { UseCaseInventoryHelpers as helpers } from "./mock/utils";
-
-import { createCase } from "../create.case";
 import { InventoryRequestsToCreate } from "../requests/create.requests";
 import { InMemoryInventoryRepository } from "./mock/inMemoryInventoryRepository";
+import { UseCaseInventoryHelpers } from "./mock/utils";
+import { createCase } from "../create.case";
 
-const sub = helpers.getPubId();
+const Repository = new InMemoryInventoryRepository();
+const Helpers = new UseCaseInventoryHelpers(Repository);
 
-describe("UseCases - Inventory - Create - OK", () => {
+describe("Create-> Inventory-OK", () => {
   it("Should create the Inventory", async () => {
     const res = await createCase(
-      new InventoryRequestsToCreate(sub),
-      new InMemoryInventoryRepository()
+      new InventoryRequestsToCreate({ sub: Helpers.pubId() }),
+      Repository
     );
 
     expect(res).toBeUndefined();
   });
 });
 
-describe("UseCases - Inventory - Create - Exceptions", () => {
+describe("Create-> Inventory-Exceptions", () => {
   it("Should return error when trying to duplicate a Inventory in use", async () => {
     await expect(() =>
       createCase(
-        new InventoryRequestsToCreate(sub),
-        new InMemoryInventoryRepository()
+        new InventoryRequestsToCreate({ sub: Helpers.pubId() }),
+        Repository
       )
     ).rejects.toThrowError("one Inventory allowed per character");
   });

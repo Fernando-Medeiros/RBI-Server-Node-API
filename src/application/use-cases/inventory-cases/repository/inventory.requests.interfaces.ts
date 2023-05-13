@@ -1,11 +1,11 @@
-import type { InventoryUpdateProps } from "./inventory.props";
+import type { Inventory } from "domain/entities/inventory.entity";
 
 export interface IInventoryRequestsToCreate {
   getRequestToCreate(): { sub: string };
 }
 
 export interface IInventoryRequestsToUpdate {
-  getRequestToUpdate(): { sub: string; toUpdate: InventoryUpdateProps };
+  getRequestToUpdate(): { sub: string; toUpdate: Partial<Inventory> };
 }
 
 export interface IInventoryRequestsToDelete {

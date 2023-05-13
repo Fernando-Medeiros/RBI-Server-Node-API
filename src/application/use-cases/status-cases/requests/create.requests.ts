@@ -1,9 +1,9 @@
 import type { IStatusRequestsToCreate } from "../repository/status.requests.interfaces";
 
 export class StatusRequestsToCreate implements IStatusRequestsToCreate {
-  constructor(protected sub: string) {}
+  constructor(readonly payload: { sub: string }) {}
 
   getRequestToCreate(): { sub: string } {
-    return { sub: this.sub };
+    return { sub: this.payload.sub };
   }
 }

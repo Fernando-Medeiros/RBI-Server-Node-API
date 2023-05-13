@@ -1,19 +1,16 @@
+import type { Inventory } from "domain/entities/inventory/inventory.interface";
 import type { IInventoryRepository } from "../../repository/inventory.repository.interfaces";
-import type {
-  InventoryProps,
-  InventoryUpdateProps,
-} from "../../repository/inventory.props";
 
-const inMemoryDatabase: InventoryProps[] = [];
+const inMemoryDatabase: Inventory[] = [];
 
 export class InMemoryInventoryRepository implements IInventoryRepository {
   public database = inMemoryDatabase;
 
-  async findById(id: string): Promise<InventoryProps | null> {
+  async findById(id: string): Promise<Inventory | null> {
     return this.database.find((INV) => INV.pubId === id) || null;
   }
 
-  async findByIdAndDelete(id: string): Promise<InventoryProps | null> {
+  async findByIdAndDelete(id: string): Promise<Inventory | null> {
     const Inventory = this.database.filter((INV) => INV.pubId === id)[0];
 
     if (Inventory) {
@@ -27,8 +24,8 @@ export class InMemoryInventoryRepository implements IInventoryRepository {
 
   async findByIdAndUpdate(
     id: string,
-    data: InventoryUpdateProps
-  ): Promise<InventoryProps | null> {
+    data: Partial<Inventory>
+  ): Promise<Inventory | null> {
     const Inventory = this.database.filter((INV) => INV.pubId === id)[0];
 
     if (Inventory) {
@@ -41,7 +38,7 @@ export class InMemoryInventoryRepository implements IInventoryRepository {
     return Inventory || null;
   }
 
-  async save(data: InventoryProps): Promise<void> {
+  async save(data: Inventory): Promise<void> {
     this.database.push(data);
   }
 }

@@ -1,6 +1,5 @@
 import type { IInventoryRepository } from "./repository/inventory.repository.interfaces";
 import type { IInventoryRequestsToCreate } from "./repository/inventory.requests.interfaces";
-import { Inventory } from "domain/entities/inventory/inventory";
 import { BadRequest } from "utils/http.exceptions";
 
 export const createCase = async (
@@ -12,14 +11,14 @@ export const createCase = async (
   if (await repository.findById(sub)) {
     throw new BadRequest("Only one Inventory allowed per character!");
   }
-  const inventory = new Inventory({
+  const inventory = {
     pubId: sub,
     armors: [],
     accessories: [],
     consumables: [],
     materials: [],
     weapons: [],
-  });
+  };
 
-  await repository.save(inventory.getDataToSave());
+  await repository.save(inventory);
 };

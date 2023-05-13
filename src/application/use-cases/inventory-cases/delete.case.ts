@@ -10,7 +10,7 @@ export const deleteCase = async (
 
   const result = await repository.findByIdAndDelete(sub);
 
-  if (result === null) {
+  if (!result) {
     throw new NotFound("Inventory not found!");
   }
 };

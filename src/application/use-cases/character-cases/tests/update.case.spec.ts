@@ -1,15 +1,16 @@
 import { describe, it, expect } from "vitest";
-import { UseCaseCharacterHelpers as helpers } from "./mock/utils";
-import { updateCase } from "../update.case";
 import { CharacterRequestsToUpdate } from "../requests/update.requests";
 import { InMemoryCharacterRepository } from "./mock/inMemoryCharacterRepository";
+import { UseCaseCharacterHelpers } from "./mock/utils";
+import { updateCase } from "../update.case";
 
-const InMemoryRepository = new InMemoryCharacterRepository();
+const Repository = new InMemoryCharacterRepository();
+const Helpers = new UseCaseCharacterHelpers(Repository);
 
-describe("UseCases - Character - Update - OK", () => {
-  helpers.insertOneCharacterToDatabase();
+describe("Update-> Character-OK", () => {
+  Helpers.insertOneCharacterToDatabase();
 
-  const { pubId: sub } = helpers.getCharacterDataMock();
+  const sub = Helpers.pubId();
 
   it("Should update charName, className and level", async () => {
     const [charName, className, level] = ["fakeName", "Mage", 2];
@@ -18,7 +19,7 @@ describe("UseCases - Character - Update - OK", () => {
       new CharacterRequestsToUpdate(
         Object({ sub, charName, className, level })
       ),
-      InMemoryRepository
+      Repository
     );
 
     expect(res).toBeUndefined();
@@ -31,7 +32,7 @@ describe("UseCases - Character - Update - OK", () => {
       new CharacterRequestsToUpdate(
         Object({ sub, charName, className, level })
       ),
-      InMemoryRepository
+      Repository
     );
 
     expect(res).toBeUndefined();
@@ -44,7 +45,7 @@ describe("UseCases - Character - Update - OK", () => {
       new CharacterRequestsToUpdate(
         Object({ sub, charName, className, level })
       ),
-      InMemoryRepository
+      Repository
     );
 
     expect(res).toBeUndefined();
@@ -57,15 +58,15 @@ describe("UseCases - Character - Update - OK", () => {
       new CharacterRequestsToUpdate(
         Object({ sub, charName, className, level })
       ),
-      InMemoryRepository
+      Repository
     );
 
     expect(res).toBeUndefined();
   });
 });
 
-describe("UseCases - Character - Update - Exceptions", () => {
-  const { pubId: sub } = helpers.getCharacterDataMock();
+describe("Update-> Character-Exceptions", () => {
+  const { pubId: sub } = Helpers.getCharacterDataMock();
 
   it("Should return [no data] when passing an empty object", async () => {
     const [charName, className, level] = [undefined, undefined, undefined];
@@ -75,7 +76,7 @@ describe("UseCases - Character - Update - Exceptions", () => {
         new CharacterRequestsToUpdate(
           Object({ sub, charName, className, level })
         ),
-        InMemoryRepository
+        Repository
       )
     ).rejects.toThrowError("No data");
   });
@@ -88,7 +89,7 @@ describe("UseCases - Character - Update - Exceptions", () => {
         new CharacterRequestsToUpdate(
           Object({ sub, charName, className, level })
         ),
-        InMemoryRepository
+        Repository
       )
     ).rejects.toThrowError("format is invalid");
   });
@@ -101,7 +102,7 @@ describe("UseCases - Character - Update - Exceptions", () => {
         new CharacterRequestsToUpdate(
           Object({ sub, charName, className, level })
         ),
-        InMemoryRepository
+        Repository
       )
     ).rejects.toThrowError("format is invalid");
   });
@@ -114,7 +115,7 @@ describe("UseCases - Character - Update - Exceptions", () => {
         new CharacterRequestsToUpdate(
           Object({ sub, charName, className, level })
         ),
-        InMemoryRepository
+        Repository
       )
     ).rejects.toThrowError("format is invalid");
   });

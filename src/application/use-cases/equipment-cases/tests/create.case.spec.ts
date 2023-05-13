@@ -1,29 +1,29 @@
 import { describe, it, expect } from "vitest";
-import { UseCaseEquipmentsHelpers as helpers } from "./mock/utils";
-
-import { createCase } from "../create.case";
 import { EquipmentRequestsToCreate } from "../requests/create.requests";
 import { InMemoryEquipmentRepository } from "./mock/inMemoryEquipmentRepository";
+import { UseCaseEquipmentsHelpers } from "./mock/utils";
+import { createCase } from "../create.case";
 
-const { pubId: sub } = helpers.getDataMock();
+const Repository = new InMemoryEquipmentRepository();
+const Helpers = new UseCaseEquipmentsHelpers(Repository);
 
-describe("UseCases - Equipment - Create - OK", () => {
+describe("Create-> Equipment-OK", () => {
   it("Should create the equipment", async () => {
     const res = await createCase(
-      new EquipmentRequestsToCreate(sub),
-      new InMemoryEquipmentRepository()
+      new EquipmentRequestsToCreate({ sub: Helpers.pubId() }),
+      Repository
     );
 
     expect(res).toBeUndefined();
   });
 });
 
-describe("UseCases - Equipment - Create - Exceptions", () => {
+describe("Create-> Equipment-Exceptions", () => {
   it("Should return error when trying to duplicate a equipment in use", async () => {
     await expect(() =>
       createCase(
-        new EquipmentRequestsToCreate(sub),
-        new InMemoryEquipmentRepository()
+        new EquipmentRequestsToCreate({ sub: Helpers.pubId() }),
+        Repository
       )
     ).rejects.toThrowError("one equipment allowed per character");
   });

@@ -1,10 +1,12 @@
 import type { Request, Response } from "express";
-import { SkillsHandler as handler } from "../handlers/skills.handler";
+import { SkillsHandler } from "../handlers/skills.handler";
 import {
   StatusCreated,
   StatusOK,
   StatusOkNoContent,
 } from "utils/http.protocols";
+
+const handler = new SkillsHandler();
 
 export const getSkillsById = async (req: Request, res: Response) => {
   const skills = await handler.getSkillsById(req);

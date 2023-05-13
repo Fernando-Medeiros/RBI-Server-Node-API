@@ -1,10 +1,12 @@
 import type { Request, Response } from "express";
-import { InventoryHandler as handler } from "../handlers/inventory.handler";
+import { InventoryHandler } from "../handlers/inventory.handler";
 import {
   StatusCreated,
   StatusOK,
   StatusOkNoContent,
 } from "utils/http.protocols";
+
+const handler = new InventoryHandler();
 
 export const getInventoryById = async (req: Request, res: Response) => {
   const inventory = await handler.getInventoryById(req);

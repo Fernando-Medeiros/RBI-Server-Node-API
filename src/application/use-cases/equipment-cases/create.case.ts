@@ -1,6 +1,5 @@
 import type { IEquipmentRepository } from "./repository/equipment.repository.interfaces";
 import type { IEquipmentRequestsToCreate } from "./repository/equipment.requests.interfaces";
-import { Equipment } from "domain/entities/equipment/equipment";
 import { BadRequest } from "utils/http.exceptions";
 
 export const createCase = async (
@@ -12,7 +11,7 @@ export const createCase = async (
   if (await repository.findById(sub)) {
     throw new BadRequest("Only one equipment allowed per character!");
   }
-  const equipment = new Equipment({
+  const equipment = {
     pubId: sub,
     head: {},
     body: {},
@@ -21,7 +20,7 @@ export const createCase = async (
     handRight: {},
     accessoryLeft: {},
     accessoryRight: {},
-  });
+  };
 
-  await repository.save(equipment.getDataToSave());
+  await repository.save(equipment);
 };
