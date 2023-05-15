@@ -1,9 +1,9 @@
-import type { InventoryProps } from "app/use-cases/inventory-cases/repository/inventory.props";
+import type { Inventory } from "domain/entities/inventory.entity";
 import inventoryDataMock from "example/inventory.data.mock.json";
 import { v4 } from "uuid";
 
 export class InventoryMock {
-  private props: InventoryProps;
+  private props: Inventory;
 
   constructor() {
     this.props = { ...inventoryDataMock, ...{ pubId: v4() } };
@@ -13,7 +13,7 @@ export class InventoryMock {
     return this.props.pubId;
   }
 
-  get dataToCreate(): InventoryProps {
+  get dataToCreate(): Inventory {
     return this.props;
   }
 }

@@ -1,4 +1,4 @@
-import type { Inventory } from "domain/entities/inventory/inventory.interface";
+import type { Inventory } from "domain/entities/inventory.entity";
 import type { IInventoryRepository } from "../../repository/inventory.repository.interfaces";
 
 const inMemoryDatabase: Inventory[] = [];

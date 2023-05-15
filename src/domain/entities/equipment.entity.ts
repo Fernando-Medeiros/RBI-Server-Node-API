@@ -10,6 +10,6 @@ export class Equipment {
     readonly handRight: Weapon | object,
     readonly accessoryLeft: Accessory | object,
     readonly accessoryRight: Accessory | object,
-    readonly _id: string
+    readonly _id?: string
   ) {}
 }
