@@ -1,219 +1,247 @@
 {
-  "/characters": {
-    "post": {
-      "tags": ["character"],
-      "summary": "Register new character",
-      "security": [{ "bearerAuth": [] }],
-      "description": "",
-      "requestBody": {
-        "content": {
-          "application/json": {
-            "schema": { "$ref": "#/components/schemas/RequestCreatedCharacter" }
-          }
-        }
-      },
-      "parameters": [],
-      "responses": {
-        "201": {
-          "description": "Successful Response"
-        },
-        "400": {
-          "description": "Bad Request",
-          "content": {
-            "application/json": {
-              "schema": { "$ref": "#/components/schemas/BadRequest" }
+    "/characters": {
+        "post": {
+            "tags": ["character"],
+            "summary": "Register new character",
+            "security": [{ "bearerAuth": [] }],
+            "description": "",
+            "requestBody": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/RequestCreatedCharacter"
+                        }
+                    }
+                }
+            },
+            "parameters": [],
+            "responses": {
+                "201": {
+                    "description": "Successful Response"
+                },
+                "400": {
+                    "description": "Bad Request",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/BadRequest"
+                            }
+                        }
+                    }
+                }
             }
-          }
+        },
+
+        "get": {
+            "tags": ["character"],
+            "summary": "Get all characters",
+            "security": [{ "bearerAuth": [] }],
+            "description": "",
+            "parameters": [],
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ResponseGetAllCharacters"
+                            }
+                        }
+                    }
+                },
+                "401": {
+                    "description": "Unauthorized",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Unauthorized"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+
+        "patch": {
+            "tags": ["character"],
+            "summary": "Update character",
+            "security": [{ "bearerAuth": [] }],
+            "description": "",
+            "requestBody": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/RequestUpdateCharacter"
+                        }
+                    }
+                }
+            },
+            "parameters": [],
+            "responses": {
+                "204": {
+                    "description": "No content"
+                },
+                "400": {
+                    "description": "Bad Request",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/BadRequest"
+                            }
+                        }
+                    }
+                },
+                "401": {
+                    "description": "Unauthorized",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Unauthorized"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+
+        "delete": {
+            "tags": ["character"],
+            "summary": "Delete the character",
+            "security": [{ "bearerAuth": [] }],
+            "description": "",
+            "parameters": [],
+            "responses": {
+                "204": {
+                    "description": "No content"
+                },
+                "401": {
+                    "description": "Unauthorized",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Unauthorized"
+                            }
+                        }
+                    }
+                },
+                "404": {
+                    "description": "Not Found",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/NotFound"
+                            }
+                        }
+                    }
+                }
+            }
         }
-      }
     },
 
-    "get": {
-      "tags": ["character"],
-      "summary": "Get all characters",
-      "security": [{ "bearerAuth": [] }],
-      "description": "",
-      "parameters": [],
-      "responses": {
-        "200": {
-          "description": "Successful Response",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ResponseGetAllCharacters"
-              }
+    "/characters/{id}": {
+        "get": {
+            "tags": ["character"],
+            "summary": "Find a character by id",
+            "security": [{ "bearerAuth": [] }],
+            "description": "",
+            "parameters": [{ "$ref": "#/components/schemas/ParameterID" }],
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ResponseGetByIdOrNameCharacter"
+                            }
+                        }
+                    }
+                },
+
+                "400": {
+                    "description": "Bad Request",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/BadRequest"
+                            }
+                        }
+                    }
+                },
+                "401": {
+                    "description": "Unauthorized",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Unauthorized"
+                            }
+                        }
+                    }
+                },
+
+                "404": {
+                    "description": "Not Found",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/NotFound"
+                            }
+                        }
+                    }
+                }
             }
-          }
-        },
-        "401": {
-          "description": "Unauthorized",
-          "content": {
-            "application/json": {
-              "schema": { "$ref": "#/components/schemas/Unauthorized" }
-            }
-          }
         }
-      }
     },
+    "/characters/name/{name}": {
+        "get": {
+            "tags": ["character"],
+            "summary": "Find a character by name",
+            "security": [{ "bearerAuth": [] }],
+            "description": "",
+            "parameters": [{ "$ref": "#/components/schemas/ParameterName" }],
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ResponseGetByIdOrNameCharacter"
+                            }
+                        }
+                    }
+                },
 
-    "patch": {
-      "tags": ["character"],
-      "summary": "Update character",
-      "security": [{ "bearerAuth": [] }],
-      "description": "",
-      "requestBody": {
-        "content": {
-          "application/json": {
-            "schema": { "$ref": "#/components/schemas/RequestUpdateCharacter" }
-          }
-        }
-      },
-      "parameters": [],
-      "responses": {
-        "204": {
-          "description": "No content"
-        },
-        "400": {
-          "description": "Bad Request",
-          "content": {
-            "application/json": {
-              "schema": { "$ref": "#/components/schemas/BadRequest" }
-            }
-          }
-        },
-        "401": {
-          "description": "Unauthorized",
-          "content": {
-            "application/json": {
-              "schema": { "$ref": "#/components/schemas/Unauthorized" }
-            }
-          }
-        }
-      }
-    },
+                "400": {
+                    "description": "Bad Request",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/BadRequest"
+                            }
+                        }
+                    }
+                },
+                "401": {
+                    "description": "Unauthorized",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Unauthorized"
+                            }
+                        }
+                    }
+                },
 
-    "delete": {
-      "tags": ["character"],
-      "summary": "Delete the character",
-      "security": [{ "bearerAuth": [] }],
-      "description": "",
-      "parameters": [],
-      "responses": {
-        "204": {
-          "description": "No content"
-        },
-        "401": {
-          "description": "Unauthorized",
-          "content": {
-            "application/json": {
-              "schema": { "$ref": "#/components/schemas/Unauthorized" }
+                "404": {
+                    "description": "Not Found",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/NotFound"
+                            }
+                        }
+                    }
+                }
             }
-          }
-        },
-        "404": {
-          "description": "Not Found",
-          "content": {
-            "application/json": {
-              "schema": { "$ref": "#/components/schemas/NotFound" }
-            }
-          }
         }
-      }
     }
-  },
-
-  "/characters/{id}": {
-    "get": {
-      "tags": ["character"],
-      "summary": "Find a character by id",
-      "security": [{ "bearerAuth": [] }],
-      "description": "",
-      "parameters": [{ "$ref": "#/components/schemas/ParameterID" }],
-      "responses": {
-        "200": {
-          "description": "Successful Response",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ResponseGetByIdOrNameCharacter"
-              }
-            }
-          }
-        },
-
-        "400": {
-          "description": "Bad Request",
-          "content": {
-            "application/json": {
-              "schema": { "$ref": "#/components/schemas/BadRequest" }
-            }
-          }
-        },
-        "401": {
-          "description": "Unauthorized",
-          "content": {
-            "application/json": {
-              "schema": { "$ref": "#/components/schemas/Unauthorized" }
-            }
-          }
-        },
-
-        "404": {
-          "description": "Not Found",
-          "content": {
-            "application/json": {
-              "schema": { "$ref": "#/components/schemas/NotFound" }
-            }
-          }
-        }
-      }
-    }
-  },
-  "/characters/name/{name}": {
-    "get": {
-      "tags": ["character"],
-      "summary": "Find a character by name",
-      "security": [{ "bearerAuth": [] }],
-      "description": "",
-      "parameters": [{ "$ref": "#/components/schemas/ParameterName" }],
-      "responses": {
-        "200": {
-          "description": "Successful Response",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ResponseGetByIdOrNameCharacter"
-              }
-            }
-          }
-        },
-
-        "400": {
-          "description": "Bad Request",
-          "content": {
-            "application/json": {
-              "schema": { "$ref": "#/components/schemas/BadRequest" }
-            }
-          }
-        },
-        "401": {
-          "description": "Unauthorized",
-          "content": {
-            "application/json": {
-              "schema": { "$ref": "#/components/schemas/Unauthorized" }
-            }
-          }
-        },
-
-        "404": {
-          "description": "Not Found",
-          "content": {
-            "application/json": {
-              "schema": { "$ref": "#/components/schemas/NotFound" }
-            }
-          }
-        }
-      }
-    }
-  }
 }

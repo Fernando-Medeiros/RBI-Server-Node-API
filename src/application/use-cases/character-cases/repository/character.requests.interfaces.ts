@@ -1,24 +1,24 @@
 import type {
-  CharacterCreateProps,
-  CharacterUpdateProps,
-} from "./character.props";
+    CharacterCreateProps,
+    CharacterUpdateProps,
+} from './character.props';
 
 export interface ICharacterRequestsToCreate {
-  getRequestToCreate(): { sub: string; toCreate: CharacterCreateProps };
+    getRequestToCreate(): { sub: string; toCreate: CharacterCreateProps };
 }
 
 export interface ICharacterRequestsToUpdate {
-  getRequestToUpdate(): { sub: string; toUpdate: CharacterUpdateProps };
+    getRequestToUpdate(): { sub: string; toUpdate: CharacterUpdateProps };
 }
 
 export interface ICharacterRequestsToDelete {
-  getRequestToDelete(): { sub: string };
+    getRequestToDelete(): { sub: string };
 }
 
 export interface ICharacterRequestsToGetByName {
-  getRequestToGetByName(): { name: string };
+    getRequestToGetByName(): { name: string };
 }
 
 export interface ICharacterRequestsToGetById {
-  getRequestToGetById(): { id: string };
+    getRequestToGetById(): { id: string };
 }

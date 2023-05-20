@@ -1,17 +1,17 @@
-import { Router } from "express";
+import { Router } from 'express';
 import {
-  getInventoryById,
-  createInventory,
-  updateInventory,
-  deleteInventory,
-} from "../controllers/inventory.controller";
+    getInventoryById,
+    createInventory,
+    updateInventory,
+    deleteInventory,
+} from '../controllers/inventory.controller';
 
 export const routes = Router();
 
-routes.get("/inventories/:id", getInventoryById);
+routes.get('/inventories/:id', getInventoryById);
 
-routes.post("/inventories", createInventory);
+routes.post('/inventories', createInventory);
 
-routes.patch("/inventories", updateInventory);
+routes.patch('/inventories', updateInventory);
 
-routes.delete("/inventories", deleteInventory);
+routes.delete('/inventories', deleteInventory);

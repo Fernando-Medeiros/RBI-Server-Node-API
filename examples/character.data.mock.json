@@ -1,7 +1,7 @@
 {
-  "level": 1,
-  "pubId": "b2cd80d6-825d-4b67-a7a5-3cface4f19b7",
-  "charName": "ExampleName",
-  "className": "Rogue",
-  "gender": "man"
+    "level": 1,
+    "pubId": "b2cd80d6-825d-4b67-a7a5-3cface4f19b7",
+    "charName": "ExampleName",
+    "className": "Rogue",
+    "gender": "man"
 }

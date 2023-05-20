@@ -1,17 +1,17 @@
-import type { EquipmentUpdateProps } from "./equipment.props";
+import type { EquipmentUpdateProps } from './equipment.props';
 
 export interface IEquipmentRequestsToCreate {
-  getRequestToCreate(): { sub: string };
+    getRequestToCreate(): { sub: string };
 }
 
 export interface IEquipmentRequestsToUpdate {
-  getRequestToUpdate(): { sub: string; toUpdate: EquipmentUpdateProps };
+    getRequestToUpdate(): { sub: string; toUpdate: EquipmentUpdateProps };
 }
 
 export interface IEquipmentRequestsToDelete {
-  getRequestToDelete(): { sub: string };
+    getRequestToDelete(): { sub: string };
 }
 
 export interface IEquipmentRequestsToGetById {
-  getRequestToGetById(): { sub: string };
+    getRequestToGetById(): { sub: string };
 }

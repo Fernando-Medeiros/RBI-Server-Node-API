@@ -1,23 +1,23 @@
 {
-  "RequestUpdateSkills": {
-    "type": "object",
-    "properties": {
-      "offensive": {
-        "type": "array",
-        "example": "[{name: 'slash', type: 'melee', attack: 4, magic: 0, description: '...'}]"
-      },
-      "defensive": {
-        "type": "array",
-        "example": "[{name: 'fortitude', type: 'upgrade', defense: 4, resistance: 4, description: '...'}]"
-      }
-    }
-  },
+    "RequestUpdateSkills": {
+        "type": "object",
+        "properties": {
+            "offensive": {
+                "type": "array",
+                "example": "[{name: 'slash', type: 'melee', attack: 4, magic: 0, description: '...'}]"
+            },
+            "defensive": {
+                "type": "array",
+                "example": "[{name: 'fortitude', type: 'upgrade', defense: 4, resistance: 4, description: '...'}]"
+            }
+        }
+    },
 
-  "ParameterSkillsID": {
-    "description": "Skills ID",
-    "name": "id",
-    "in": "path",
-    "type": "string",
-    "required": true
-  }
+    "ParameterSkillsID": {
+        "description": "Skills ID",
+        "name": "id",
+        "in": "path",
+        "type": "string",
+        "required": true
+    }
 }

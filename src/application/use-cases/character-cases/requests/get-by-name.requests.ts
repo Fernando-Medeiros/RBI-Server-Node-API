@@ -1,12 +1,14 @@
-import type { ICharacterRequestsToGetByName } from "../repository/character.requests.interfaces";
-import { CharacterValidators } from "../validators/validators";
+import type { ICharacterRequestsToGetByName } from '../repository/character.requests.interfaces';
+import { CharacterValidators } from '../validators/validators';
 
 export class CharacterRequestsToGetByName
-  implements ICharacterRequestsToGetByName
+    implements ICharacterRequestsToGetByName
 {
-  constructor(readonly payload: { name?: string }) {}
+    constructor(readonly payload: { name?: string }) {}
 
-  getRequestToGetByName(): { name: string } {
-    return { name: CharacterValidators.charName(String(this.payload.name)) };
-  }
+    getRequestToGetByName(): { name: string } {
+        return {
+            name: CharacterValidators.charName(String(this.payload.name)),
+        };
+    }
 }

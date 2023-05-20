@@ -1,6 +1,6 @@
 {
-  "title": "Red-Boar-Inn Server API",
-  "description": "",
-  "version": "1.0.0",
-  "contact": { "name": "support", "email": "red-boar-inn-support@gmail.com" }
+    "title": "Red-Boar-Inn Server API",
+    "description": "",
+    "version": "1.0.0",
+    "contact": { "name": "support", "email": "red-boar-inn-support@gmail.com" }
 }

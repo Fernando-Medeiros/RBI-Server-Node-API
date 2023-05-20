@@ -1,17 +1,17 @@
-import type { Inventory } from "domain/entities/inventory.entity";
+import type { Inventory } from 'domain/entities/inventory.entity';
 
 export interface IInventoryRequestsToCreate {
-  getRequestToCreate(): { sub: string };
+    getRequestToCreate(): { sub: string };
 }
 
 export interface IInventoryRequestsToUpdate {
-  getRequestToUpdate(): { sub: string; toUpdate: Partial<Inventory> };
+    getRequestToUpdate(): { sub: string; toUpdate: Partial<Inventory> };
 }
 
 export interface IInventoryRequestsToDelete {
-  getRequestToDelete(): { sub: string };
+    getRequestToDelete(): { sub: string };
 }
 
 export interface IInventoryRequestsToGetById {
-  getRequestToGetById(): { sub: string };
+    getRequestToGetById(): { sub: string };
 }

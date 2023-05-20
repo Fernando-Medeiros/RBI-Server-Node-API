@@ -1,23 +1,23 @@
-import type { NextFunction, Request, Response } from "express";
-import { CommonValidators } from "app/validators/common.validators";
-import { decode, PropsToken } from "infra/security/token/decode.impl";
+import type { NextFunction, Request, Response } from 'express';
+import { CommonValidators } from 'app/validators/common.validators';
+import { decode, PropsToken } from 'infra/security/token/decode.impl';
 
 export const sessionMiddleware = async (
-  req: Request,
-  _res: Response,
-  next: NextFunction
+    req: Request,
+    _res: Response,
+    next: NextFunction,
 ) => {
-  const { authorization } = req.headers;
+    const { authorization } = req.headers;
 
-  const token = authorization?.substring(authorization.indexOf(" ") + 1);
+    const token = authorization?.substring(authorization.indexOf(' ') + 1);
 
-  CommonValidators.validateToken(token);
+    CommonValidators.validateToken(token);
 
-  const { sub } = await decode<string, PropsToken>(String(token));
+    const { sub } = await decode<string, PropsToken>(String(token));
 
-  CommonValidators.validateID(sub);
+    CommonValidators.validateID(sub);
 
-  req.headers = { sub: sub };
+    req.headers = { sub: sub };
 
-  next();
+    next();
 };

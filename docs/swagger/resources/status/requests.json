@@ -1,55 +1,55 @@
 {
-  "RequestUpdateStatus": {
-    "type": "object",
-    "properties": {
-      "points": {
-        "type": "number",
-        "example": "15"
-      },
-      "experience": {
-        "type": "number",
-        "example": "5"
-      },
-      "strength": {
-        "type": "number",
-        "example": "1"
-      },
-      "intelligence": {
-        "type": "number",
-        "example": "1"
-      },
-      "dexterity": {
-        "type": "number",
-        "example": "1"
-      },
-      "vitality": {
-        "type": "number",
-        "example": "1"
-      },
-      "health": {
-        "type": "number",
-        "example": "1"
-      },
-      "energy": {
-        "type": "number",
-        "example": "1"
-      },
-      "currentHealth": {
-        "type": "number",
-        "example": "1"
-      },
-      "currentEnergy": {
-        "type": "number",
-        "example": "1"
-      }
-    }
-  },
+    "RequestUpdateStatus": {
+        "type": "object",
+        "properties": {
+            "points": {
+                "type": "number",
+                "example": "15"
+            },
+            "experience": {
+                "type": "number",
+                "example": "5"
+            },
+            "strength": {
+                "type": "number",
+                "example": "1"
+            },
+            "intelligence": {
+                "type": "number",
+                "example": "1"
+            },
+            "dexterity": {
+                "type": "number",
+                "example": "1"
+            },
+            "vitality": {
+                "type": "number",
+                "example": "1"
+            },
+            "health": {
+                "type": "number",
+                "example": "1"
+            },
+            "energy": {
+                "type": "number",
+                "example": "1"
+            },
+            "currentHealth": {
+                "type": "number",
+                "example": "1"
+            },
+            "currentEnergy": {
+                "type": "number",
+                "example": "1"
+            }
+        }
+    },
 
-  "ParameterStatusID": {
-    "description": "Status ID",
-    "name": "id",
-    "in": "path",
-    "type": "string",
-    "required": true
-  }
+    "ParameterStatusID": {
+        "description": "Status ID",
+        "name": "id",
+        "in": "path",
+        "type": "string",
+        "required": true
+    }
 }

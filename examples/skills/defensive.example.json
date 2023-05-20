@@ -1,7 +1,7 @@
 {
-  "name": "fortitude",
-  "type": "upgrade",
-  "defense": 2,
-  "resistance": 4,
-  "description": "..."
+    "name": "fortitude",
+    "type": "upgrade",
+    "defense": 2,
+    "resistance": 4,
+    "description": "..."
 }

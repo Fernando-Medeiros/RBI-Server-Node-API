@@ -1,43 +1,43 @@
 {
-  "RequestUpdateEquipment": {
-    "type": "object",
-    "properties": {
-      "head": {
+    "RequestUpdateEquipment": {
         "type": "object",
-        "example": "{name: '...', defense: 2, resistance: 2, value: 1, description: '..'}"
-      },
-      "body": {
-        "type": "object",
-        "example": "{name: '...', defense: 2, resistance: 2, value: 1, description: '..'}"
-      },
-      "leg": {
-        "type": "object",
-        "example": "{name: '...', defense: 2, resistance: 2, value: 1, description: '..'}"
-      },
-      "handLeft": {
-        "type": "object",
-        "example": "{name: '...', attack: 2, magic: 2, value: 1, description: '..'}"
-      },
-      "handRight": {
-        "type": "object",
-        "example": "{name: '...', attack: 2, magic: 2, value: 1, description: '..'}"
-      },
-      "accessoryLeft": {
-        "type": "object",
-        "example": "{name: '...', type: 'ring', value: 1, health: 2, energy: 2, description: '..'}"
-      },
-      "accessoryRight": {
-        "type": "object",
-        "example": "{name: '...', type: 'ring', value: 1, health: 2, energy: 2, description: '..'}"
-      }
-    }
-  },
+        "properties": {
+            "head": {
+                "type": "object",
+                "example": "{name: '...', defense: 2, resistance: 2, value: 1, description: '..'}"
+            },
+            "body": {
+                "type": "object",
+                "example": "{name: '...', defense: 2, resistance: 2, value: 1, description: '..'}"
+            },
+            "leg": {
+                "type": "object",
+                "example": "{name: '...', defense: 2, resistance: 2, value: 1, description: '..'}"
+            },
+            "handLeft": {
+                "type": "object",
+                "example": "{name: '...', attack: 2, magic: 2, value: 1, description: '..'}"
+            },
+            "handRight": {
+                "type": "object",
+                "example": "{name: '...', attack: 2, magic: 2, value: 1, description: '..'}"
+            },
+            "accessoryLeft": {
+                "type": "object",
+                "example": "{name: '...', type: 'ring', value: 1, health: 2, energy: 2, description: '..'}"
+            },
+            "accessoryRight": {
+                "type": "object",
+                "example": "{name: '...', type: 'ring', value: 1, health: 2, energy: 2, description: '..'}"
+            }
+        }
+    },
 
-  "ParameterEquipmentID": {
-    "description": "Equipment ID",
-    "name": "id",
-    "in": "path",
-    "type": "string",
-    "required": true
-  }
+    "ParameterEquipmentID": {
+        "description": "Equipment ID",
+        "name": "id",
+        "in": "path",
+        "type": "string",
+        "required": true
+    }
 }

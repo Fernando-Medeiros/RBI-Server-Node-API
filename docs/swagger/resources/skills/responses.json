@@ -1,19 +1,19 @@
 {
-  "ResponseGetByIdSkills": {
-    "type": "object",
-    "properties": {
-      "pubId": {
-        "type": "string",
-        "format": "uuid"
-      },
-      "offensive": {
-        "type": "array",
-        "example": "[{name: 'slash', type: 'melee', attack: 4, magic: 0, description: '...'}]"
-      },
-      "defensive": {
-        "type": "array",
-        "example": "[{name: 'fortitude', type: 'upgrade', defense: 4, resistance: 4, description: '...'}]"
-      }
+    "ResponseGetByIdSkills": {
+        "type": "object",
+        "properties": {
+            "pubId": {
+                "type": "string",
+                "format": "uuid"
+            },
+            "offensive": {
+                "type": "array",
+                "example": "[{name: 'slash', type: 'melee', attack: 4, magic: 0, description: '...'}]"
+            },
+            "defensive": {
+                "type": "array",
+                "example": "[{name: 'fortitude', type: 'upgrade', defense: 4, resistance: 4, description: '...'}]"
+            }
+        }
     }
-  }
 }

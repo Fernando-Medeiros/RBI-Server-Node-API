@@ -1,17 +1,17 @@
-import type { SkillsUpdateProps } from "./skills.props";
+import type { SkillsUpdateProps } from './skills.props';
 
 export interface ISkillsRequestsToCreate {
-  getRequestToCreate(): { sub: string };
+    getRequestToCreate(): { sub: string };
 }
 
 export interface ISkillsRequestsToUpdate {
-  getRequestToUpdate(): { sub: string; toUpdate: SkillsUpdateProps };
+    getRequestToUpdate(): { sub: string; toUpdate: SkillsUpdateProps };
 }
 
 export interface ISkillsRequestsToDelete {
-  getRequestToDelete(): { sub: string };
+    getRequestToDelete(): { sub: string };
 }
 
 export interface ISkillsRequestsToGetById {
-  getRequestToGetById(): { sub: string };
+    getRequestToGetById(): { sub: string };
 }

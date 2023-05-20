@@ -1,14 +1,14 @@
-import type { ICharacterRequestsToGetById } from "../repository/character.requests.interfaces";
-import { CommonValidators } from "app/validators/common.validators";
+import type { ICharacterRequestsToGetById } from '../repository/character.requests.interfaces';
+import { CommonValidators } from 'app/validators/common.validators';
 
 export class CharacterRequestsToGetById implements ICharacterRequestsToGetById {
-  constructor(readonly payload: { id?: string }) {}
+    constructor(readonly payload: { id?: string }) {}
 
-  getRequestToGetById(): { id: string } {
-    const { id } = this.payload;
+    getRequestToGetById(): { id: string } {
+        const { id } = this.payload;
 
-    CommonValidators.validateID(id);
+        CommonValidators.validateID(id);
 
-    return { id: String(id) };
-  }
+        return { id: String(id) };
+    }
 }
