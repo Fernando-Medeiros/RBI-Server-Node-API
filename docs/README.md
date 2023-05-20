@@ -10,52 +10,52 @@
 
 Este projeto é uma API backend que funciona como servidor para um jogo de RPG. Ele permite a criação e gerenciamento de personagens, incluindo status, inventário, equipamentos e habilidades.
 
-> - [Como inicializar o projeto](START.md)
-> - [Estrutura das pastas e arquivos (tree)](STRUCTURE.md)
-> - [Documentação - swagger - arquivo](../swagger.json)
-> - [Documentação - swagger - deploy](https://rbi-server-node-api.herokuapp.com/docs)
-> - [Scripts do projeto](../scripts/)
+> -   [Como inicializar o projeto](START.md)
+> -   [Estrutura das pastas e arquivos (tree)](STRUCTURE.md)
+> -   [Documentação - swagger - arquivo](../swagger.json)
+> -   [Documentação - swagger - deploy](https://rbi-server-node-api.herokuapp.com/docs)
+> -   [Scripts do projeto](../scripts/)
 
 ## Endpoints
 
 ### Character
 
-> - GET /characters
-> - GET /characters/:id
-> - GET /characters/name/:name
-> - POST /characters
-> - PATCH /characters
-> - DELETE /characters
-> - [endpoints-image](endpoints/character.png)
+> -   GET /characters
+> -   GET /characters/:id
+> -   GET /characters/name/:name
+> -   POST /characters
+> -   PATCH /characters
+> -   DELETE /characters
+> -   [endpoints-image](endpoints/character.png)
 
 ### Status
 
-> - GET /status/:id
-> - POST /status
-> - PATCH /status
-> - DELETE /status
-> - [endpoints-image](endpoints/status.png)
+> -   GET /status/:id
+> -   POST /status
+> -   PATCH /status
+> -   DELETE /status
+> -   [endpoints-image](endpoints/status.png)
 
 ### Inventory
 
-> - GET /inventories/:id
-> - POST /inventories
-> - PATCH /inventories
-> - DELETE /inventories
-> - [endpoints-image](endpoints/inventory.png)
+> -   GET /inventories/:id
+> -   POST /inventories
+> -   PATCH /inventories
+> -   DELETE /inventories
+> -   [endpoints-image](endpoints/inventory.png)
 
 ### Equipment
 
-> - GET /equipments/:id
-> - POST /equipments
-> - PATCH /equipments
-> - DELETE /equipments
-> - [endpoints-image](endpoints/equipment.png)
+> -   GET /equipments/:id
+> -   POST /equipments
+> -   PATCH /equipments
+> -   DELETE /equipments
+> -   [endpoints-image](endpoints/equipment.png)
 
 ### Skills
 
-> - GET /skills/:id
-> - POST /skills
-> - PATCH /skills
-> - DELETE /skills
-> - [endpoints-image](endpoints/skills.png)
+> -   GET /skills/:id
+> -   POST /skills
+> -   PATCH /skills
+> -   DELETE /skills
+> -   [endpoints-image](endpoints/skills.png)

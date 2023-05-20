@@ -7,7 +7,10 @@
 yarn install
 
 # 2
-docker compose up --build
+docker compose up
+
+# 3
+docker compose exec app bash
 ```
 
 ## Tests
@@ -32,7 +35,7 @@ yarn test src/
 docker compose up -d
 
 # 2
-docker exec -it rbi /bin/bash
+docker compose exec app bash
 
 # 3
 yarn test tests/
