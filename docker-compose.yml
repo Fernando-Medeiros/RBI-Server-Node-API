@@ -26,8 +26,9 @@ services:
             - 27017:27017
         environment:
             - ALLOW_EMPTY_PASSWORD=yes
+            - MONGODB_PORT_NUMBER=27017
         volumes:
-            - .docker/dbdata/mongodb_data:/var/lib/mongodb/database
+            - mongodb_data:/bitnami/mongodb/database
 
     redis:
         container_name: rbi-server-redis
@@ -37,4 +38,8 @@ services:
         environment:
             - REDIS_PASSWORD=password
         volumes:
-            - .docker/dbdata/redis_data:/var/lib/redis/data
+            - redis_data:/bitnami/redis/database
+
+volumes:
+    redis_data:
+    mongodb_data:
