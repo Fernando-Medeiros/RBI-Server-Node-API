@@ -117,22 +117,9 @@
 │   │       │   ├── get-by-id.case.ts
 │   │       │   └── update.case.ts
 │   │       ├── inventory-cases
-│   │       │   ├── repository
-│   │       │   │   ├── inventory.repository.interfaces.ts
-│   │       │   │   └── inventory.requests.interfaces.ts
-│   │       │   ├── requests
-│   │       │   │   ├── create.requests.ts
-│   │       │   │   ├── delete.requests.ts
-│   │       │   │   ├── get-by-id.requests.ts
-│   │       │   │   └── update.requests.ts
-│   │       │   ├── tests
-│   │       │   │   ├── mock
-│   │       │   │   │   ├── inMemoryInventoryRepository.ts
-│   │       │   │   │   └── utils.ts
-│   │       │   │   ├── create.case.spec.ts
-│   │       │   │   ├── delete.case.spec.ts
-│   │       │   │   ├── get-by-id.case.spec.ts
-│   │       │   │   └── update.case.spec.ts
+│   │       │   ├── common
+│   │       │   │   ├── inventory.dto.ts
+│   │       │   │   └── inventory.repository.interface.ts
 │   │       │   ├── validators
 │   │       │   │   └── validators.ts
 │   │       │   ├── create.case.ts
@@ -204,6 +191,7 @@
 │   │   │   │   └── status.handler.ts
 │   │   │   ├── requests
 │   │   │   │   ├── base.requests.ts
+│   │   │   │   ├── inventory.request.impl.ts
 │   │   │   │   ├── skills.request.impl.ts
 │   │   │   │   └── status.request.impl.ts
 │   │   │   └── resources
@@ -326,6 +314,14 @@
 │   │           ├── exceptions.spec.ts
 │   │           └── success.spec.ts
 │   └── unit
+│       ├── inventory
+│       │   └── tests
+│       │       ├── mock
+│       │       │   └── inMemoryInventoryRepository.ts
+│       │       ├── create.case.spec.ts
+│       │       ├── delete.case.spec.ts
+│       │       ├── get-by-id.case.spec.ts
+│       │       └── update.case.spec.ts
 │       ├── skills
 │       │   └── tests
 │       │       ├── mock
@@ -351,6 +347,6 @@
 ├── vitest.config.ts
 └── yarn.lock
 
-108 directories, 239 files
+108 directories, 235 files
 
 ```
