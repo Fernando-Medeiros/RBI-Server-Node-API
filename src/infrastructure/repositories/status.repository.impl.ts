@@ -6,19 +6,19 @@ import type {
 } from 'app/use-cases/status-cases/common/status.dto';
 
 export class StatusRepository implements IStatusRepository {
-    async findById(sub: string): Promise<StatusDto | null> {
-        return await model.findOne({ pubId: sub });
+    async findById(id: string): Promise<StatusDto | null> {
+        return await model.findOne({ pubId: id });
     }
 
-    async findByIdAndDelete(sub: string): Promise<StatusDto | null> {
-        return await model.findOneAndRemove({ pubId: sub });
+    async findByIdAndDelete(id: string): Promise<StatusDto | null> {
+        return await model.findOneAndRemove({ pubId: id });
     }
 
     async findByIdAndUpdate(
-        sub: string,
+        id: string,
         data: UpdateStatusDto,
     ): Promise<StatusDto | null> {
-        return await model.findOneAndUpdate({ pubId: sub }, data);
+        return await model.findOneAndUpdate({ pubId: id }, data);
     }
 
     async save(data: StatusDto): Promise<void> {
