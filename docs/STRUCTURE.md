@@ -140,23 +140,9 @@
 │   │       │   ├── get-by-id.case.ts
 │   │       │   └── update.case.ts
 │   │       ├── skills-cases
-│   │       │   ├── repository
-│   │       │   │   ├── skills.props.ts
-│   │       │   │   ├── skills.repository.interfaces.ts
-│   │       │   │   └── skills.requests.interfaces.ts
-│   │       │   ├── requests
-│   │       │   │   ├── create.requests.ts
-│   │       │   │   ├── delete.requests.ts
-│   │       │   │   ├── get-by-id.requests.ts
-│   │       │   │   └── update.requests.ts
-│   │       │   ├── tests
-│   │       │   │   ├── mock
-│   │       │   │   │   ├── inMemorySkillsRepository.ts
-│   │       │   │   │   └── utils.ts
-│   │       │   │   ├── create.case.spec.ts
-│   │       │   │   ├── delete.case.spec.ts
-│   │       │   │   ├── get-by-id.case.spec.ts
-│   │       │   │   └── update.case.spec.ts
+│   │       │   ├── common
+│   │       │   │   ├── skills.dto.ts
+│   │       │   │   └── skills.repository.interface.ts
 │   │       │   ├── validators
 │   │       │   │   └── validators.ts
 │   │       │   ├── create.case.ts
@@ -166,7 +152,7 @@
 │   │       └── status-cases
 │   │           ├── common
 │   │           │   ├── status.dto.ts
-│   │           │   └── status.repository.interfaces.ts
+│   │           │   └── status.repository.interface.ts
 │   │           ├── create.case.ts
 │   │           ├── delete.case.ts
 │   │           ├── get-by-id.case.ts
@@ -218,7 +204,8 @@
 │   │   │   │   └── status.handler.ts
 │   │   │   ├── requests
 │   │   │   │   ├── base.requests.ts
-│   │   │   │   └── status.request.ts
+│   │   │   │   ├── skills.request.impl.ts
+│   │   │   │   └── status.request.impl.ts
 │   │   │   └── resources
 │   │   │       ├── character.routes.ts
 │   │   │       ├── equipment.routes.ts
@@ -339,6 +326,14 @@
 │   │           ├── exceptions.spec.ts
 │   │           └── success.spec.ts
 │   └── unit
+│       ├── skills
+│       │   └── tests
+│       │       ├── mock
+│       │       │   └── inMemorySkillsRepository.ts
+│       │       ├── create.case.spec.ts
+│       │       ├── delete.case.spec.ts
+│       │       ├── get-by-id.case.spec.ts
+│       │       └── update.case.spec.ts
 │       └── status
 │           └── tests
 │               ├── mock
@@ -356,6 +351,6 @@
 ├── vitest.config.ts
 └── yarn.lock
 
-108 directories, 244 files
+108 directories, 239 files
 
 ```
