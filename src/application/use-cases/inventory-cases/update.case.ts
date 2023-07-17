@@ -1,11 +1,12 @@
-import type { IInventoryRepository } from './repository/inventory.repository.interfaces';
-import type { IInventoryRequestsToUpdate } from './repository/inventory.requests.interfaces';
+import type { IRequestToUpdate } from 'core/requests.interface';
+import type { IInventoryRepository } from './common/inventory.repository.interface';
+import type { UpdateInventoryDto } from './common/inventory.dto';
 
 export const updateCase = async (
-    requests: IInventoryRequestsToUpdate,
+    req: IRequestToUpdate<UpdateInventoryDto>,
     repository: IInventoryRepository,
 ) => {
-    const { sub, toUpdate } = requests.getRequestToUpdate();
+    const { id, data } = req.getRequestToUpdate();
 
-    await repository.findByIdAndUpdate(sub, toUpdate);
+    await repository.findByIdAndUpdate(id, data);
 };

@@ -1,24 +1,27 @@
-import type { IInventoryRepository } from 'app/use-cases/inventory-cases/repository/inventory.repository.interfaces';
-import type { Inventory } from 'domain/entities/inventory.entity';
-import { InventoriesModel } from 'infra/models/inventories.model';
+import type { IInventoryRepository } from 'app/use-cases/inventory-cases/common/inventory.repository.interface';
+import { InventoriesModel as model } from 'infra/models/inventories.model';
+import type {
+    InventoryDto,
+    UpdateInventoryDto,
+} from 'app/use-cases/inventory-cases/common/inventory.dto';
 
 export class InventoryRepository implements IInventoryRepository {
-    async findById(sub: string): Promise<Inventory | null> {
-        return await InventoriesModel.findOne({ pubId: sub });
+    async findById(id: string): Promise<InventoryDto | null> {
+        return await model.findOne({ pubId: id });
     }
 
-    async findByIdAndDelete(sub: string): Promise<Inventory | null> {
-        return await InventoriesModel.findOneAndRemove({ pubId: sub });
+    async findByIdAndDelete(id: string): Promise<InventoryDto | null> {
+        return await model.findOneAndRemove({ pubId: id });
     }
 
     async findByIdAndUpdate(
-        sub: string,
-        data: Partial<Inventory>,
-    ): Promise<Inventory | null> {
-        return await InventoriesModel.findOneAndUpdate({ pubId: sub }, data);
+        id: string,
+        data: UpdateInventoryDto,
+    ): Promise<InventoryDto | null> {
+        return await model.findOneAndUpdate({ pubId: id }, data);
     }
 
-    async save(data: Inventory): Promise<void> {
-        await InventoriesModel.create(data);
+    async save(data: InventoryDto): Promise<void> {
+        await model.create(data);
     }
 }

@@ -1,18 +1,18 @@
-import type { IInventoryRepository } from './repository/inventory.repository.interfaces';
-import type { IInventoryRequestsToCreate } from './repository/inventory.requests.interfaces';
+import type { IRequestToCreate } from 'core/requests.interface';
+import type { IInventoryRepository } from './common/inventory.repository.interface';
 import { BadRequest } from 'utils/http.exceptions';
 
 export const createCase = async (
-    requests: IInventoryRequestsToCreate,
+    req: IRequestToCreate,
     repository: IInventoryRepository,
 ) => {
-    const { sub } = requests.getRequestToCreate();
+    const { id } = req.getRequestToCreate();
 
-    if (await repository.findById(sub)) {
+    if (await repository.findById(id)) {
         throw new BadRequest('Only one Inventory allowed per character!');
     }
     const inventory = {
-        pubId: sub,
+        pubId: id,
         armors: [],
         accessories: [],
         consumables: [],
