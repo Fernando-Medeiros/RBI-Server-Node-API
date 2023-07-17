@@ -62,133 +62,118 @@
 │   └── build.tree.ts
 ├── src
 │   ├── application
-│   │   ├── use-cases
-│   │   │   ├── character-cases
-│   │   │   │   ├── repository
-│   │   │   │   │   ├── character.props.ts
-│   │   │   │   │   ├── character.repository.interfaces.ts
-│   │   │   │   │   └── character.requests.interfaces.ts
-│   │   │   │   ├── requests
-│   │   │   │   │   ├── create.requests.ts
-│   │   │   │   │   ├── delete.requests.ts
-│   │   │   │   │   ├── get-by-id.requests.ts
-│   │   │   │   │   ├── get-by-name.requests.ts
-│   │   │   │   │   └── update.requests.ts
-│   │   │   │   ├── tests
-│   │   │   │   │   ├── mock
-│   │   │   │   │   │   ├── inMemoryCharacterRepository.ts
-│   │   │   │   │   │   └── utils.ts
-│   │   │   │   │   ├── create.case.spec.ts
-│   │   │   │   │   ├── delete.case.spec.ts
-│   │   │   │   │   ├── get-all.case.spec.ts
-│   │   │   │   │   ├── get-by-id.case.spec.ts
-│   │   │   │   │   ├── get-by-name.case.spec.ts
-│   │   │   │   │   └── update.case.spec.ts
-│   │   │   │   ├── validators
-│   │   │   │   │   └── validators.ts
-│   │   │   │   ├── create.case.ts
-│   │   │   │   ├── delete.case.ts
-│   │   │   │   ├── get-all.case.ts
-│   │   │   │   ├── get-by-id.case.ts
-│   │   │   │   ├── get-by-name.case.ts
-│   │   │   │   └── update.case.ts
-│   │   │   ├── equipment-cases
-│   │   │   │   ├── repository
-│   │   │   │   │   ├── equipment.props.ts
-│   │   │   │   │   ├── equipment.repository.interfaces.ts
-│   │   │   │   │   └── equipment.requests.interfaces.ts
-│   │   │   │   ├── requests
-│   │   │   │   │   ├── create.requests.ts
-│   │   │   │   │   ├── delete.requests.ts
-│   │   │   │   │   ├── get-by-id.requests.ts
-│   │   │   │   │   └── update.requests.ts
-│   │   │   │   ├── tests
-│   │   │   │   │   ├── mock
-│   │   │   │   │   │   ├── inMemoryEquipmentRepository.ts
-│   │   │   │   │   │   └── utils.ts
-│   │   │   │   │   ├── create.case.spec.ts
-│   │   │   │   │   ├── delete.case.spec.ts
-│   │   │   │   │   ├── get-by-id.case.spec.ts
-│   │   │   │   │   └── update.case.spec.ts
-│   │   │   │   ├── validators
-│   │   │   │   │   └── validators.ts
-│   │   │   │   ├── create.case.ts
-│   │   │   │   ├── delete.case.ts
-│   │   │   │   ├── get-by-id.case.ts
-│   │   │   │   └── update.case.ts
-│   │   │   ├── inventory-cases
-│   │   │   │   ├── repository
-│   │   │   │   │   ├── inventory.repository.interfaces.ts
-│   │   │   │   │   └── inventory.requests.interfaces.ts
-│   │   │   │   ├── requests
-│   │   │   │   │   ├── create.requests.ts
-│   │   │   │   │   ├── delete.requests.ts
-│   │   │   │   │   ├── get-by-id.requests.ts
-│   │   │   │   │   └── update.requests.ts
-│   │   │   │   ├── tests
-│   │   │   │   │   ├── mock
-│   │   │   │   │   │   ├── inMemoryInventoryRepository.ts
-│   │   │   │   │   │   └── utils.ts
-│   │   │   │   │   ├── create.case.spec.ts
-│   │   │   │   │   ├── delete.case.spec.ts
-│   │   │   │   │   ├── get-by-id.case.spec.ts
-│   │   │   │   │   └── update.case.spec.ts
-│   │   │   │   ├── validators
-│   │   │   │   │   └── validators.ts
-│   │   │   │   ├── create.case.ts
-│   │   │   │   ├── delete.case.ts
-│   │   │   │   ├── get-by-id.case.ts
-│   │   │   │   └── update.case.ts
-│   │   │   ├── skills-cases
-│   │   │   │   ├── repository
-│   │   │   │   │   ├── skills.props.ts
-│   │   │   │   │   ├── skills.repository.interfaces.ts
-│   │   │   │   │   └── skills.requests.interfaces.ts
-│   │   │   │   ├── requests
-│   │   │   │   │   ├── create.requests.ts
-│   │   │   │   │   ├── delete.requests.ts
-│   │   │   │   │   ├── get-by-id.requests.ts
-│   │   │   │   │   └── update.requests.ts
-│   │   │   │   ├── tests
-│   │   │   │   │   ├── mock
-│   │   │   │   │   │   ├── inMemorySkillsRepository.ts
-│   │   │   │   │   │   └── utils.ts
-│   │   │   │   │   ├── create.case.spec.ts
-│   │   │   │   │   ├── delete.case.spec.ts
-│   │   │   │   │   ├── get-by-id.case.spec.ts
-│   │   │   │   │   └── update.case.spec.ts
-│   │   │   │   ├── validators
-│   │   │   │   │   └── validators.ts
-│   │   │   │   ├── create.case.ts
-│   │   │   │   ├── delete.case.ts
-│   │   │   │   ├── get-by-id.case.ts
-│   │   │   │   └── update.case.ts
-│   │   │   └── status-cases
-│   │   │       ├── repository
-│   │   │       │   ├── status.props.ts
-│   │   │       │   ├── status.repository.interfaces.ts
-│   │   │       │   └── status.requests.interfaces.ts
-│   │   │       ├── requests
-│   │   │       │   ├── create.requests.ts
-│   │   │       │   ├── delete.requests.ts
-│   │   │       │   ├── get-by-id.requests.ts
-│   │   │       │   └── update.requests.ts
-│   │   │       ├── tests
-│   │   │       │   ├── mock
-│   │   │       │   │   ├── inMemoryStatusRepository.ts
-│   │   │       │   │   └── utils.ts
-│   │   │       │   ├── create.case.spec.ts
-│   │   │       │   ├── delete.case.spec.ts
-│   │   │       │   ├── get-by-id.case.spec.ts
-│   │   │       │   └── update.case.spec.ts
-│   │   │       ├── validators
-│   │   │       │   └── validators.ts
-│   │   │       ├── create.case.ts
-│   │   │       ├── delete.case.ts
-│   │   │       ├── get-by-id.case.ts
-│   │   │       └── update.case.ts
-│   │   └── validators
-│   │       └── common.validators.ts
+│   │   └── use-cases
+│   │       ├── character-cases
+│   │       │   ├── repository
+│   │       │   │   ├── character.props.ts
+│   │       │   │   ├── character.repository.interfaces.ts
+│   │       │   │   └── character.requests.interfaces.ts
+│   │       │   ├── requests
+│   │       │   │   ├── create.requests.ts
+│   │       │   │   ├── delete.requests.ts
+│   │       │   │   ├── get-by-id.requests.ts
+│   │       │   │   ├── get-by-name.requests.ts
+│   │       │   │   └── update.requests.ts
+│   │       │   ├── tests
+│   │       │   │   ├── mock
+│   │       │   │   │   ├── inMemoryCharacterRepository.ts
+│   │       │   │   │   └── utils.ts
+│   │       │   │   ├── create.case.spec.ts
+│   │       │   │   ├── delete.case.spec.ts
+│   │       │   │   ├── get-all.case.spec.ts
+│   │       │   │   ├── get-by-id.case.spec.ts
+│   │       │   │   ├── get-by-name.case.spec.ts
+│   │       │   │   └── update.case.spec.ts
+│   │       │   ├── validators
+│   │       │   │   └── validators.ts
+│   │       │   ├── create.case.ts
+│   │       │   ├── delete.case.ts
+│   │       │   ├── get-all.case.ts
+│   │       │   ├── get-by-id.case.ts
+│   │       │   ├── get-by-name.case.ts
+│   │       │   └── update.case.ts
+│   │       ├── equipment-cases
+│   │       │   ├── repository
+│   │       │   │   ├── equipment.props.ts
+│   │       │   │   ├── equipment.repository.interfaces.ts
+│   │       │   │   └── equipment.requests.interfaces.ts
+│   │       │   ├── requests
+│   │       │   │   ├── create.requests.ts
+│   │       │   │   ├── delete.requests.ts
+│   │       │   │   ├── get-by-id.requests.ts
+│   │       │   │   └── update.requests.ts
+│   │       │   ├── tests
+│   │       │   │   ├── mock
+│   │       │   │   │   ├── inMemoryEquipmentRepository.ts
+│   │       │   │   │   └── utils.ts
+│   │       │   │   ├── create.case.spec.ts
+│   │       │   │   ├── delete.case.spec.ts
+│   │       │   │   ├── get-by-id.case.spec.ts
+│   │       │   │   └── update.case.spec.ts
+│   │       │   ├── validators
+│   │       │   │   └── validators.ts
+│   │       │   ├── create.case.ts
+│   │       │   ├── delete.case.ts
+│   │       │   ├── get-by-id.case.ts
+│   │       │   └── update.case.ts
+│   │       ├── inventory-cases
+│   │       │   ├── repository
+│   │       │   │   ├── inventory.repository.interfaces.ts
+│   │       │   │   └── inventory.requests.interfaces.ts
+│   │       │   ├── requests
+│   │       │   │   ├── create.requests.ts
+│   │       │   │   ├── delete.requests.ts
+│   │       │   │   ├── get-by-id.requests.ts
+│   │       │   │   └── update.requests.ts
+│   │       │   ├── tests
+│   │       │   │   ├── mock
+│   │       │   │   │   ├── inMemoryInventoryRepository.ts
+│   │       │   │   │   └── utils.ts
+│   │       │   │   ├── create.case.spec.ts
+│   │       │   │   ├── delete.case.spec.ts
+│   │       │   │   ├── get-by-id.case.spec.ts
+│   │       │   │   └── update.case.spec.ts
+│   │       │   ├── validators
+│   │       │   │   └── validators.ts
+│   │       │   ├── create.case.ts
+│   │       │   ├── delete.case.ts
+│   │       │   ├── get-by-id.case.ts
+│   │       │   └── update.case.ts
+│   │       ├── skills-cases
+│   │       │   ├── repository
+│   │       │   │   ├── skills.props.ts
+│   │       │   │   ├── skills.repository.interfaces.ts
+│   │       │   │   └── skills.requests.interfaces.ts
+│   │       │   ├── requests
+│   │       │   │   ├── create.requests.ts
+│   │       │   │   ├── delete.requests.ts
+│   │       │   │   ├── get-by-id.requests.ts
+│   │       │   │   └── update.requests.ts
+│   │       │   ├── tests
+│   │       │   │   ├── mock
+│   │       │   │   │   ├── inMemorySkillsRepository.ts
+│   │       │   │   │   └── utils.ts
+│   │       │   │   ├── create.case.spec.ts
+│   │       │   │   ├── delete.case.spec.ts
+│   │       │   │   ├── get-by-id.case.spec.ts
+│   │       │   │   └── update.case.spec.ts
+│   │       │   ├── validators
+│   │       │   │   └── validators.ts
+│   │       │   ├── create.case.ts
+│   │       │   ├── delete.case.ts
+│   │       │   ├── get-by-id.case.ts
+│   │       │   └── update.case.ts
+│   │       └── status-cases
+│   │           ├── common
+│   │           │   ├── status.dto.ts
+│   │           │   └── status.repository.interfaces.ts
+│   │           ├── create.case.ts
+│   │           ├── delete.case.ts
+│   │           ├── get-by-id.case.ts
+│   │           └── update.case.ts
+│   ├── core
+│   │   ├── repository.interface.ts
+│   │   └── requests.interface.ts
 │   ├── domain
 │   │   ├── entities
 │   │   │   ├── character.entity.ts
@@ -231,6 +216,9 @@
 │   │   │   │   ├── inventory.handler.ts
 │   │   │   │   ├── skills.handler.ts
 │   │   │   │   └── status.handler.ts
+│   │   │   ├── requests
+│   │   │   │   ├── base.requests.ts
+│   │   │   │   └── status.request.ts
 │   │   │   └── resources
 │   │   │       ├── character.routes.ts
 │   │   │       ├── equipment.routes.ts
@@ -249,6 +237,7 @@
 │   │   │       └── database.connect.ts
 │   │   └── server.ts
 │   ├── utils
+│   │   ├── common.validators.ts
 │   │   ├── http.exceptions.ts
 │   │   └── http.protocols.ts
 │   └── main.ts
@@ -267,88 +256,97 @@
 │   │   │   └── success.spec.ts
 │   │   └── delete-character
 │   │       └── success.spec.ts
-│   └── integration
-│       ├── characters
-│       │   ├── create
-│       │   │   ├── exceptions.spec.ts
-│       │   │   └── success.spec.ts
-│       │   ├── delete
-│       │   │   ├── exceptions.spec.ts
-│       │   │   └── success.spec.ts
-│       │   ├── get-all
-│       │   │   ├── exceptions.spec.ts
-│       │   │   └── success.spec.ts
-│       │   ├── get-by-id
-│       │   │   ├── exceptions.spec.ts
-│       │   │   └── success.spec.ts
-│       │   ├── get-by-name
-│       │   │   ├── exceptions.spec.ts
-│       │   │   └── success.spec.ts
-│       │   ├── mock
-│       │   │   └── character.mock.ts
-│       │   └── update
-│       │       ├── exceptions.spec.ts
-│       │       └── success.spec.ts
-│       ├── equipment
-│       │   ├── create
-│       │   │   ├── exceptions.spec.ts
-│       │   │   └── success.spec.ts
-│       │   ├── delete
-│       │   │   ├── exceptions.spec.ts
-│       │   │   └── success.spec.ts
-│       │   ├── get-by-id
-│       │   │   ├── exceptions.spec.ts
-│       │   │   └── success.spec.ts
-│       │   ├── mock
-│       │   │   └── equipment.mock.ts
-│       │   └── update
-│       │       ├── exceptions.spec.ts
-│       │       └── success.spec.ts
-│       ├── inventory
-│       │   ├── create
-│       │   │   ├── exceptions.spec.ts
-│       │   │   └── success.spec.ts
-│       │   ├── delete
-│       │   │   ├── exceptions.spec.ts
-│       │   │   └── success.spec.ts
-│       │   ├── get-by-id
-│       │   │   ├── exceptions.spec.ts
-│       │   │   └── success.spec.ts
-│       │   ├── mock
-│       │   │   └── inventory.mock.ts
-│       │   └── update
-│       │       ├── exceptions.spec.ts
-│       │       └── success.spec.ts
-│       ├── skills
-│       │   ├── create
-│       │   │   ├── exceptions.spec.ts
-│       │   │   └── success.spec.ts
-│       │   ├── delete
-│       │   │   ├── exceptions.spec.ts
-│       │   │   └── success.spec.ts
-│       │   ├── get-by-id
-│       │   │   ├── exceptions.spec.ts
-│       │   │   └── success.spec.ts
-│       │   ├── mock
-│       │   │   └── skills.mock.ts
-│       │   └── update
-│       │       ├── exceptions.spec.ts
-│       │       └── success.spec.ts
+│   ├── integration
+│   │   ├── characters
+│   │   │   ├── create
+│   │   │   │   ├── exceptions.spec.ts
+│   │   │   │   └── success.spec.ts
+│   │   │   ├── delete
+│   │   │   │   ├── exceptions.spec.ts
+│   │   │   │   └── success.spec.ts
+│   │   │   ├── get-all
+│   │   │   │   ├── exceptions.spec.ts
+│   │   │   │   └── success.spec.ts
+│   │   │   ├── get-by-id
+│   │   │   │   ├── exceptions.spec.ts
+│   │   │   │   └── success.spec.ts
+│   │   │   ├── get-by-name
+│   │   │   │   ├── exceptions.spec.ts
+│   │   │   │   └── success.spec.ts
+│   │   │   ├── mock
+│   │   │   │   └── character.mock.ts
+│   │   │   └── update
+│   │   │       ├── exceptions.spec.ts
+│   │   │       └── success.spec.ts
+│   │   ├── equipment
+│   │   │   ├── create
+│   │   │   │   ├── exceptions.spec.ts
+│   │   │   │   └── success.spec.ts
+│   │   │   ├── delete
+│   │   │   │   ├── exceptions.spec.ts
+│   │   │   │   └── success.spec.ts
+│   │   │   ├── get-by-id
+│   │   │   │   ├── exceptions.spec.ts
+│   │   │   │   └── success.spec.ts
+│   │   │   ├── mock
+│   │   │   │   └── equipment.mock.ts
+│   │   │   └── update
+│   │   │       ├── exceptions.spec.ts
+│   │   │       └── success.spec.ts
+│   │   ├── inventory
+│   │   │   ├── create
+│   │   │   │   ├── exceptions.spec.ts
+│   │   │   │   └── success.spec.ts
+│   │   │   ├── delete
+│   │   │   │   ├── exceptions.spec.ts
+│   │   │   │   └── success.spec.ts
+│   │   │   ├── get-by-id
+│   │   │   │   ├── exceptions.spec.ts
+│   │   │   │   └── success.spec.ts
+│   │   │   ├── mock
+│   │   │   │   └── inventory.mock.ts
+│   │   │   └── update
+│   │   │       ├── exceptions.spec.ts
+│   │   │       └── success.spec.ts
+│   │   ├── skills
+│   │   │   ├── create
+│   │   │   │   ├── exceptions.spec.ts
+│   │   │   │   └── success.spec.ts
+│   │   │   ├── delete
+│   │   │   │   ├── exceptions.spec.ts
+│   │   │   │   └── success.spec.ts
+│   │   │   ├── get-by-id
+│   │   │   │   ├── exceptions.spec.ts
+│   │   │   │   └── success.spec.ts
+│   │   │   ├── mock
+│   │   │   │   └── skills.mock.ts
+│   │   │   └── update
+│   │   │       ├── exceptions.spec.ts
+│   │   │       └── success.spec.ts
+│   │   └── status
+│   │       ├── create
+│   │       │   ├── exceptions.spec.ts
+│   │       │   └── success.spec.ts
+│   │       ├── delete
+│   │       │   ├── exceptions.spec.ts
+│   │       │   └── success.spec.ts
+│   │       ├── get-by-id
+│   │       │   ├── exceptions.spec.ts
+│   │       │   └── success.spec.ts
+│   │       ├── mock
+│   │       │   └── status.mock.ts
+│   │       └── update
+│   │           ├── exceptions.spec.ts
+│   │           └── success.spec.ts
+│   └── unit
 │       └── status
-│           ├── create
-│           │   ├── exceptions.spec.ts
-│           │   └── success.spec.ts
-│           ├── delete
-│           │   ├── exceptions.spec.ts
-│           │   └── success.spec.ts
-│           ├── get-by-id
-│           │   ├── exceptions.spec.ts
-│           │   └── success.spec.ts
-│           ├── mock
-│           │   └── status.mock.ts
-│           └── update
-│               ├── exceptions.spec.ts
-│               └── success.spec.ts
+│           └── tests
+│               ├── mock
+│               │   └── inMemoryStatusRepository.ts
+│               ├── create.case.spec.ts
+│               ├── delete.case.spec.ts
+│               ├── get-by-id.case.spec.ts
+│               └── update.case.spec.ts
 ├── docker-compose.yml
 ├── Dockerfile
 ├── env.example
@@ -358,6 +356,6 @@
 ├── vitest.config.ts
 └── yarn.lock
 
-107 directories, 247 files
+108 directories, 244 files
 
 ```
