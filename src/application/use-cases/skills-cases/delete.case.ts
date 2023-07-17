@@ -1,14 +1,14 @@
-import type { ISkillsRepository } from './repository/skills.repository.interfaces';
-import type { ISkillsRequestsToDelete } from './repository/skills.requests.interfaces';
+import type { IRequestToDelete } from 'core/requests.interface';
+import type { ISkillsRepository } from './common/skills.repository.interface';
 import { NotFound } from 'utils/http.exceptions';
 
 export const deleteCase = async (
-    requests: ISkillsRequestsToDelete,
+    requests: IRequestToDelete,
     repository: ISkillsRepository,
 ) => {
-    const { sub } = requests.getRequestToDelete();
+    const { id } = requests.getRequestToDelete();
 
-    if (!(await repository.findByIdAndDelete(sub))) {
+    if (!(await repository.findByIdAndDelete(id))) {
         throw new NotFound('Skills not found!');
     }
 };

@@ -1,14 +1,14 @@
-import type { ISkillsRepository } from './repository/skills.repository.interfaces';
-import type { ISkillsRequestsToGetById } from './repository/skills.requests.interfaces';
+import type { IRequestToGetById } from 'core/requests.interface';
+import type { ISkillsRepository } from './common/skills.repository.interface';
 import { NotFound } from 'utils/http.exceptions';
 
 export const getByIdCase = async (
-    requests: ISkillsRequestsToGetById,
+    requests: IRequestToGetById,
     repository: ISkillsRepository,
 ) => {
-    const { sub } = requests.getRequestToGetById();
+    const { id } = requests.getRequestToGetById();
 
-    const skills = await repository.findById(sub);
+    const skills = await repository.findById(id);
 
     if (!skills) {
         throw new NotFound('Skills not found!');

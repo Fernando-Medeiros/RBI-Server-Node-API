@@ -1,81 +1,85 @@
 import { describe, it, expect } from 'vitest';
-import { SkillsRequestsToUpdate } from '../requests/update.requests';
 import { InMemorySkillsRepository } from './mock/inMemorySkillsRepository';
-import { UseCaseSkillsHelpers } from './mock/utils';
-import { updateCase } from '../update.case';
+import { SkillsRequests } from 'infra/routes/requests/skills.request.impl';
+import { updateCase } from 'app/use-cases/skills-cases/update.case';
 
-const Repository = new InMemorySkillsRepository();
-const Helpers = new UseCaseSkillsHelpers(Repository);
-const sub = Helpers.pubId();
+const repository = new InMemorySkillsRepository();
+const { id } = repository.helpers.pubId();
 
 describe('Update-> Skills-OK', () => {
-    Helpers.insertOneToDatabase();
+    repository.helpers.insertOneToDatabase();
 
-    const data = Helpers.getDataMock();
+    const data = repository.helpers.getDataMock();
 
     it('Should update all Skills', async () => {
         const res = await updateCase(
-            new SkillsRequestsToUpdate({ sub, ...data }),
-            Repository,
+            new SkillsRequests({ id, ...data }),
+            repository,
         );
         expect(res).toBeUndefined();
     });
 
     it('Should update one offensive skill', async () => {
-        const offensive = [Helpers.getFakeOffensive()];
+        const offensive = [repository.helpers.getFakeOffensive()];
 
         const res = await updateCase(
-            new SkillsRequestsToUpdate({ sub, offensive }),
-            Repository,
+            new SkillsRequests({ id, offensive }),
+            repository,
         );
         expect(res).toBeUndefined();
     });
 
     it('Should update two offensive skills', async () => {
         const offensive = [
-            Helpers.getFakeOffensive(),
-            Helpers.getFakeOffensive(),
+            repository.helpers.getFakeOffensive(),
+            repository.helpers.getFakeOffensive(),
         ];
 
         const res = await updateCase(
-            new SkillsRequestsToUpdate({ sub, offensive }),
-            Repository,
+            new SkillsRequests({ id, offensive }),
+            repository,
         );
         expect(res).toBeUndefined();
     });
 
     it('Should update one defensive skill', async () => {
-        const defensive = [Helpers.getFakeDefensive()];
+        const defensive = [repository.helpers.getFakeDefensive()];
 
         const res = await updateCase(
-            new SkillsRequestsToUpdate({ sub, defensive }),
-            Repository,
+            new SkillsRequests({ id, defensive }),
+            repository,
         );
         expect(res).toBeUndefined();
     });
 
     it('Should update tow defensive skills', async () => {
         const defensive = [
-            Helpers.getFakeDefensive(),
-            Helpers.getFakeDefensive(),
+            repository.helpers.getFakeDefensive(),
+            repository.helpers.getFakeDefensive(),
         ];
 
         const res = await updateCase(
-            new SkillsRequestsToUpdate({ sub, defensive }),
-            Repository,
+            new SkillsRequests({ id, defensive }),
+            repository,
         );
         expect(res).toBeUndefined();
     });
 
     it('Should update tow offensive and defensive skills', async () => {
         const [offensive, defensive] = [
-            [Helpers.getFakeOffensive(), Helpers.getFakeOffensive()],
-            [Helpers.getFakeDefensive(), Helpers.getFakeDefensive()],
+            [
+                repository.helpers.getFakeOffensive(),
+                repository.helpers.getFakeOffensive(),
+            ],
+            [
+                repository.helpers.getFakeDefensive(),
+                repository.helpers.getFakeDefensive(),
+            ],
         ];
 
         const res = await updateCase(
-            new SkillsRequestsToUpdate({ sub, offensive, defensive }),
-            Repository,
+            new SkillsRequests({ id, offensive, defensive }),
+            repository,
         );
         expect(res).toBeUndefined();
     });
@@ -84,7 +88,7 @@ describe('Update-> Skills-OK', () => {
 describe('Update-> Skills-Exceptions', () => {
     it('Should return [no data] when passing an empty object', async () => {
         await expect(() =>
-            updateCase(new SkillsRequestsToUpdate({ sub }), Repository),
+            updateCase(new SkillsRequests({ id }), repository),
         ).rejects.toThrowError('No data');
     });
 
@@ -99,10 +103,7 @@ describe('Update-> Skills-Exceptions', () => {
         ];
 
         await expect(() =>
-            updateCase(
-                new SkillsRequestsToUpdate({ sub, offensive }),
-                Repository,
-            ),
+            updateCase(new SkillsRequests({ id, offensive }), repository),
         ).rejects.toThrowError('Missing fields');
     });
 
@@ -117,16 +118,13 @@ describe('Update-> Skills-Exceptions', () => {
         ];
 
         await expect(() =>
-            updateCase(
-                new SkillsRequestsToUpdate({ sub, defensive }),
-                Repository,
-            ),
+            updateCase(new SkillsRequests({ id, defensive }), repository),
         ).rejects.toThrowError('Missing fields');
     });
 
     it('Should return an error when sending offensive and defensive skill without content', async () => {
         await expect(() =>
-            updateCase(new SkillsRequestsToUpdate({ sub }), Repository),
+            updateCase(new SkillsRequests({ id }), repository),
         ).rejects.toThrowError('No data');
     });
 });

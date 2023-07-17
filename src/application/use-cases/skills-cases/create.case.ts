@@ -1,19 +1,19 @@
-import type { ISkillsRepository } from './repository/skills.repository.interfaces';
-import type { ISkillsRequestsToCreate } from './repository/skills.requests.interfaces';
+import type { IRequestToCreate } from 'core/requests.interface';
+import type { ISkillsRepository } from './common/skills.repository.interface';
 import { BadRequest } from 'utils/http.exceptions';
 
 export const createCase = async (
-    requests: ISkillsRequestsToCreate,
+    req: IRequestToCreate,
     repository: ISkillsRepository,
 ) => {
-    const { sub } = requests.getRequestToCreate();
+    const { id } = req.getRequestToCreate();
 
-    if (await repository.findById(sub)) {
+    if (await repository.findById(id)) {
         throw new BadRequest('Only one Skills allowed per character!');
     }
 
     const skills = {
-        pubId: sub,
+        pubId: id,
         offensive: [],
         defensive: [],
     };
