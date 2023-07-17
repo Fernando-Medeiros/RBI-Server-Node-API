@@ -1,102 +1,100 @@
 import { describe, it, expect } from 'vitest';
-import { StatusRequestsToUpdate } from '../requests/update.requests';
 import { InMemoryStatusRepository } from './mock/inMemoryStatusRepository';
-import { UseCaseStatusHelpers } from './mock/utils';
-import { updateCase } from '../update.case';
+import { updateCase } from 'app/use-cases/status-cases/update.case';
+import { StatusRequests } from 'infra/routes/requests/status.request';
 
-const Repository = new InMemoryStatusRepository();
-const Helpers = new UseCaseStatusHelpers(Repository);
-const sub = Helpers.pubId();
+const repository = new InMemoryStatusRepository();
+const { id } = repository.helpers.pubId();
 
 describe('Update-> Status-OK', () => {
-    Helpers.insertOneToDatabase();
+    repository.helpers.insertOneToDatabase();
 
-    const data = Helpers.getDataMock();
+    const data = repository.helpers.getDataMock();
 
     it('Should update all status', async () => {
         const res = await updateCase(
-            new StatusRequestsToUpdate({ sub, ...data }),
-            Repository,
+            new StatusRequests({ id, ...data }),
+            repository,
         );
         expect(res).toBeUndefined();
     });
 
     it('Should update points to assign', async () => {
         const res = await updateCase(
-            new StatusRequestsToUpdate({ sub, points: 10 }),
-            Repository,
+            new StatusRequests({ id, points: 10 }),
+            repository,
         );
         expect(res).toBeUndefined();
     });
 
     it('Should update experience', async () => {
         const res = await updateCase(
-            new StatusRequestsToUpdate({ sub, experience: 500 }),
-            Repository,
+            new StatusRequests({ id, experience: 500 }),
+            repository,
         );
         expect(res).toBeUndefined();
     });
 
     it('Should update strength', async () => {
         const res = await updateCase(
-            new StatusRequestsToUpdate({ sub, strength: 2 }),
-            Repository,
+            new StatusRequests({ id, strength: 2 }),
+            repository,
         );
         expect(res).toBeUndefined();
     });
 
     it('Should update intelligence', async () => {
         const res = await updateCase(
-            new StatusRequestsToUpdate({ sub, intelligence: 10 }),
-            Repository,
+            new StatusRequests({ id, intelligence: 10 }),
+            repository,
         );
         expect(res).toBeUndefined();
     });
 
     it('Should update dexterity', async () => {
         const res = await updateCase(
-            new StatusRequestsToUpdate({ sub, dexterity: 80 }),
-            Repository,
+            new StatusRequests({ id, dexterity: 80 }),
+            repository,
         );
         expect(res).toBeUndefined();
     });
 
     it('Should update vitality', async () => {
         const res = await updateCase(
-            new StatusRequestsToUpdate({ sub, vitality: 99 }),
-            Repository,
+            new StatusRequests({ id, vitality: 99 }),
+            repository,
         );
         expect(res).toBeUndefined();
     });
 
     it('Should update health', async () => {
         const res = await updateCase(
-            new StatusRequestsToUpdate({ sub, health: 1 }),
-            Repository,
+            new StatusRequests({ id, health: 1 }),
+            repository,
         );
         expect(res).toBeUndefined();
     });
 
     it('Should update energy', async () => {
         const res = await updateCase(
-            new StatusRequestsToUpdate({ sub, energy: 400 }),
-            Repository,
+            new StatusRequests({ id, energy: 400 }),
+            repository,
         );
         expect(res).toBeUndefined();
     });
 
     it('Should update currentHealth', async () => {
         const res = await updateCase(
-            new StatusRequestsToUpdate({ sub, currentHealth: 111 }),
-            Repository,
+            new StatusRequests({ id, currentHealth: 111 }),
+            repository,
         );
         expect(res).toBeUndefined();
     });
 
     it('Should update currentEnergy', async () => {
         const res = await updateCase(
-            new StatusRequestsToUpdate({ sub, currentEnergy: 222 }),
-            Repository,
+            new StatusRequests({ id, currentEnergy: 222 }),
+            repository,
         );
         expect(res).toBeUndefined();
     });
@@ -105,87 +103,66 @@ describe('Update-> Status-OK', () => {
 describe('Update-> Status-Exceptions', () => {
     it('Should return [no data] when passing an empty object', async () => {
         await expect(() =>
-            updateCase(new StatusRequestsToUpdate({ sub }), Repository),
+            updateCase(new StatusRequests({ id }), repository),
         ).rejects.toThrowError('No data');
     });
 
     it('Should return an error when sending invalid points', async () => {
         await expect(() =>
-            updateCase(
-                new StatusRequestsToUpdate({ sub, points: -1 }),
-                Repository,
-            ),
+            updateCase(new StatusRequests({ id, points: -1 }), repository),
         ).rejects.toThrowError('format must be a number');
     });
 
     it('Should return an error when sending invalid experience', async () => {
         await expect(() =>
-            updateCase(
-                new StatusRequestsToUpdate({ sub, experience: -1 }),
-                Repository,
-            ),
+            updateCase(new StatusRequests({ id, experience: -1 }), repository),
         ).rejects.toThrowError('format must be a number');
     });
 
     it('Should return an error when sending invalid strength', async () => {
         await expect(() =>
-            updateCase(
-                new StatusRequestsToUpdate({ sub, strength: -1 }),
-                Repository,
-            ),
+            updateCase(new StatusRequests({ id, strength: -1 }), repository),
         ).rejects.toThrowError('format must be a number');
     });
 
     it('Should return an error when sending invalid intelligence', async () => {
         await expect(() =>
             updateCase(
-                new StatusRequestsToUpdate({ sub, intelligence: -1 }),
-                Repository,
+                new StatusRequests({ id, intelligence: -1 }),
+                repository,
             ),
         ).rejects.toThrowError('format must be a number');
     });
 
     it('Should return an error when sending invalid dexterity', async () => {
         await expect(() =>
-            updateCase(
-                new StatusRequestsToUpdate({ sub, dexterity: -1 }),
-                Repository,
-            ),
+            updateCase(new StatusRequests({ id, dexterity: -1 }), repository),
         ).rejects.toThrowError('format must be a number');
     });
 
     it('Should return an error when sending invalid vitality', async () => {
         await expect(() =>
-            updateCase(
-                new StatusRequestsToUpdate({ sub, vitality: -1 }),
-                Repository,
-            ),
+            updateCase(new StatusRequests({ id, vitality: -1 }), repository),
         ).rejects.toThrowError('format must be a number');
     });
 
     it('Should return an error when sending invalid health', async () => {
         await expect(() =>
-            updateCase(
-                new StatusRequestsToUpdate({ sub, health: -1 }),
-                Repository,
-            ),
+            updateCase(new StatusRequests({ id, health: -1 }), repository),
         ).rejects.toThrowError('format must be a number');
     });
 
     it('Should return an error when sending invalid energy', async () => {
         await expect(() =>
-            updateCase(
-                new StatusRequestsToUpdate({ sub, energy: -1 }),
-                Repository,
-            ),
+            updateCase(new StatusRequests({ id, energy: -1 }), repository),
         ).rejects.toThrowError('format must be a number');
     });
 
     it('Should return an error when sending invalid currentHealth', async () => {
         await expect(() =>
             updateCase(
-                new StatusRequestsToUpdate({ sub, currentHealth: -1 }),
-                Repository,
+                new StatusRequests({ id, currentHealth: -1 }),
+                repository,
             ),
         ).rejects.toThrowError('format must be a number');
     });
@@ -193,8 +170,8 @@ describe('Update-> Status-Exceptions', () => {
     it('Should return an error when sending invalid currentEnergy', async () => {
         await expect(() =>
             updateCase(
-                new StatusRequestsToUpdate({ sub, currentEnergy: -1 }),
-                Repository,
+                new StatusRequests({ id, currentEnergy: -1 }),
+                repository,
             ),
         ).rejects.toThrowError('format must be a number');
     });

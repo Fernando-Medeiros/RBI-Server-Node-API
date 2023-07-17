@@ -1,5 +1,5 @@
+import { CommonValidators } from 'utils/common.validators';
 import type { IInventoryRequestsToGetById } from '../repository/inventory.requests.interfaces';
-import { CommonValidators } from 'app/validators/common.validators';
 
 export class InventoryRequestsToGetById implements IInventoryRequestsToGetById {
     constructor(readonly payload: { id: string }) {}
@@ -7,7 +7,7 @@ export class InventoryRequestsToGetById implements IInventoryRequestsToGetById {
     getRequestToGetById(): { sub: string } {
         const { id: sub } = this.payload;
 
-        CommonValidators.validateID(sub);
+        CommonValidators.validateUUID(sub);
 
         return { sub };
     }

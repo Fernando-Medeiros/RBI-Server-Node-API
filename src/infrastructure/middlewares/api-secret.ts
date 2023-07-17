@@ -2,7 +2,7 @@ import type { NextFunction, Request, Response } from 'express';
 import { decode } from 'infra/security/token/decode.impl';
 import { Unauthorized } from 'utils/http.exceptions';
 
-export const apiSecretMiddleware = async (
+export const ApiSecretMiddleware = async (
     req: Request,
     _res: Response,
     next: NextFunction,

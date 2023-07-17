@@ -2,13 +2,13 @@ import 'express-async-errors';
 import express from 'express';
 import cors from 'cors';
 
-import { apiSecretMiddleware } from './middlewares/api-secret';
-import { exceptionMiddleware } from './middlewares/exceptions';
-import { sessionMiddleware } from './middlewares/session';
-import { requestLimiterMiddleware } from './middlewares/request-rate-limit';
-
 import swaggerUi from 'swagger-ui-express';
 import swaggerFile from 'swagger.json';
+
+import { ApiSecretMiddleware } from './middlewares/api-secret';
+import { ExceptionMiddleware } from './middlewares/exceptions';
+import { SessionMiddleware } from './middlewares/session';
+import { RequestLimiterMiddleware } from './middlewares/request-rate-limit';
 
 import { routes as characterRoutes } from 'infra/routes/resources/character.routes';
 import { routes as equipmentRoutes } from 'infra/routes/resources/equipment.routes';
@@ -22,13 +22,13 @@ server.use(express.json());
 
 server.use(cors({ origin: process.env['CORS_ORIGIN'] }));
 
-server.use(requestLimiterMiddleware);
+server.use(RequestLimiterMiddleware);
 
 server.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
-server.use(apiSecretMiddleware);
+server.use(ApiSecretMiddleware);
 
-server.use(sessionMiddleware);
+server.use(SessionMiddleware);
 
 server.use(characterRoutes);
 server.use(equipmentRoutes);
@@ -36,7 +36,7 @@ server.use(inventoryRoutes);
 server.use(statusRoutes);
 server.use(skillsRoutes);
 
-server.use(exceptionMiddleware);
+server.use(ExceptionMiddleware);
 
 export class Server {
     static connect(): void {

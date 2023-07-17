@@ -1,8 +1,8 @@
 import type { NextFunction, Request, Response } from 'express';
-import { CommonValidators } from 'app/validators/common.validators';
 import { decode, PropsToken } from 'infra/security/token/decode.impl';
+import { CommonValidators } from 'utils/common.validators';
 
-export const sessionMiddleware = async (
+export const SessionMiddleware = async (
     req: Request,
     _res: Response,
     next: NextFunction,
@@ -15,9 +15,9 @@ export const sessionMiddleware = async (
 
     const { sub } = await decode<string, PropsToken>(String(token));
 
-    CommonValidators.validateID(sub);
+    CommonValidators.validateUUID(sub);
 
-    req.headers = { sub: sub };
+    req.headers = { id: sub };
 
     next();
 };

@@ -1,19 +1,19 @@
-import type { IStatusRepository } from './repository/status.repository.interfaces';
-import type { IStatusRequestsToCreate } from './repository/status.requests.interfaces';
+import type { IRequestToCreate } from 'core/requests.interface';
+import type { IStatusRepository } from './common/status.repository.interfaces';
 import { BadRequest } from 'utils/http.exceptions';
 
 export const createCase = async (
-    requests: IStatusRequestsToCreate,
+    req: IRequestToCreate,
     repository: IStatusRepository,
 ) => {
-    const { sub } = requests.getRequestToCreate();
+    const { id } = req.getRequestToCreate();
 
-    if (await repository.findById(sub)) {
+    if (await repository.findById(id)) {
         throw new BadRequest('Only one status allowed per character!');
     }
 
     const status = {
-        pubId: sub,
+        pubId: id,
         points: 15,
         experience: 1,
         strength: 1,
