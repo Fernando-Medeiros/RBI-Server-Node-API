@@ -6,19 +6,19 @@ import type {
 } from 'app/use-cases/skills-cases/common/skills.dto';
 
 export class SkillsRepository implements ISkillsRepository {
-    async findById(sub: string): Promise<SkillsDto | null> {
-        return await model.findOne({ pubId: sub });
+    async findById(id: string): Promise<SkillsDto | null> {
+        return await model.findOne({ pubId: id });
     }
 
-    async findByIdAndDelete(sub: string): Promise<SkillsDto | null> {
-        return await model.findOneAndRemove({ pubId: sub });
+    async findByIdAndDelete(id: string): Promise<SkillsDto | null> {
+        return await model.findOneAndRemove({ pubId: id });
     }
 
     async findByIdAndUpdate(
-        sub: string,
+        id: string,
         data: UpdateSkillsDto,
     ): Promise<SkillsDto | null> {
-        return await model.findOneAndUpdate({ pubId: sub }, data);
+        return await model.findOneAndUpdate({ pubId: id }, data);
     }
 
     async save(data: SkillsDto): Promise<void> {
