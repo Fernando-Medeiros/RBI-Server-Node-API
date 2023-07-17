@@ -1,11 +1,12 @@
-import type { IEquipmentRepository } from './repository/equipment.repository.interfaces';
-import type { IEquipmentRequestsToUpdate } from './repository/equipment.requests.interfaces';
+import type { IRequestToUpdate } from 'core/requests.interface';
+import type { IEquipmentRepository } from './common/equipment.repository.interface';
+import type { UpdateEquipmentDto } from './common/equipment.dto';
 
 export const updateCase = async (
-    requests: IEquipmentRequestsToUpdate,
+    req: IRequestToUpdate<UpdateEquipmentDto>,
     repository: IEquipmentRepository,
 ) => {
-    const { sub, toUpdate } = requests.getRequestToUpdate();
+    const { id, data } = req.getRequestToUpdate();
 
-    await repository.findByIdAndUpdate(sub, toUpdate);
+    await repository.findByIdAndUpdate(id, data);
 };

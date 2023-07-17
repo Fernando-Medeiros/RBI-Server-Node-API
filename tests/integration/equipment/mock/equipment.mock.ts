@@ -1,9 +1,9 @@
-import type { EquipmentProps } from 'app/use-cases/equipment-cases/repository/equipment.props';
+import type { EquipmentDto } from 'app/use-cases/equipment-cases/common/equipment.dto';
 import equipmentDataMock from 'example/equipment.data.mock.json';
 import { v4 } from 'uuid';
 
 export class EquipmentMock {
-    protected props: EquipmentProps;
+    protected props: EquipmentDto;
 
     constructor() {
         this.props = { ...equipmentDataMock, ...{ pubId: v4() } };
@@ -13,7 +13,7 @@ export class EquipmentMock {
         return this.props.pubId;
     }
 
-    get dataToCreate(): EquipmentProps {
+    get dataToCreate(): EquipmentDto {
         return this.props;
     }
 }

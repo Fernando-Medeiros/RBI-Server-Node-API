@@ -1,18 +1,18 @@
-import type { IEquipmentRepository } from './repository/equipment.repository.interfaces';
-import type { IEquipmentRequestsToCreate } from './repository/equipment.requests.interfaces';
+import type { IRequestToCreate } from 'core/requests.interface';
+import type { IEquipmentRepository } from './common/equipment.repository.interface';
 import { BadRequest } from 'utils/http.exceptions';
 
 export const createCase = async (
-    requests: IEquipmentRequestsToCreate,
+    req: IRequestToCreate,
     repository: IEquipmentRepository,
 ) => {
-    const { sub } = requests.getRequestToCreate();
+    const { id } = req.getRequestToCreate();
 
-    if (await repository.findById(sub)) {
+    if (await repository.findById(id)) {
         throw new BadRequest('Only one equipment allowed per character!');
     }
     const equipment = {
-        pubId: sub,
+        pubId: id,
         head: {},
         body: {},
         leg: {},
@@ -21,6 +21,5 @@ export const createCase = async (
         accessoryLeft: {},
         accessoryRight: {},
     };
-
     await repository.save(equipment);
 };
