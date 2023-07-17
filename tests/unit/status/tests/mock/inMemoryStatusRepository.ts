@@ -1,13 +1,12 @@
-import type { Status } from 'domain/entities/status.entity';
 import type {
     StatusDto,
     UpdateStatusDto,
 } from 'app/use-cases/status-cases/common/status.dto';
-import type { IStatusRepository } from 'app/use-cases/status-cases/common/status.repository.interfaces';
+import type { IStatusRepository } from 'app/use-cases/status-cases/common/status.repository.interface';
 import statusDataMock from 'example/status.data.mock.json';
 
 export class InMemoryStatusRepository implements IStatusRepository {
-    private database: Status[] = [];
+    private database: StatusDto[] = [];
     public helpers: InMemoryHelpers;
 
     constructor() {

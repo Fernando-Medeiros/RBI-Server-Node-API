@@ -1,5 +1,5 @@
 import type { IRequestToGetById } from 'core/requests.interface';
-import type { IStatusRepository } from './common/status.repository.interfaces';
+import type { IStatusRepository } from './common/status.repository.interface';
 import { NotFound } from 'utils/http.exceptions';
 
 export const getByIdCase = async (

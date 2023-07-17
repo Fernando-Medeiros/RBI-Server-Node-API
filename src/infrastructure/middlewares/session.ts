@@ -17,7 +17,7 @@ export const SessionMiddleware = async (
 
     CommonValidators.validateUUID(sub);
 
-    req.headers = { id: sub };
+    req.headers = { id: sub, sub };
 
     next();
 };

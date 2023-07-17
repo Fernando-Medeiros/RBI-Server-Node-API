@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { InMemoryStatusRepository } from './mock/inMemoryStatusRepository';
+import { StatusRequests } from 'infra/routes/requests/status.request.impl';
 import { updateCase } from 'app/use-cases/status-cases/update.case';
-import { StatusRequests } from 'infra/routes/requests/status.request';
 
 const repository = new InMemoryStatusRepository();
 const { id } = repository.helpers.pubId();

@@ -1,5 +1,5 @@
 import type { IRequestToUpdate } from 'core/requests.interface';
-import type { IStatusRepository } from './common/status.repository.interfaces';
+import type { IStatusRepository } from './common/status.repository.interface';
 import type { UpdateStatusDto } from './common/status.dto';
 
 export const updateCase = async (

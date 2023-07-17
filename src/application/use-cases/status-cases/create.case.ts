@@ -1,5 +1,5 @@
 import type { IRequestToCreate } from 'core/requests.interface';
-import type { IStatusRepository } from './common/status.repository.interfaces';
+import type { IStatusRepository } from './common/status.repository.interface';
 import { BadRequest } from 'utils/http.exceptions';
 
 export const createCase = async (

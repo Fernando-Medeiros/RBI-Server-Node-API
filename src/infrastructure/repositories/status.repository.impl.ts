@@ -1,4 +1,4 @@
-import type { IStatusRepository } from 'app/use-cases/status-cases/common/status.repository.interfaces';
+import type { IStatusRepository } from 'app/use-cases/status-cases/common/status.repository.interface';
 import { StatusModel as model } from 'infra/models/status.model';
 import type {
     StatusDto,

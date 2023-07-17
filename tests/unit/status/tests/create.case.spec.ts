@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { InMemoryStatusRepository } from './mock/inMemoryStatusRepository';
-import { StatusRequests } from 'infra/routes/requests/status.request';
+import { StatusRequests } from 'infra/routes/requests/status.request.impl';
 import { createCase } from 'app/use-cases/status-cases/create.case';
 
 const repository = new InMemoryStatusRepository();
