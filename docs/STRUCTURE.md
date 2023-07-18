@@ -64,33 +64,14 @@
 │   ├── application
 │   │   └── use-cases
 │   │       ├── character-cases
-│   │       │   ├── repository
-│   │       │   │   ├── character.props.ts
-│   │       │   │   ├── character.repository.interfaces.ts
-│   │       │   │   └── character.requests.interfaces.ts
-│   │       │   ├── requests
-│   │       │   │   ├── create.requests.ts
-│   │       │   │   ├── delete.requests.ts
-│   │       │   │   ├── get-by-id.requests.ts
-│   │       │   │   ├── get-by-name.requests.ts
-│   │       │   │   └── update.requests.ts
-│   │       │   ├── tests
-│   │       │   │   ├── mock
-│   │       │   │   │   ├── inMemoryCharacterRepository.ts
-│   │       │   │   │   └── utils.ts
-│   │       │   │   ├── create.case.spec.ts
-│   │       │   │   ├── delete.case.spec.ts
-│   │       │   │   ├── get-all.case.spec.ts
-│   │       │   │   ├── get-by-id.case.spec.ts
-│   │       │   │   ├── get-by-name.case.spec.ts
-│   │       │   │   └── update.case.spec.ts
+│   │       │   ├── common
+│   │       │   │   ├── character.dto.ts
+│   │       │   │   └── character.repository.interface.ts
 │   │       │   ├── validators
 │   │       │   │   └── validators.ts
 │   │       │   ├── create.case.ts
 │   │       │   ├── delete.case.ts
-│   │       │   ├── get-all.case.ts
 │   │       │   ├── get-by-id.case.ts
-│   │       │   ├── get-by-name.case.ts
 │   │       │   └── update.case.ts
 │   │       ├── equipment-cases
 │   │       │   ├── common
@@ -177,6 +158,7 @@
 │   │   │   │   └── status.handler.ts
 │   │   │   ├── requests
 │   │   │   │   ├── base.requests.ts
+│   │   │   │   ├── character.request.impl.ts
 │   │   │   │   ├── equipment.request.impl.ts
 │   │   │   │   ├── inventory.request.impl.ts
 │   │   │   │   ├── skills.request.impl.ts
@@ -226,13 +208,7 @@
 │   │   │   ├── delete
 │   │   │   │   ├── exceptions.spec.ts
 │   │   │   │   └── success.spec.ts
-│   │   │   ├── get-all
-│   │   │   │   ├── exceptions.spec.ts
-│   │   │   │   └── success.spec.ts
 │   │   │   ├── get-by-id
-│   │   │   │   ├── exceptions.spec.ts
-│   │   │   │   └── success.spec.ts
-│   │   │   ├── get-by-name
 │   │   │   │   ├── exceptions.spec.ts
 │   │   │   │   └── success.spec.ts
 │   │   │   ├── mock
@@ -301,6 +277,13 @@
 │   │           ├── exceptions.spec.ts
 │   │           └── success.spec.ts
 │   └── unit
+│       ├── character
+│       │   ├── mock
+│       │   │   └── inMemoryCharacterRepository.ts
+│       │   ├── create.case.spec.ts
+│       │   ├── delete.case.spec.ts
+│       │   ├── get-by-id.case.spec.ts
+│       │   └── update.case.spec.ts
 │       ├── equipment
 │       │   ├── mock
 │       │   │   └── inMemoryEquipmentRepository.ts
@@ -341,6 +324,6 @@
 ├── vitest.config.ts
 └── yarn.lock
 
-107 directories, 230 files
+104 directories, 216 files
 
 ```

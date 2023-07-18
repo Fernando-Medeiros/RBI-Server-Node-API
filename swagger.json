@@ -63,29 +63,6 @@
                 "type": "string",
                 "required": true
             },
-            "ParameterName": {
-                "description": "Character Name",
-                "name": "name",
-                "in": "path",
-                "type": "string",
-                "required": true
-            },
-            "ResponseGetAllCharacters": {
-                "type": "array",
-                "items": {
-                    "type": "object",
-                    "properties": {
-                        "pubId": { "type": "string", "format": "uuid" },
-                        "level": { "type": "number", "example": "1" },
-                        "charName": {
-                            "type": "string",
-                            "example": "ExampleName"
-                        },
-                        "className": { "type": "string", "example": "Warrior" },
-                        "gender": { "type": "string", "example": "man | woman" }
-                    }
-                }
-            },
             "ResponseGetByIdOrNameCharacter": {
                 "type": "object",
                 "properties": {
@@ -333,35 +310,6 @@
                     }
                 }
             },
-            "get": {
-                "tags": ["character"],
-                "summary": "Get all characters",
-                "security": [{ "bearerAuth": [] }],
-                "description": "",
-                "parameters": [],
-                "responses": {
-                    "200": {
-                        "description": "Successful Response",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ResponseGetAllCharacters"
-                                }
-                            }
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Unauthorized"
-                                }
-                            }
-                        }
-                    }
-                }
-            },
             "patch": {
                 "tags": ["character"],
                 "summary": "Update character",
@@ -439,59 +387,6 @@
                 "security": [{ "bearerAuth": [] }],
                 "description": "",
                 "parameters": [{ "$ref": "#/components/schemas/ParameterID" }],
-                "responses": {
-                    "200": {
-                        "description": "Successful Response",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ResponseGetByIdOrNameCharacter"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/BadRequest"
-                                }
-                            }
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Unauthorized"
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "Not Found",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/NotFound"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/characters/name/{name}": {
-            "get": {
-                "tags": ["character"],
-                "summary": "Find a character by name",
-                "security": [{ "bearerAuth": [] }],
-                "description": "",
-                "parameters": [
-                    { "$ref": "#/components/schemas/ParameterName" }
-                ],
                 "responses": {
                     "200": {
                         "description": "Successful Response",
