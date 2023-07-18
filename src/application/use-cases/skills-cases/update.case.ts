@@ -1,11 +1,12 @@
-import type { ISkillsRepository } from './repository/skills.repository.interfaces';
-import type { ISkillsRequestsToUpdate } from './repository/skills.requests.interfaces';
+import type { IRequestToUpdate } from 'core/requests.interface';
+import type { ISkillsRepository } from './common/skills.repository.interface';
+import type { UpdateSkillsDto } from './common/skills.dto';
 
 export const updateCase = async (
-    requests: ISkillsRequestsToUpdate,
+    requests: IRequestToUpdate<UpdateSkillsDto>,
     repository: ISkillsRepository,
 ) => {
-    const { sub, toUpdate } = requests.getRequestToUpdate();
+    const { id, data } = requests.getRequestToUpdate();
 
-    await repository.findByIdAndUpdate(sub, toUpdate);
+    await repository.findByIdAndUpdate(id, data);
 };

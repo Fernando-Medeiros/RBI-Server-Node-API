@@ -1,9 +1,9 @@
-import type { SkillsProps } from 'app/use-cases/skills-cases/repository/skills.props';
+import type { SkillsDto } from 'app/use-cases/skills-cases/common/skills.dto';
 import skillsDataMock from 'example/skills.data.mock.json';
 import { v4 } from 'uuid';
 
 export class SkillsMock {
-    private props: SkillsProps;
+    private props: SkillsDto;
 
     constructor() {
         this.props = { ...skillsDataMock, ...{ pubId: v4() } };
@@ -13,7 +13,7 @@ export class SkillsMock {
         return this.props.pubId;
     }
 
-    get dataToCreate(): SkillsProps {
+    get dataToCreate(): SkillsDto {
         return this.props;
     }
 }
