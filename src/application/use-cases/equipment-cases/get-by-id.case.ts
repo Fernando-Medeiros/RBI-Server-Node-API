@@ -1,14 +1,14 @@
-import type { IEquipmentRepository } from './repository/equipment.repository.interfaces';
-import type { IEquipmentRequestsToGetById } from './repository/equipment.requests.interfaces';
+import type { IRequestToGetById } from 'core/requests.interface';
+import type { IEquipmentRepository } from './common/equipment.repository.interface';
 import { NotFound } from 'utils/http.exceptions';
 
 export const getByIdCase = async (
-    requests: IEquipmentRequestsToGetById,
+    req: IRequestToGetById,
     repository: IEquipmentRepository,
 ) => {
-    const { sub } = requests.getRequestToGetById();
+    const { id } = req.getRequestToGetById();
 
-    const equipments = await repository.findById(sub);
+    const equipments = await repository.findById(id);
 
     if (!equipments) {
         throw new NotFound('Equipments not found!');

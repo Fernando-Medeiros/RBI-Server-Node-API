@@ -1,14 +1,14 @@
-import type { IEquipmentRepository } from './repository/equipment.repository.interfaces';
-import type { IEquipmentRequestsToDelete } from './repository/equipment.requests.interfaces';
+import type { IRequestToDelete } from 'core/requests.interface';
+import type { IEquipmentRepository } from './common/equipment.repository.interface';
 import { NotFound } from 'utils/http.exceptions';
 
 export const deleteCase = async (
-    requests: IEquipmentRequestsToDelete,
+    req: IRequestToDelete,
     repository: IEquipmentRepository,
 ) => {
-    const { sub } = requests.getRequestToDelete();
+    const { id } = req.getRequestToDelete();
 
-    const result = await repository.findByIdAndDelete(sub);
+    const result = await repository.findByIdAndDelete(id);
 
     if (!result) {
         throw new NotFound('Equipments not found!');
