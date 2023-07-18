@@ -1,11 +1,12 @@
-import type { IStatusRepository } from './repository/status.repository.interfaces';
-import type { IStatusRequestsToUpdate } from './repository/status.requests.interfaces';
+import type { IRequestToUpdate } from 'core/requests.interface';
+import type { IStatusRepository } from './common/status.repository.interface';
+import type { UpdateStatusDto } from './common/status.dto';
 
 export const updateCase = async (
-    requests: IStatusRequestsToUpdate,
+    req: IRequestToUpdate<UpdateStatusDto>,
     repository: IStatusRepository,
 ) => {
-    const { sub, toUpdate } = requests.getRequestToUpdate();
+    const { id, data } = req.getRequestToUpdate();
 
-    await repository.findByIdAndUpdate(sub, toUpdate);
+    await repository.findByIdAndUpdate(id, data);
 };

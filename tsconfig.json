@@ -20,6 +20,7 @@
             "app/*": ["src/application/*", "dist/src/application/*"],
             "domain/*": ["src/domain/*", "dist/src/domain/*"],
             "infra/*": ["src/infrastructure/*", "dist/src/infrastructure/*"],
+            "core/*": ["src/core/*", "dist/src/core/*"],
             "utils/*": ["src/utils/*", "dist/src/utils/*"],
             "docs/*": ["docs/*"],
             "tests/*": ["tests/*"],

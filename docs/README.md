@@ -6,7 +6,6 @@
 ![Docker](https://img.shields.io/badge/Docker-white?style=for-the-badge&logo=Docker&logoColor=black)
 ![MongoDB](https://img.shields.io/badge/MongoDB-white?style=for-the-badge&logo=Mongodb&logoColor=black)
 ![Redis](https://img.shields.io/badge/Redis-white?style=for-the-badge&logo=Redis&logoColor=black)
-![Heroku](https://img.shields.io/badge/Heroku-white?style=for-the-badge&logo=Heroku&logoColor=black)
 
 Este projeto é uma API backend que funciona como servidor para um jogo de RPG. Ele permite a criação e gerenciamento de personagens, incluindo status, inventário, equipamentos e habilidades.
 

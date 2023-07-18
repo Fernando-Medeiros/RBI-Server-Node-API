@@ -1,44 +1,39 @@
 import type { Request } from 'express';
 import { StatusRepository } from 'infra/repositories/status.repository.impl';
-import { StatusRequestsToCreate } from 'app/use-cases/status-cases/requests/create.requests';
-import { StatusRequestsToDelete } from 'app/use-cases/status-cases/requests/delete.requests';
-import { StatusRequestsToUpdate } from 'app/use-cases/status-cases/requests/update.requests';
-import { StatusRequestsToGetById } from 'app/use-cases/status-cases/requests/get-by-id.requests';
+import { StatusRequests } from 'infra/routes/requests/status.request.impl';
 import { createCase } from 'app/use-cases/status-cases/create.case';
 import { deleteCase } from 'app/use-cases/status-cases/delete.case';
-import { getByIdCase } from 'app/use-cases/status-cases/get-by-id.case';
 import { updateCase } from 'app/use-cases/status-cases/update.case';
+import { getByIdCase } from 'app/use-cases/status-cases/get-by-id.case';
 
 export class StatusHandler {
-    private readonly Repository = new StatusRepository();
+    private static readonly Repository = new StatusRepository();
 
     async getStatusById(req: Request) {
         return await getByIdCase(
-            new StatusRequestsToGetById(Object(req.params)),
-            this.Repository,
+            new StatusRequests({ ...req.params, ...req.body }),
+            StatusHandler.Repository,
         );
     }
 
     async createStatus(req: Request) {
         return await createCase(
-            new StatusRequestsToCreate(Object(req.headers)),
-            this.Repository,
+            new StatusRequests({ ...req.headers, ...req.body }),
+            StatusHandler.Repository,
         );
     }
 
     async deleteStatus(req: Request) {
         return await deleteCase(
-            new StatusRequestsToDelete(Object(req.headers)),
-            this.Repository,
+            new StatusRequests({ ...req.headers, ...req.body }),
+            StatusHandler.Repository,
         );
     }
 
     async updateStatus(req: Request) {
         return await updateCase(
-            new StatusRequestsToUpdate(
-                Object.assign({}, req.headers, req.body),
-            ),
-            this.Repository,
+            new StatusRequests({ ...req.headers, ...req.body }),
+            StatusHandler.Repository,
         );
     }
 }

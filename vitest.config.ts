@@ -13,6 +13,7 @@ export default defineConfig({
             app: path.resolve(__dirname, './src/application/'),
             domain: path.resolve(__dirname, './src/domain/'),
             infra: path.resolve(__dirname, './src/infrastructure/'),
+            core: path.resolve(__dirname, './src/core/'),
             utils: path.resolve(__dirname, './src/utils/'),
             docs: path.resolve(__dirname, './docs/'),
             tests: path.resolve(__dirname, './tests/'),

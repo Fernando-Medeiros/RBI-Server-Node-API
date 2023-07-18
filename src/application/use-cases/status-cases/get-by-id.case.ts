@@ -1,19 +1,18 @@
-import type { IStatusRepository } from './repository/status.repository.interfaces';
-import type { IStatusRequestsToGetById } from './repository/status.requests.interfaces';
+import type { IRequestToGetById } from 'core/requests.interface';
+import type { IStatusRepository } from './common/status.repository.interface';
 import { NotFound } from 'utils/http.exceptions';
 
 export const getByIdCase = async (
-    requests: IStatusRequestsToGetById,
+    req: IRequestToGetById,
     repository: IStatusRepository,
 ) => {
-    const { sub } = requests.getRequestToGetById();
+    const { id } = req.getRequestToGetById();
 
-    const status = await repository.findById(sub);
+    const status = await repository.findById(id);
 
     if (!status) {
         throw new NotFound('Status not found!');
     }
-
     const {
         pubId,
         points,

@@ -1,14 +1,14 @@
-import type { IStatusRepository } from './repository/status.repository.interfaces';
-import type { IStatusRequestsToDelete } from './repository/status.requests.interfaces';
+import type { IRequestToDelete } from 'core/requests.interface';
+import type { IStatusRepository } from './common/status.repository.interface';
 import { NotFound } from 'utils/http.exceptions';
 
 export const deleteCase = async (
-    requests: IStatusRequestsToDelete,
+    req: IRequestToDelete,
     repository: IStatusRepository,
 ) => {
-    const { sub } = requests.getRequestToDelete();
+    const { id } = req.getRequestToDelete();
 
-    if (!(await repository.findByIdAndDelete(sub))) {
+    if (!(await repository.findByIdAndDelete(id))) {
         throw new NotFound('Status not found!');
     }
 };
