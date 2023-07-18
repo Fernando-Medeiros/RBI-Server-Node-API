@@ -292,29 +292,26 @@
 │       │   ├── get-by-id.case.spec.ts
 │       │   └── update.case.spec.ts
 │       ├── inventory
-│       │   └── tests
-│       │       ├── mock
-│       │       │   └── inMemoryInventoryRepository.ts
-│       │       ├── create.case.spec.ts
-│       │       ├── delete.case.spec.ts
-│       │       ├── get-by-id.case.spec.ts
-│       │       └── update.case.spec.ts
+│       │   ├── mock
+│       │   │   └── inMemoryInventoryRepository.ts
+│       │   ├── create.case.spec.ts
+│       │   ├── delete.case.spec.ts
+│       │   ├── get-by-id.case.spec.ts
+│       │   └── update.case.spec.ts
 │       ├── skills
-│       │   └── tests
-│       │       ├── mock
-│       │       │   └── inMemorySkillsRepository.ts
-│       │       ├── create.case.spec.ts
-│       │       ├── delete.case.spec.ts
-│       │       ├── get-by-id.case.spec.ts
-│       │       └── update.case.spec.ts
+│       │   ├── mock
+│       │   │   └── inMemorySkillsRepository.ts
+│       │   ├── create.case.spec.ts
+│       │   ├── delete.case.spec.ts
+│       │   ├── get-by-id.case.spec.ts
+│       │   └── update.case.spec.ts
 │       └── status
-│           └── tests
-│               ├── mock
-│               │   └── inMemoryStatusRepository.ts
-│               ├── create.case.spec.ts
-│               ├── delete.case.spec.ts
-│               ├── get-by-id.case.spec.ts
-│               └── update.case.spec.ts
+│           ├── mock
+│           │   └── inMemoryStatusRepository.ts
+│           ├── create.case.spec.ts
+│           ├── delete.case.spec.ts
+│           ├── get-by-id.case.spec.ts
+│           └── update.case.spec.ts
 ├── docker-compose.yml
 ├── Dockerfile
 ├── env.example
@@ -324,6 +321,6 @@
 ├── vitest.config.ts
 └── yarn.lock
 
-104 directories, 216 files
+101 directories, 216 files
 
 ```

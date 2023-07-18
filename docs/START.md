@@ -1,49 +1,39 @@
 # Start
 
-## Install dependencies
-
 ```sh
-# 1
+# Install dependencies
 yarn install
 
-# 2
+# build the containers
 docker compose up
 
-# 3
+# run bash inside app container
 docker compose exec app bash
 ```
 
 ## Tests
 
-### To run the scope tests [domain - application]
+### Scope: **Unit** - application (InMemoryDatabase)
 
 ```sh
-# use-cases
-yarn test src/app
-
-# entities
-yarn test src/dom
-
-# entities and use-cases
-yarn test src/
+yarn test unit
 ```
 
-### To run the scope tests integration -> integration -> [mongo - redis]
+### Scope: **Integration** -> [mongo & redis containers] (docker)
 
 ```sh
-# 1
-docker compose up -d
+yarn test integration
+```
 
-# 2
-docker compose exec app bash
+### Scope: **E2E** -> [mongo & redis containers] (docker)
 
-# 3
-yarn test tests/
+```sh
+yarn test e2e
 ```
 
 ## Docker - Tips
 
-### D-Containers
+### Containers
 
 ```sh
 # List containers
@@ -52,11 +42,14 @@ docker container ls
 # Running containers
 docker container stats
 
-# Stop containers
+# Stop container
 docker container stop <nameContainer>
+
+# remove container
+docker container rm <nameContainer>
 ```
 
-### D-Images
+### Images
 
 ```sh
 # List images

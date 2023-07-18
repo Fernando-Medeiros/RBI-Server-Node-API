@@ -12,49 +12,52 @@ Este projeto é uma API backend que funciona como servidor para um jogo de RPG. 
 > -   [Como inicializar o projeto](START.md)
 > -   [Estrutura das pastas e arquivos (tree)](STRUCTURE.md)
 > -   [Documentação - swagger - arquivo](../swagger.json)
-> -   [Documentação - swagger - deploy](https://rbi-server-node-api.herokuapp.com/docs)
+> -   [Documentação - swagger - deploy](https://rbi-server-node-api.onrender.com/docs/)
 > -   [Scripts do projeto](../scripts/)
 
 ## Endpoints
 
 ### Character
 
-> -   GET /characters
-> -   GET /characters/:id
-> -   GET /characters/name/:name
-> -   POST /characters
-> -   PATCH /characters
-> -   DELETE /characters
-> -   [endpoints-image](endpoints/character.png)
+> -   **GET** /characters/:id
+> -   **POST** /characters
+> -   **PATCH** /characters
+> -   **DELETE** /characters
+> -   [endpoints - png](endpoints/character.png)
+> -   [character example - json](../examples/character.data.mock.json)
 
 ### Status
 
-> -   GET /status/:id
-> -   POST /status
-> -   PATCH /status
-> -   DELETE /status
-> -   [endpoints-image](endpoints/status.png)
+> -   **GET** /status/:id
+> -   **POST** /status
+> -   **PATCH** /status
+> -   **DELETE** /status
+> -   [endpoints - png](endpoints/status.png)
+> -   [status example - json](../examples/status.data.mock.json)
 
 ### Inventory
 
-> -   GET /inventories/:id
-> -   POST /inventories
-> -   PATCH /inventories
-> -   DELETE /inventories
-> -   [endpoints-image](endpoints/inventory.png)
+> -   **GET** /inventories/:id
+> -   **POST** /inventories
+> -   **PATCH** /inventories
+> -   **DELETE** /inventories
+> -   [endpoints - png](endpoints/inventory.png)
+> -   [inventory example - json](../examples/inventory.data.mock.json)
 
 ### Equipment
 
-> -   GET /equipments/:id
-> -   POST /equipments
-> -   PATCH /equipments
-> -   DELETE /equipments
-> -   [endpoints-image](endpoints/equipment.png)
+> -   **GET** /equipments/:id
+> -   **POST** /equipments
+> -   **PATCH** /equipments
+> -   **DELETE** /equipments
+> -   [endpoints - png](endpoints/equipment.png)
+> -   [equipment example - json](../examples/equipment.data.mock.json)
 
 ### Skills
 
-> -   GET /skills/:id
-> -   POST /skills
-> -   PATCH /skills
-> -   DELETE /skills
-> -   [endpoints-image](endpoints/skills.png)
+> -   **GET** /skills/:id
+> -   **POST** /skills
+> -   **PATCH** /skills
+> -   **DELETE** /skills
+> -   [endpoints - png](endpoints/skills.png)
+> -   [skills example - json](../examples/skills.data.mock.json)
