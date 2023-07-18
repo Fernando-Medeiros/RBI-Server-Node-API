@@ -1,14 +1,14 @@
-import type { IInventoryRepository } from './repository/inventory.repository.interfaces';
-import type { IInventoryRequestsToGetById } from './repository/inventory.requests.interfaces';
+import type { IRequestToGetById } from 'core/requests.interface';
+import type { IInventoryRepository } from './common/inventory.repository.interface';
 import { NotFound } from 'utils/http.exceptions';
 
 export const getByIdCase = async (
-    requests: IInventoryRequestsToGetById,
+    req: IRequestToGetById,
     repository: IInventoryRepository,
 ) => {
-    const { sub } = requests.getRequestToGetById();
+    const { id } = req.getRequestToGetById();
 
-    const inventory = await repository.findById(sub);
+    const inventory = await repository.findById(id);
 
     if (!inventory) {
         throw new NotFound('Inventory not found!');

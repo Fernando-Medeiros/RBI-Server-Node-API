@@ -1,14 +1,14 @@
-import type { IInventoryRepository } from './repository/inventory.repository.interfaces';
-import type { IInventoryRequestsToDelete } from './repository/inventory.requests.interfaces';
+import type { IRequestToDelete } from 'core/requests.interface';
+import type { IInventoryRepository } from './common/inventory.repository.interface';
 import { NotFound } from 'utils/http.exceptions';
 
 export const deleteCase = async (
-    requests: IInventoryRequestsToDelete,
+    requests: IRequestToDelete,
     repository: IInventoryRepository,
 ) => {
-    const { sub } = requests.getRequestToDelete();
+    const { id } = requests.getRequestToDelete();
 
-    const result = await repository.findByIdAndDelete(sub);
+    const result = await repository.findByIdAndDelete(id);
 
     if (!result) {
         throw new NotFound('Inventory not found!');
