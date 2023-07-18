@@ -1,33 +1,4 @@
 {
-    "ResponseGetAllCharacters": {
-        "type": "array",
-        "items": {
-            "type": "object",
-            "properties": {
-                "pubId": {
-                    "type": "string",
-                    "format": "uuid"
-                },
-                "level": {
-                    "type": "number",
-                    "example": "1"
-                },
-                "charName": {
-                    "type": "string",
-                    "example": "ExampleName"
-                },
-                "className": {
-                    "type": "string",
-                    "example": "Warrior"
-                },
-                "gender": {
-                    "type": "string",
-                    "example": "man | woman"
-                }
-            }
-        }
-    },
-
     "ResponseGetByIdOrNameCharacter": {
         "type": "object",
         "properties": {
