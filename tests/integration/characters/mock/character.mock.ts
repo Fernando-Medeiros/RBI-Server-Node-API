@@ -1,9 +1,9 @@
-import type { CharacterProps } from 'app/use-cases/character-cases/repository/character.props';
+import type { CharacterDto } from 'app/use-cases/character-cases/common/character.dto';
 import characterDataMock from 'example/character.data.mock.json';
 import { v4 } from 'uuid';
 
 export class CharacterMock {
-    protected props: CharacterProps;
+    protected props: CharacterDto;
 
     constructor(charName: string) {
         this.props = {
@@ -21,7 +21,7 @@ export class CharacterMock {
         return this.props.charName;
     }
 
-    get dataToCreate(): CharacterProps {
+    get dataToCreate(): CharacterDto {
         return this.props;
     }
 }

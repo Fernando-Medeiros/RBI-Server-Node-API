@@ -8,20 +8,8 @@ import {
 
 const handler = new CharacterHandler();
 
-export const getAllCharacters = async (_req: Request, res: Response) => {
-    const characters = await handler.getAllCharacters();
-
-    return new StatusOK(res, characters);
-};
-
 export const getCharacterById = async (req: Request, res: Response) => {
     const character = await handler.getCharacterById(req);
-
-    return new StatusOK(res, character);
-};
-
-export const getCharacterByName = async (req: Request, res: Response) => {
-    const character = await handler.getCharacterByName(req);
 
     return new StatusOK(res, character);
 };

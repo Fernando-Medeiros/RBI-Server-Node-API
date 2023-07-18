@@ -1,8 +1,8 @@
-export interface IRequestToCreate {
-    getRequestToCreate(): { id: string };
+export interface IRequestToCreate<T = object> {
+    getRequestToCreate(): { id: string; data: T };
 }
 
-export interface IRequestToUpdate<T> {
+export interface IRequestToUpdate<T = object> {
     getRequestToUpdate(): { id: string; data: T };
 }
 

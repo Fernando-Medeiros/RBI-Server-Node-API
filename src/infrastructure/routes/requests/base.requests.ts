@@ -10,10 +10,10 @@ export class BaseRequests
 {
     constructor(protected payload: { id: string }) {}
 
-    getRequestToCreate(): { id: string } {
+    getRequestToCreate(): { id: string; data: object } {
         const { id } = this.payload;
         CommonValidators.validateUUID(id);
-        return { id };
+        return { id, data: {} };
     }
 
     getRequestToDelete(): { id: string } {

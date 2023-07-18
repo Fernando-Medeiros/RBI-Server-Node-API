@@ -1,8 +1,6 @@
 import { Router } from 'express';
 import {
     getCharacterById,
-    getAllCharacters,
-    getCharacterByName,
     createCharacter,
     updateCharacter,
     deleteCharacter,
@@ -10,11 +8,7 @@ import {
 
 export const routes = Router();
 
-routes.get('/characters', getAllCharacters);
-
 routes.get('/characters/:id', getCharacterById);
-
-routes.get('/characters/name/:name', getCharacterByName);
 
 routes.post('/characters', createCharacter);
 

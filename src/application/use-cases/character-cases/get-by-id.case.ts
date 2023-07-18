@@ -1,12 +1,12 @@
-import type { ICharacterRepository } from './repository/character.repository.interfaces';
-import type { ICharacterRequestsToGetById } from './repository/character.requests.interfaces';
+import type { IRequestToGetById } from 'core/requests.interface';
+import type { ICharacterRepository } from './common/character.repository.interface';
 import { NotFound } from 'utils/http.exceptions';
 
 export const getByIdCase = async (
-    requests: ICharacterRequestsToGetById,
+    req: IRequestToGetById,
     repository: ICharacterRepository,
 ) => {
-    const { id } = requests.getRequestToGetById();
+    const { id } = req.getRequestToGetById();
 
     const character = await repository.findById(id);
 

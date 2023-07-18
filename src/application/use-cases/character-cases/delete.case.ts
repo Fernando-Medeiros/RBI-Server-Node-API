@@ -1,14 +1,14 @@
-import type { ICharacterRepository } from './repository/character.repository.interfaces';
-import type { ICharacterRequestsToDelete } from './repository/character.requests.interfaces';
+import type { IRequestToDelete } from 'core/requests.interface';
+import type { ICharacterRepository } from './common/character.repository.interface';
 import { NotFound } from 'utils/http.exceptions';
 
 export const deleteCase = async (
-    requests: ICharacterRequestsToDelete,
+    req: IRequestToDelete,
     repository: ICharacterRepository,
 ): Promise<void> => {
-    const { sub } = requests.getRequestToDelete();
+    const { id } = req.getRequestToDelete();
 
-    const result = await repository.findByIdAndDelete(sub);
+    const result = await repository.findByIdAndDelete(id);
 
     if (!result) {
         throw new NotFound('Character not found!');

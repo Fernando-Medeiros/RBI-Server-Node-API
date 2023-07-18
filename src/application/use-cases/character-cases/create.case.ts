@@ -1,20 +1,21 @@
-import type { ICharacterRepository } from './repository/character.repository.interfaces';
-import type { ICharacterRequestsToCreate } from './repository/character.requests.interfaces';
+import type { IRequestToCreate } from 'core/requests.interface';
+import type { CreateCharacterDto } from './common/character.dto';
+import type { ICharacterRepository } from './common/character.repository.interface';
 import { BadRequest } from 'utils/http.exceptions';
 
 export const createCase = async (
-    requests: ICharacterRequestsToCreate,
+    req: IRequestToCreate<CreateCharacterDto>,
     repository: ICharacterRepository,
 ) => {
-    const { sub, toCreate } = requests.getRequestToCreate();
+    const { data } = req.getRequestToCreate();
 
-    toCreate.pubId = sub;
+    const { charName } = data;
 
-    const nameExists = await repository.findByName(toCreate.charName);
+    const charNameInUse = await repository.find({ charName });
 
-    if (nameExists) {
+    if (charNameInUse) {
         throw new BadRequest('Character name is already in use!');
     }
 
-    await repository.save(toCreate);
+    await repository.save(data);
 };
