@@ -1,14 +1,16 @@
 import { describe, it, expect } from 'vitest';
-import { InMemorySkillsRepository } from './mock/inMemorySkillsRepository';
+import { InMemorySkillsRepository } from './mock/in-memory.skills.repository';
 import { SkillsRequests } from 'infra/routes/requests/skills.request.impl';
 import { getByIdCase } from 'app/use-cases/skills-cases/get-by-id.case';
+import { BadRequest, NotFound } from 'utils/http.exceptions';
 
 const repository = new InMemorySkillsRepository();
-const { id } = repository.helpers.pubId();
+
+const { pubId: id } = repository.getDataMock();
+
+repository.save(repository.getDataMock());
 
 describe('Get-By-Id-> Skills-OK', () => {
-    repository.helpers.insertOneToDatabase();
-
     it('Should get a Skills by id', async () => {
         const res = await getByIdCase(new SkillsRequests({ id }), repository);
 
@@ -17,19 +19,19 @@ describe('Get-By-Id-> Skills-OK', () => {
 });
 
 describe('Get-By-Id-> Skills-Exceptions', () => {
-    it('Should return error when passing an invalid id', async () => {
+    it('Should return [BadRequest] when passing an invalid id', async () => {
         await expect(() =>
             getByIdCase(new SkillsRequests({ id: '000-000' }), repository),
-        ).rejects.toThrowError('Could not verify credentials');
+        ).rejects.toThrowError(BadRequest);
     });
 
-    it('Should return error when passing an null id', async () => {
+    it('Should return [BadRequest] when passing an null id', async () => {
         await expect(() =>
             getByIdCase(new SkillsRequests({ id: '' }), repository),
-        ).rejects.toThrowError('Could not verify credentials');
+        ).rejects.toThrowError(BadRequest);
     });
 
-    it('Should return [not found] when entering a valid but non-existent id', async () => {
+    it('Should return [NotFound] when entering a valid but non-existent id', async () => {
         await expect(() =>
             getByIdCase(
                 new SkillsRequests({
@@ -37,6 +39,6 @@ describe('Get-By-Id-> Skills-Exceptions', () => {
                 }),
                 repository,
             ),
-        ).rejects.toThrowError('not found');
+        ).rejects.toThrowError(NotFound);
     });
 });

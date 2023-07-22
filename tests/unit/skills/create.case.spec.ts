@@ -1,10 +1,12 @@
 import { describe, it, expect } from 'vitest';
-import { InMemorySkillsRepository } from './mock/inMemorySkillsRepository';
+import { InMemorySkillsRepository } from './mock/in-memory.skills.repository';
 import { SkillsRequests } from 'infra/routes/requests/skills.request.impl';
 import { createCase } from 'app/use-cases/skills-cases/create.case';
+import { BadRequest } from 'utils/http.exceptions';
 
 const repository = new InMemorySkillsRepository();
-const { id } = repository.helpers.pubId();
+
+const { pubId: id } = repository.getDataMock();
 
 describe('Create-> Skills-OK', () => {
     it('Should create the Skills', async () => {
@@ -15,9 +17,9 @@ describe('Create-> Skills-OK', () => {
 });
 
 describe('Create-> Skills-Exceptions', () => {
-    it('Should return error when trying to duplicate a Skills in use', async () => {
+    it('Should return [BadRequest] when trying to duplicate a Skills in use', async () => {
         await expect(() =>
             createCase(new SkillsRequests({ id }), repository),
-        ).rejects.toThrowError('one Skills allowed per character');
+        ).rejects.toThrowError(BadRequest);
     });
 });
