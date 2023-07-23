@@ -1,9 +1,22 @@
-import type { IRepository } from 'core/repository.interface';
+import type {
+    IRepository,
+    IRepositoryExtension,
+} from 'core/repository.interface';
 
 export abstract class MemoryRepository<Dto, Update, Create = object>
-    implements IRepository<Dto, Update, Create>
+    implements IRepository<Dto, Update, Create>, IRepositoryExtension<Dto>
 {
     private Database: Dto[] = [];
+
+    async find(query: Partial<Dto>): Promise<Dto | null> {
+        return (
+            this.Database.find(C =>
+                Object.values(C as object)
+                    .toString()
+                    .includes(Object.values(query).toString()),
+            ) || null
+        );
+    }
 
     async findById(id: string): Promise<Dto | null> {
         return this.Database.find(e => Object(e).pubId === id) || null;
