@@ -1,0 +1,23 @@
+name: CI - Pull Requests
+
+on:
+    pull_request:
+        branches:
+            - master
+
+jobs:
+    verify-build-and-tests:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v3
+
+              name: SETUP NODEJS
+            - uses: actions/setup-node@v3
+              with:
+                  nove-version: '18.x'
+
+              name: INSTALL && BUILD
+            - run: yarn install
+            - run: yarn build
+            - run: yarn test unit
