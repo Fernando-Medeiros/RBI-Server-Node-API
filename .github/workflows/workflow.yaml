@@ -24,10 +24,6 @@ jobs:
 
                   sleep 30
 
-            - name: EXEC UNIT TESTS
-              run: |
-                  docker compose exec app bash
-
                   yarn test unit
 
             - name: STOP DOCKER CONTAINERS
