@@ -1,37 +1,37 @@
 import type { Request } from 'express';
-import { CharacterRepository } from 'infra/repositories/character.repository.impl';
-import { CharacterRequests } from 'infra/routes/requests/character.request.impl';
+import { CharacterRepository } from '../repositories/character.repository.impl';
+import { CharacterRequests } from '../requests/character.request.impl';
 import { createCase } from 'app/use-cases/character-cases/create.case';
 import { deleteCase } from 'app/use-cases/character-cases/delete.case';
 import { updateCase } from 'app/use-cases/character-cases/update.case';
 import { getByIdCase } from 'app/use-cases/character-cases/get-by-id.case';
 
-export class CharacterHandler {
+export default class CharacterHandler {
     private static readonly Repository = new CharacterRepository();
 
-    async getCharacterById(req: Request) {
-        return await getByIdCase(
+    static async getCharacterById(req: Request) {
+        return getByIdCase(
             new CharacterRequests({ ...req.params, ...req.body }),
             CharacterHandler.Repository,
         );
     }
 
-    async createCharacter(req: Request) {
-        return await createCase(
+    static async createCharacter(req: Request) {
+        return createCase(
             new CharacterRequests({ ...req.headers, ...req.body }),
             CharacterHandler.Repository,
         );
     }
 
-    async deleteCharacter(req: Request) {
-        return await deleteCase(
+    static async deleteCharacter(req: Request) {
+        return deleteCase(
             new CharacterRequests({ ...req.headers, ...req.body }),
             CharacterHandler.Repository,
         );
     }
 
-    async updateCharacter(req: Request) {
-        return await updateCase(
+    static async updateCharacter(req: Request) {
+        return updateCase(
             new CharacterRequests({ ...req.headers, ...req.body }),
             CharacterHandler.Repository,
         );

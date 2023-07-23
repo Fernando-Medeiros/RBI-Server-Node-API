@@ -1,17 +1,12 @@
 import { Router } from 'express';
-import {
-    getStatusById,
-    createStatus,
-    updateStatus,
-    deleteStatus,
-} from '../controllers/status.controller';
+import Controller from '../controllers/status.controller';
 
 export const routes = Router();
 
-routes.get('/status/:id', getStatusById);
+routes.get('/status/:id', Controller.getStatusById);
 
-routes.post('/status', createStatus);
+routes.post('/status', Controller.createStatus);
 
-routes.patch('/status', updateStatus);
+routes.patch('/status', Controller.updateStatus);
 
-routes.delete('/status', deleteStatus);
+routes.delete('/status', Controller.deleteStatus);

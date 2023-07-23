@@ -1,33 +1,33 @@
 import type { Request, Response } from 'express';
-import { InventoryHandler } from '../handlers/inventory.handler';
+import InventoryHandler from '../handlers/inventory.handler';
 import {
-    StatusCreated,
-    StatusOK,
-    StatusOkNoContent,
+    HttpStatusCreated,
+    HttpStatusOk,
+    HttpStatusNoContent,
 } from 'utils/http.protocols';
 
-const handler = new InventoryHandler();
+export default class InventoryController {
+    static async getInventoryById(req: Request, res: Response) {
+        const inventory = await InventoryHandler.getInventoryById(req);
 
-export const getInventoryById = async (req: Request, res: Response) => {
-    const inventory = await handler.getInventoryById(req);
+        return new HttpStatusOk(res, inventory);
+    }
 
-    return new StatusOK(res, inventory);
-};
+    static async createInventory(req: Request, res: Response) {
+        await InventoryHandler.createInventory(req);
 
-export const createInventory = async (req: Request, res: Response) => {
-    await handler.createInventory(req);
+        return new HttpStatusCreated(res);
+    }
 
-    return new StatusCreated(res);
-};
+    static async updateInventory(req: Request, res: Response) {
+        await InventoryHandler.updateInventory(req);
 
-export const updateInventory = async (req: Request, res: Response) => {
-    await handler.updateInventory(req);
+        return new HttpStatusNoContent(res);
+    }
 
-    return new StatusOkNoContent(res);
-};
+    static async deleteInventory(req: Request, res: Response) {
+        await InventoryHandler.deleteInventory(req);
 
-export const deleteInventory = async (req: Request, res: Response) => {
-    await handler.deleteInventory(req);
-
-    return new StatusOkNoContent(res);
-};
+        return new HttpStatusNoContent(res);
+    }
+}

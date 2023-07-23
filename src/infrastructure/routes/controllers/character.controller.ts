@@ -1,33 +1,33 @@
 import type { Request, Response } from 'express';
-import { CharacterHandler } from '../handlers/character.handler';
+import CharacterHandler from '../handlers/character.handler';
 import {
-    StatusCreated,
-    StatusOK,
-    StatusOkNoContent,
+    HttpStatusCreated,
+    HttpStatusOk,
+    HttpStatusNoContent,
 } from 'utils/http.protocols';
 
-const handler = new CharacterHandler();
+export default class CharacterController {
+    static async getCharacterById(req: Request, res: Response) {
+        const character = await CharacterHandler.getCharacterById(req);
 
-export const getCharacterById = async (req: Request, res: Response) => {
-    const character = await handler.getCharacterById(req);
+        return new HttpStatusOk(res, character);
+    }
 
-    return new StatusOK(res, character);
-};
+    static async createCharacter(req: Request, res: Response) {
+        await CharacterHandler.createCharacter(req);
 
-export const createCharacter = async (req: Request, res: Response) => {
-    await handler.createCharacter(req);
+        return new HttpStatusCreated(res);
+    }
 
-    return new StatusCreated(res);
-};
+    static async updateCharacter(req: Request, res: Response) {
+        await CharacterHandler.updateCharacter(req);
 
-export const updateCharacter = async (req: Request, res: Response) => {
-    await handler.updateCharacter(req);
+        return new HttpStatusNoContent(res);
+    }
 
-    return new StatusOkNoContent(res);
-};
+    static async deleteCharacter(req: Request, res: Response) {
+        await CharacterHandler.deleteCharacter(req);
 
-export const deleteCharacter = async (req: Request, res: Response) => {
-    await handler.deleteCharacter(req);
-
-    return new StatusOkNoContent(res);
-};
+        return new HttpStatusNoContent(res);
+    }
+}

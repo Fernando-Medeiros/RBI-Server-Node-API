@@ -1,33 +1,33 @@
 import type { Request, Response } from 'express';
-import { EquipmentHandler } from '../handlers/equipment.handler';
+import EquipmentHandler from '../handlers/equipment.handler';
 import {
-    StatusCreated,
-    StatusOK,
-    StatusOkNoContent,
+    HttpStatusCreated,
+    HttpStatusOk,
+    HttpStatusNoContent,
 } from 'utils/http.protocols';
 
-const handler = new EquipmentHandler();
+export default class EquipmentController {
+    static async getEquipmentById(req: Request, res: Response) {
+        const equipments = await EquipmentHandler.getEquipmentById(req);
 
-export const getEquipmentById = async (req: Request, res: Response) => {
-    const equipments = await handler.getEquipmentById(req);
+        return new HttpStatusOk(res, equipments);
+    }
 
-    return new StatusOK(res, equipments);
-};
+    static async createEquipment(req: Request, res: Response) {
+        await EquipmentHandler.createEquipment(req);
 
-export const createEquipment = async (req: Request, res: Response) => {
-    await handler.createEquipment(req);
+        return new HttpStatusCreated(res);
+    }
 
-    return new StatusCreated(res);
-};
+    static async updateEquipment(req: Request, res: Response) {
+        await EquipmentHandler.updateEquipment(req);
 
-export const updateEquipment = async (req: Request, res: Response) => {
-    await handler.updateEquipment(req);
+        return new HttpStatusNoContent(res);
+    }
 
-    return new StatusOkNoContent(res);
-};
+    static async deleteEquipment(req: Request, res: Response) {
+        await EquipmentHandler.deleteEquipment(req);
 
-export const deleteEquipment = async (req: Request, res: Response) => {
-    await handler.deleteEquipment(req);
-
-    return new StatusOkNoContent(res);
-};
+        return new HttpStatusNoContent(res);
+    }
+}

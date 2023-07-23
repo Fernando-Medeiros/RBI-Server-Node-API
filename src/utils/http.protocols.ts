@@ -6,19 +6,19 @@ class BaseResponse {
     }
 }
 
-export class StatusOK extends BaseResponse {
+export class HttpStatusOk extends BaseResponse {
     constructor(res: Response, message?: object | object[] | null) {
         super(res, 200, message);
     }
 }
 
-export class StatusOkNoContent extends BaseResponse {
+export class HttpStatusNoContent extends BaseResponse {
     constructor(res: Response) {
         super(res, 204);
     }
 }
 
-export class StatusCreated extends BaseResponse {
+export class HttpStatusCreated extends BaseResponse {
     constructor(res: Response, message?: string | object) {
         super(res, 201, message);
     }

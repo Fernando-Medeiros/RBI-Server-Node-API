@@ -1,33 +1,33 @@
 import type { Request, Response } from 'express';
-import { SkillsHandler } from '../handlers/skills.handler';
+import SkillsHandler from '../handlers/skills.handler';
 import {
-    StatusCreated,
-    StatusOK,
-    StatusOkNoContent,
+    HttpStatusCreated,
+    HttpStatusOk,
+    HttpStatusNoContent,
 } from 'utils/http.protocols';
 
-const handler = new SkillsHandler();
+export default class SkillsController {
+    static async getSkillsById(req: Request, res: Response) {
+        const skills = await SkillsHandler.getSkillsById(req);
 
-export const getSkillsById = async (req: Request, res: Response) => {
-    const skills = await handler.getSkillsById(req);
+        return new HttpStatusOk(res, skills);
+    }
 
-    return new StatusOK(res, skills);
-};
+    static async createSkills(req: Request, res: Response) {
+        await SkillsHandler.createSkills(req);
 
-export const createSkills = async (req: Request, res: Response) => {
-    await handler.createSkills(req);
+        return new HttpStatusCreated(res);
+    }
 
-    return new StatusCreated(res);
-};
+    static async updateSkills(req: Request, res: Response) {
+        await SkillsHandler.updateSkills(req);
 
-export const updateSkills = async (req: Request, res: Response) => {
-    await handler.updateSkills(req);
+        return new HttpStatusNoContent(res);
+    }
 
-    return new StatusOkNoContent(res);
-};
+    static async deleteSkills(req: Request, res: Response) {
+        await SkillsHandler.deleteSkills(req);
 
-export const deleteSkills = async (req: Request, res: Response) => {
-    await handler.deleteSkills(req);
-
-    return new StatusOkNoContent(res);
-};
+        return new HttpStatusNoContent(res);
+    }
+}

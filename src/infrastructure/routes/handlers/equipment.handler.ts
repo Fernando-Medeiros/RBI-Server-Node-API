@@ -1,37 +1,37 @@
 import type { Request } from 'express';
-import { EquipmentRepository } from 'infra/repositories/equipment.repository.impl';
-import { EquipmentRequests } from 'infra/routes/requests/equipment.request.impl';
+import { EquipmentRepository } from '../repositories/equipment.repository.impl';
+import { EquipmentRequests } from '../requests/equipment.request.impl';
 import { createCase } from 'app/use-cases/equipment-cases/create.case';
 import { deleteCase } from 'app/use-cases/equipment-cases/delete.case';
 import { updateCase } from 'app/use-cases/equipment-cases/update.case';
 import { getByIdCase } from 'app/use-cases/equipment-cases/get-by-id.case';
 
-export class EquipmentHandler {
+export default class EquipmentHandler {
     private static readonly Repository = new EquipmentRepository();
 
-    async getEquipmentById(req: Request) {
-        return await getByIdCase(
+    static async getEquipmentById(req: Request) {
+        return getByIdCase(
             new EquipmentRequests({ ...req.params, ...req.body }),
             EquipmentHandler.Repository,
         );
     }
 
-    async createEquipment(req: Request) {
-        return await createCase(
+    static async createEquipment(req: Request) {
+        return createCase(
             new EquipmentRequests({ ...req.headers, ...req.body }),
             EquipmentHandler.Repository,
         );
     }
 
-    async deleteEquipment(req: Request) {
-        return await deleteCase(
+    static async deleteEquipment(req: Request) {
+        return deleteCase(
             new EquipmentRequests({ ...req.headers, ...req.body }),
             EquipmentHandler.Repository,
         );
     }
 
-    async updateEquipment(req: Request) {
-        return await updateCase(
+    static async updateEquipment(req: Request) {
+        return updateCase(
             new EquipmentRequests({ ...req.headers, ...req.body }),
             EquipmentHandler.Repository,
         );
