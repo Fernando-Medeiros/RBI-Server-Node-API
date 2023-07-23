@@ -1,17 +1,12 @@
 import { Router } from 'express';
-import {
-    getCharacterById,
-    createCharacter,
-    updateCharacter,
-    deleteCharacter,
-} from '../controllers/character.controller';
+import Controller from '../controllers/character.controller';
 
 export const routes = Router();
 
-routes.get('/characters/:id', getCharacterById);
+routes.get('/characters/:id', Controller.getCharacterById);
 
-routes.post('/characters', createCharacter);
+routes.post('/characters', Controller.createCharacter);
 
-routes.patch('/characters', updateCharacter);
+routes.patch('/characters', Controller.updateCharacter);
 
-routes.delete('/characters', deleteCharacter);
+routes.delete('/characters', Controller.deleteCharacter);

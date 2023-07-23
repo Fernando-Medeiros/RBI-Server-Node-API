@@ -1,17 +1,12 @@
 import { Router } from 'express';
-import {
-    getEquipmentById,
-    createEquipment,
-    updateEquipment,
-    deleteEquipment,
-} from '../controllers/equipment.controller';
+import Controller from '../controllers/equipment.controller';
 
 export const routes = Router();
 
-routes.get('/equipments/:id', getEquipmentById);
+routes.get('/equipments/:id', Controller.getEquipmentById);
 
-routes.post('/equipments', createEquipment);
+routes.post('/equipments', Controller.createEquipment);
 
-routes.patch('/equipments', updateEquipment);
+routes.patch('/equipments', Controller.updateEquipment);
 
-routes.delete('/equipments', deleteEquipment);
+routes.delete('/equipments', Controller.deleteEquipment);

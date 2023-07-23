@@ -1,33 +1,33 @@
 import type { Request, Response } from 'express';
-import { StatusHandler } from '../handlers/status.handler';
+import StatusHandler from '../handlers/status.handler';
 import {
-    StatusCreated,
-    StatusOK,
-    StatusOkNoContent,
+    HttpStatusCreated,
+    HttpStatusOk,
+    HttpStatusNoContent,
 } from 'utils/http.protocols';
 
-const handler = new StatusHandler();
+export default class StatusController {
+    static async getStatusById(req: Request, res: Response) {
+        const status = await StatusHandler.getStatusById(req);
 
-export const getStatusById = async (req: Request, res: Response) => {
-    const status = await handler.getStatusById(req);
+        return new HttpStatusOk(res, status);
+    }
 
-    return new StatusOK(res, status);
-};
+    static async createStatus(req: Request, res: Response) {
+        await StatusHandler.createStatus(req);
 
-export const createStatus = async (req: Request, res: Response) => {
-    await handler.createStatus(req);
+        return new HttpStatusCreated(res);
+    }
 
-    return new StatusCreated(res);
-};
+    static async updateStatus(req: Request, res: Response) {
+        await StatusHandler.updateStatus(req);
 
-export const updateStatus = async (req: Request, res: Response) => {
-    await handler.updateStatus(req);
+        return new HttpStatusNoContent(res);
+    }
 
-    return new StatusOkNoContent(res);
-};
+    static async deleteStatus(req: Request, res: Response) {
+        await StatusHandler.deleteStatus(req);
 
-export const deleteStatus = async (req: Request, res: Response) => {
-    await handler.deleteStatus(req);
-
-    return new StatusOkNoContent(res);
-};
+        return new HttpStatusNoContent(res);
+    }
+}
