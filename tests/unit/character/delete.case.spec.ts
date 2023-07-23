@@ -1,15 +1,16 @@
 import { describe, it, expect } from 'vitest';
-import { InMemoryCharacterRepository } from './mock/inMemoryCharacterRepository';
+import { InMemoryCharacterRepository } from './mock/in-memory.character.repository';
 import { CharacterRequests } from 'infra/routes/requests/character.request.impl';
 import { deleteCase } from 'app/use-cases/character-cases/delete.case';
 import { NotFound } from 'utils/http.exceptions';
 
 const repository = new InMemoryCharacterRepository();
-const { id } = repository.helpers.pubId();
+
+const { pubId: id } = repository.getDataMock();
+
+repository.save(repository.getDataMock());
 
 describe('Delete-> Character-OK', () => {
-    repository.helpers.insertOneCharacterToDatabase();
-
     it('should delete the character', async () => {
         const res = await deleteCase(new CharacterRequests({ id }), repository);
 

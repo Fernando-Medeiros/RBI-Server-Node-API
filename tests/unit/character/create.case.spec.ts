@@ -1,17 +1,17 @@
 import { it, expect, describe } from 'vitest';
-import { InMemoryCharacterRepository } from './mock/inMemoryCharacterRepository';
+import { InMemoryCharacterRepository } from './mock/in-memory.character.repository';
 import { CharacterRequests } from 'infra/routes/requests/character.request.impl';
 import { createCase } from 'app/use-cases/character-cases/create.case';
 import { BadRequest } from 'utils/http.exceptions';
 
 const repository = new InMemoryCharacterRepository();
 
-describe('UseCases - Character - Create - OK', () => {
-    const { pubId: id, ...payload } = repository.helpers.getDataMock();
+const { pubId: id, ...data } = repository.getDataMock();
 
+describe('UseCases - Character - Create - OK', () => {
     it('Should create the character', async () => {
         const res = await createCase(
-            new CharacterRequests({ id, ...payload }),
+            new CharacterRequests({ id, ...data }),
             repository,
         );
 
@@ -20,29 +20,27 @@ describe('UseCases - Character - Create - OK', () => {
 });
 
 describe('UseCases - Character - Create - Exceptions', () => {
-    const { pubId: id, ...payload } = repository.helpers.getDataMock();
-
     it('Should return [BadRequest] when entering an invalid charName', async () => {
-        payload.charName = 'Fake-Name-@@';
+        data.charName = 'Fake-Name-@@';
 
         await expect(() =>
-            createCase(new CharacterRequests({ id, ...payload }), repository),
+            createCase(new CharacterRequests({ id, ...data }), repository),
         ).rejects.toThrowError(BadRequest);
     });
 
     it('Should return [BadRequest] when entering an invalid className', async () => {
-        payload.className = 'M@ge';
+        data.className = 'M@ge';
 
         await expect(() =>
-            createCase(new CharacterRequests({ id, ...payload }), repository),
+            createCase(new CharacterRequests({ id, ...data }), repository),
         ).rejects.toThrowError(BadRequest);
     });
 
     it('Should return [BadRequest] when informing a name in use', async () => {
-        const { pubId: id, ...payload } = repository.helpers.getDataMock();
+        const { pubId: id, ...data } = repository.getDataMock();
 
         await expect(() =>
-            createCase(new CharacterRequests({ id, ...payload }), repository),
+            createCase(new CharacterRequests({ id, ...data }), repository),
         ).rejects.toThrowError(BadRequest);
     });
 
@@ -59,7 +57,7 @@ describe('UseCases - Character - Create - Exceptions', () => {
 });
 
 describe('UseCases - Character - Create - Loop-Exceptions', () => {
-    const { pubId: id, ...payload } = repository.helpers.getDataMock();
+    const { pubId: id, ...data } = repository.getDataMock();
 
     const invalidNamesForTest = [
         ['fake22', 'fake()', 'fake**', 'fake&&', 'fake##', 'fake@@', 'fake%%'],
@@ -76,7 +74,7 @@ describe('UseCases - Character - Create - Loop-Exceptions', () => {
                     createCase(
                         new CharacterRequests({
                             id,
-                            ...payload,
+                            ...data,
                             charName,
                         }),
                         repository,
@@ -93,7 +91,7 @@ describe('UseCases - Character - Create - Loop-Exceptions', () => {
                     createCase(
                         new CharacterRequests({
                             id,
-                            ...payload,
+                            ...data,
                             charName,
                         }),
                         repository,

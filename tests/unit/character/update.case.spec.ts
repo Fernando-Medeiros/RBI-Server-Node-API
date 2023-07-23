@@ -1,21 +1,26 @@
 import { describe, it, expect } from 'vitest';
-import { InMemoryCharacterRepository } from './mock/inMemoryCharacterRepository';
+import { InMemoryCharacterRepository } from './mock/in-memory.character.repository';
 import { CharacterRequests } from 'infra/routes/requests/character.request.impl';
 import { updateCase } from 'app/use-cases/character-cases/update.case';
 import { BadRequest } from 'utils/http.exceptions';
 
 const repository = new InMemoryCharacterRepository();
 
+const { pubId: id } = repository.getDataMock();
+
+const usingArrayFields = <T>(value: T) => [
+    { charName: value },
+    { className: value, level: value },
+];
+
+repository.save(repository.getDataMock());
+
 describe('Update-> Character-OK', () => {
-    repository.helpers.insertOneCharacterToDatabase();
-
-    const { id } = repository.helpers.pubId();
-
     it('Should update charName, className and level', async () => {
-        const [charName, className, level] = ['fakeName', 'Mage', 2];
+        const data = { charName: 'FakeName', className: 'Mage', level: 1 };
 
         const res = await updateCase(
-            new CharacterRequests(Object({ id, charName, className, level })),
+            new CharacterRequests({ id, ...data }),
             repository,
         );
 
@@ -23,10 +28,8 @@ describe('Update-> Character-OK', () => {
     });
 
     it('Should update charName', async () => {
-        const [charName, className, level] = ['FakeName', undefined, undefined];
-
         const res = await updateCase(
-            new CharacterRequests(Object({ id, charName, className, level })),
+            new CharacterRequests({ id, charName: 'FakeNameX' }),
             repository,
         );
 
@@ -34,10 +37,8 @@ describe('Update-> Character-OK', () => {
     });
 
     it('Should update className', async () => {
-        const [charName, className, level] = [undefined, 'Warrior', undefined];
-
         const res = await updateCase(
-            new CharacterRequests(Object({ id, charName, className, level })),
+            new CharacterRequests({ id, className: 'Warrior' }),
             repository,
         );
 
@@ -45,10 +46,8 @@ describe('Update-> Character-OK', () => {
     });
 
     it('Should update level', async () => {
-        const [charName, className, level] = [undefined, undefined, 2];
-
         const res = await updateCase(
-            new CharacterRequests(Object({ id, charName, className, level })),
+            new CharacterRequests({ id, level: 2 }),
             repository,
         );
 
@@ -57,57 +56,33 @@ describe('Update-> Character-OK', () => {
 });
 
 describe('Update-> Character-Exceptions', () => {
-    const { id } = repository.helpers.pubId();
-
     it('Should return [BadRequest] when passing an empty object', async () => {
-        const [charName, className, level] = [undefined, undefined, undefined];
-
         await expect(() =>
-            updateCase(
-                new CharacterRequests(
-                    Object({ id, charName, className, level }),
-                ),
-                repository,
-            ),
+            updateCase(new CharacterRequests({ id }), repository),
         ).rejects.toThrowError(BadRequest);
     });
 
-    it('Should return [BadRequest] when informing invalid charName', async () => {
-        const [charName, className, level] = ['@@@@', undefined, undefined];
-
-        await expect(() =>
-            updateCase(
-                new CharacterRequests(
-                    Object({ id, charName, className, level }),
-                ),
-                repository,
-            ),
-        ).rejects.toThrowError(BadRequest);
+    it('Should return [BadRequest] when informing INVALID FIELD (string)', () => {
+        usingArrayFields<string>('@@@@@@@@@').forEach(
+            async field =>
+                await expect(
+                    updateCase(
+                        new CharacterRequests(Object({ id, ...field })),
+                        repository,
+                    ),
+                ).rejects.toThrowError(BadRequest),
+        );
     });
 
-    it('Should return [BadRequest] when informing invalid className', async () => {
-        const [charName, className, level] = [undefined, '@@@@', undefined];
-
-        await expect(() =>
-            updateCase(
-                new CharacterRequests(
-                    Object({ id, charName, className, level }),
-                ),
-                repository,
-            ),
-        ).rejects.toThrowError(BadRequest);
-    });
-
-    it('Should return [BadRequest] when informing invalid level', async () => {
-        const [charName, className, level] = [undefined, undefined, -1];
-
-        await expect(() =>
-            updateCase(
-                new CharacterRequests(
-                    Object({ id, charName, className, level }),
-                ),
-                repository,
-            ),
-        ).rejects.toThrowError(BadRequest);
+    it('Should return [BadRequest] when informing INVALID FIELD (number)', () => {
+        usingArrayFields<number>(500).forEach(
+            async field =>
+                await expect(
+                    updateCase(
+                        new CharacterRequests(Object({ id, ...field })),
+                        repository,
+                    ),
+                ).rejects.toThrowError(BadRequest),
+        );
     });
 });
