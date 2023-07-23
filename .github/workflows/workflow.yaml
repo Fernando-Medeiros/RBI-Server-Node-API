@@ -10,14 +10,25 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-            - uses: actions/checkout@v3
+            - name: CHECKOUT REPOSITORY
+              uses: actions/checkout@v3
 
-              name: SETUP NODEJS
-            - uses: actions/setup-node@v3
+            - name: SETUP NODEJS
+              uses: actions/setup-node@v3
               with:
                   nove-version: '18.x'
 
-              name: INSTALL && BUILD
-            - run: yarn install
-            - run: yarn build
-            - run: yarn test unit
+            - name: INSTALL | BUILD | CONTAINERS
+              run: |
+                  docker compose up -d
+
+                  sleep 10
+
+                  docker compose exec app bash
+
+                  yarn test unit
+
+                  yarn test integration
+
+            - name: STOP DOCKER CONTAINERS
+              run: docker compose down
