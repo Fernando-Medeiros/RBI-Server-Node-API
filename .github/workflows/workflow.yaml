@@ -1,9 +1,10 @@
-name: CI - Pull Requests
+name: CI - Push + Pull Requests [Master]
 
 on:
+    push:
+        branches: [master]
     pull_request:
-        branches:
-            - master
+        branches: [master]
 
 jobs:
     verify-build-and-tests:
@@ -15,7 +16,7 @@ jobs:
               name: SETUP NODEJS
             - uses: actions/setup-node@v3
               with:
-                  nove-version: '18.x'
+                  node-version: '18.x'
 
               name: INSTALL && BUILD
             - run: yarn install
