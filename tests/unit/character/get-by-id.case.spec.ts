@@ -1,15 +1,17 @@
 import { describe, it, expect } from 'vitest';
-import { InMemoryCharacterRepository } from './mock/inMemoryCharacterRepository';
+import { InMemoryCharacterRepository } from './mock/in-memory.character.repository';
 import { CharacterRequests } from 'infra/routes/requests/character.request.impl';
 import { getByIdCase } from 'app/use-cases/character-cases/get-by-id.case';
 import { BadRequest, NotFound } from 'utils/http.exceptions';
+import * as uuid from 'uuid';
 
 const repository = new InMemoryCharacterRepository();
-const { id } = repository.helpers.pubId();
+
+const { pubId: id } = repository.getDataMock();
+
+repository.save(repository.getDataMock());
 
 describe('Get-By-Id-> Character-OK', () => {
-    repository.helpers.insertOneCharacterToDatabase();
-
     it('Should get a character by id', async () => {
         const res = await getByIdCase(
             new CharacterRequests({ id }),
@@ -21,23 +23,21 @@ describe('Get-By-Id-> Character-OK', () => {
 });
 
 describe('Get-By-Id-> Character-Exceptions', () => {
-    it('Should return [BadRequest] when passing an invalid id', async () => {
-        await expect(() =>
-            getByIdCase(new CharacterRequests({ id: '000-000' }), repository),
-        ).rejects.toThrowError(BadRequest);
-    });
+    it('Should return [BadRequest] when passing an invalid id', () => {
+        const usingArrayId = [{ id: '' }, { id: '000-000' }];
 
-    it('Should return [BadRequest] when passing an null id', async () => {
-        await expect(() =>
-            getByIdCase(new CharacterRequests(Object()), repository),
-        ).rejects.toThrowError(BadRequest);
+        usingArrayId.forEach(async testId => {
+            await expect(() =>
+                getByIdCase(new CharacterRequests({ ...testId }), repository),
+            ).rejects.toThrowError(BadRequest);
+        });
     });
 
     it('Should return [NotFound] when entering a valid but non-existent id', async () => {
         await expect(() =>
             getByIdCase(
                 new CharacterRequests({
-                    id: 'b2cd80d6-825d-4b67-a7a5-3cface4f19b9',
+                    id: uuid.v4(),
                 }),
                 repository,
             ),
