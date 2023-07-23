@@ -279,39 +279,40 @@
 │   └── unit
 │       ├── character
 │       │   ├── mock
-│       │   │   └── inMemoryCharacterRepository.ts
+│       │   │   └── in-memory.character.repository.ts
 │       │   ├── create.case.spec.ts
 │       │   ├── delete.case.spec.ts
 │       │   ├── get-by-id.case.spec.ts
 │       │   └── update.case.spec.ts
 │       ├── equipment
 │       │   ├── mock
-│       │   │   └── inMemoryEquipmentRepository.ts
+│       │   │   └── in-memory.equipment.repository.ts
 │       │   ├── create.case.spec.ts
 │       │   ├── delete.case.spec.ts
 │       │   ├── get-by-id.case.spec.ts
 │       │   └── update.case.spec.ts
 │       ├── inventory
 │       │   ├── mock
-│       │   │   └── inMemoryInventoryRepository.ts
+│       │   │   └── in-memory.inventory.repository.ts
 │       │   ├── create.case.spec.ts
 │       │   ├── delete.case.spec.ts
 │       │   ├── get-by-id.case.spec.ts
 │       │   └── update.case.spec.ts
 │       ├── skills
 │       │   ├── mock
-│       │   │   └── inMemorySkillsRepository.ts
+│       │   │   └── in-memory.skills.repository.ts
 │       │   ├── create.case.spec.ts
 │       │   ├── delete.case.spec.ts
 │       │   ├── get-by-id.case.spec.ts
 │       │   └── update.case.spec.ts
-│       └── status
-│           ├── mock
-│           │   └── inMemoryStatusRepository.ts
-│           ├── create.case.spec.ts
-│           ├── delete.case.spec.ts
-│           ├── get-by-id.case.spec.ts
-│           └── update.case.spec.ts
+│       ├── status
+│       │   ├── mock
+│       │   │   └── in-memory.status.repository.ts
+│       │   ├── create.case.spec.ts
+│       │   ├── delete.case.spec.ts
+│       │   ├── get-by-id.case.spec.ts
+│       │   └── update.case.spec.ts
+│       └── in-memory-repository.ts
 ├── docker-compose.yml
 ├── Dockerfile
 ├── env.example
@@ -321,6 +322,6 @@
 ├── vitest.config.ts
 └── yarn.lock
 
-101 directories, 216 files
+101 directories, 217 files
 
 ```
