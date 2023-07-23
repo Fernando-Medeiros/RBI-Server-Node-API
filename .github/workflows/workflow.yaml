@@ -13,18 +13,17 @@ jobs:
             - name: CHECKOUT REPOSITORY
               uses: actions/checkout@v3
 
-            - name: SETUP NODEJS
-              uses: actions/setup-node@v3
-              with:
-                  node-version: '18.x'
+            - name: START CONTAINERS
+              run: docker compose up -d
 
-            - name: INSTALL | BUILD | CONTAINERS
-              run: |
-                  docker compose up -d
+            - name: CHECK RUNNING CONTAINERS
+              run: docker compose ps -a
 
-                  sleep 30
+            - name: CHECK APP LOGS
+              run: docker compose logs app
 
-                  yarn test unit
+            - name: EXEC TESTS
+              run: docker compose exec app yarn test
 
-            - name: STOP DOCKER CONTAINERS
+            - name: STOP CONTAINERS
               run: docker compose down

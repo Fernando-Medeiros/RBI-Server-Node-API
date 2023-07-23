@@ -3,7 +3,7 @@ version: '3.7'
 services:
     app:
         build: .
-        container_name: rbi-serve-app
+        container_name: app
         entrypoint: .docker/entrypoint.sh
         environment:
             NODE_ENV: dev
