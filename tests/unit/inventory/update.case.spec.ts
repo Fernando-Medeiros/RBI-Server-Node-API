@@ -1,16 +1,34 @@
 import { describe, it, expect } from 'vitest';
-import { InMemoryInventoryRepository } from './mock/inMemoryInventoryRepository';
+import { InMemoryInventoryRepository } from './mock/in-memory.inventory.repository';
 import { InventoryRequests } from 'infra/routes/requests/inventory.request.impl';
 import { updateCase } from 'app/use-cases/inventory-cases/update.case';
+import { BadRequest } from 'utils/http.exceptions';
 
 const repository = new InMemoryInventoryRepository();
-const { id } = repository.helpers.pubId();
+
+const { pubId: id, ...data } = repository.getDataMock();
+
+const [armor, accessory, weapon, consumable, material] = [
+    repository.getFakeArmor(),
+    repository.getFakeAccessory(),
+    repository.getFakeWeapon(),
+    repository.getFakeConsumable(),
+    repository.getFakeMaterial(),
+];
+
+function usingArrayItems<T>(value: T[]) {
+    return [
+        { armors: value },
+        { accessories: value },
+        { consumables: value },
+        { materials: value },
+        { weapons: value },
+    ];
+}
+
+repository.save(repository.getDataMock());
 
 describe('Update-> Inventory-OK', () => {
-    repository.helpers.insertOneToDatabase();
-
-    const data = Object.assign(repository.helpers.getDataMock());
-
     it('Should update all Inventory', async () => {
         const res = await updateCase(
             new InventoryRequests({ id, ...data }),
@@ -20,7 +38,7 @@ describe('Update-> Inventory-OK', () => {
     });
 
     it('Should update accessory', async () => {
-        data.accessories.push(repository.helpers.getFakeAccessory());
+        data.accessories.push(accessory);
 
         const res = await updateCase(
             new InventoryRequests({ id, ...data }),
@@ -30,7 +48,7 @@ describe('Update-> Inventory-OK', () => {
     });
 
     it('Should update armor', async () => {
-        data.armors.push(repository.helpers.getFakeArmor());
+        data.armors.push(armor);
 
         const res = await updateCase(
             new InventoryRequests({ id, ...data }),
@@ -40,7 +58,7 @@ describe('Update-> Inventory-OK', () => {
     });
 
     it('Should update consumable', async () => {
-        data.consumables.push(repository.helpers.getFakeConsumable());
+        data.consumables.push(consumable);
 
         const res = await updateCase(
             new InventoryRequests({ id, ...data }),
@@ -50,7 +68,7 @@ describe('Update-> Inventory-OK', () => {
     });
 
     it('Should update material', async () => {
-        data.materials.push(repository.helpers.getFakeMaterial());
+        data.materials.push(material);
 
         const res = await updateCase(
             new InventoryRequests({ id, ...data }),
@@ -60,7 +78,7 @@ describe('Update-> Inventory-OK', () => {
     });
 
     it('Should update weapon', async () => {
-        data.weapons.push(repository.helpers.getFakeWeapon());
+        data.weapons.push(weapon);
 
         const res = await updateCase(
             new InventoryRequests({ id, ...data }),
@@ -71,49 +89,22 @@ describe('Update-> Inventory-OK', () => {
 });
 
 describe('Update-> Inventory-Exceptions', () => {
-    it('Should return [no data] when passing an empty object', async () => {
+    it('Should return [BadRequest] when passing an empty object', async () => {
         await expect(() =>
             updateCase(new InventoryRequests({ id }), repository),
-        ).rejects.toThrowError('No data');
+        ).rejects.toThrowError(BadRequest);
     });
 
-    it('Should return an error when sending invalid accessory', async () => {
-        const accessories = [Object({ name: '', description: '' })];
-
-        await expect(() =>
-            updateCase(new InventoryRequests({ id, accessories }), repository),
-        ).rejects.toThrowError('Missing fields');
-    });
-
-    it('Should return an error when sending invalid armor', async () => {
-        const armors = [Object({ name: '', description: '' })];
-
-        await expect(() =>
-            updateCase(new InventoryRequests({ id, armors }), repository),
-        ).rejects.toThrowError('Missing fields');
-    });
-
-    it('Should return an error when sending invalid consumable', async () => {
-        const consumables = [Object({ name: '', description: '' })];
-
-        await expect(() =>
-            updateCase(new InventoryRequests({ id, consumables }), repository),
-        ).rejects.toThrowError('Missing fields');
-    });
-
-    it('Should return an error when sending invalid material', async () => {
-        const materials = [Object({ name: '', description: '' })];
-
-        await expect(() =>
-            updateCase(new InventoryRequests({ id, materials }), repository),
-        ).rejects.toThrowError('Missing fields');
-    });
-
-    it('Should return an error when sending invalid weapon', async () => {
-        const weapons = [Object({ name: '', description: '' })];
-
-        await expect(() =>
-            updateCase(new InventoryRequests({ id, weapons }), repository),
-        ).rejects.toThrowError('Missing fields');
+    it('Should return BadRequest when sending invalid ITEM', () => {
+        usingArrayItems([Object({ name: '', description: '' })]).forEach(
+            async item => {
+                await expect(() =>
+                    updateCase(
+                        new InventoryRequests({ id, ...item }),
+                        repository,
+                    ),
+                ).rejects.toThrowError(BadRequest);
+            },
+        );
     });
 });

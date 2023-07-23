@@ -1,16 +1,34 @@
 import { describe, it, expect } from 'vitest';
-import { InMemoryEquipmentRepository } from './mock/inMemoryEquipmentRepository';
+import { InMemoryEquipmentRepository } from './mock/in-memory.equipment.repository';
 import { EquipmentRequests } from 'infra/routes/requests/equipment.request.impl';
 import { updateCase } from 'app/use-cases/equipment-cases/update.case';
+import { BadRequest } from 'utils/http.exceptions';
 
 const repository = new InMemoryEquipmentRepository();
-const { id } = repository.helpers.pubId();
+
+const { pubId: id, ...equipments } = repository.getDataMock();
+
+const [armor, accessory, weapon] = [
+    repository.getFakeArmor(),
+    repository.getFakeAccessory(),
+    repository.getFakeWeapon(),
+];
+
+function usingArrayEquipments<T>(value: T) {
+    return [
+        { head: value },
+        { body: value },
+        { leg: value },
+        { handLeft: value },
+        { handRight: value },
+        { accessoryLeft: value },
+        { accessoryRight: value },
+    ];
+}
+
+repository.save(repository.getDataMock());
 
 describe('Update-> Equipment-OK', () => {
-    repository.helpers.insertOneToDatabase();
-
-    const equipments = repository.helpers.getDataMock();
-
     it('Should update all Equipment', async () => {
         const res = await updateCase(
             new EquipmentRequests({ id, ...equipments }),
@@ -20,7 +38,7 @@ describe('Update-> Equipment-OK', () => {
     });
 
     it('Should update head', async () => {
-        equipments.head = repository.helpers.getFakeArmor();
+        equipments.head = armor;
 
         const res = await updateCase(
             new EquipmentRequests({ id, ...equipments }),
@@ -30,7 +48,7 @@ describe('Update-> Equipment-OK', () => {
     });
 
     it('Should update body', async () => {
-        equipments.body = repository.helpers.getFakeArmor();
+        equipments.body = armor;
 
         const res = await updateCase(
             new EquipmentRequests({ id, ...equipments }),
@@ -40,7 +58,7 @@ describe('Update-> Equipment-OK', () => {
     });
 
     it('Should update leg', async () => {
-        equipments.leg = repository.helpers.getFakeArmor();
+        equipments.leg = armor;
 
         const res = await updateCase(
             new EquipmentRequests({ id, ...equipments }),
@@ -50,7 +68,7 @@ describe('Update-> Equipment-OK', () => {
     });
 
     it('Should update handLeft', async () => {
-        equipments.handLeft = repository.helpers.getFakeWeapon();
+        equipments.handLeft = weapon;
 
         const res = await updateCase(
             new EquipmentRequests({ id, ...equipments }),
@@ -60,7 +78,7 @@ describe('Update-> Equipment-OK', () => {
     });
 
     it('Should update handRight', async () => {
-        equipments.handRight = repository.helpers.getFakeWeapon();
+        equipments.handRight = weapon;
 
         const res = await updateCase(
             new EquipmentRequests({ id, ...equipments }),
@@ -70,7 +88,7 @@ describe('Update-> Equipment-OK', () => {
     });
 
     it('Should update accessoryLeft', async () => {
-        equipments.accessoryLeft = repository.helpers.getFakeAccessory();
+        equipments.accessoryLeft = accessory;
 
         const res = await updateCase(
             new EquipmentRequests({ id, ...equipments }),
@@ -80,7 +98,7 @@ describe('Update-> Equipment-OK', () => {
     });
 
     it('Should update accessoryRight', async () => {
-        equipments.accessoryRight = repository.helpers.getFakeAccessory();
+        equipments.accessoryRight = accessory;
 
         const res = await updateCase(
             new EquipmentRequests({ id, ...equipments }),
@@ -91,31 +109,20 @@ describe('Update-> Equipment-OK', () => {
 });
 
 describe('Update-> Equipment-Exceptions', () => {
-    it('Should return [no data] when passing an empty object', async () => {
+    it('Should return [BadRequest] when passing an empty object', async () => {
         await expect(() =>
             updateCase(new EquipmentRequests({ id }), repository),
-        ).rejects.toThrowError('No data');
+        ).rejects.toThrowError(BadRequest);
     });
 
-    it('Should return an error when sending invalid names', async () => {
-        const arrayFields = [
-            { head: { name: 111 } },
-            { body: { name: 111 } },
-            { leg: { name: 111 } },
-            { handLeft: { name: 111 } },
-            { handRight: { name: 111 } },
-            { accessoryLeft: { name: 111 } },
-            { accessoryRight: { name: 111 } },
-        ];
-
-        arrayFields.forEach(element => {
-            expect(
-                async () =>
-                    await updateCase(
-                        new EquipmentRequests({ id, ...element }),
-                        repository,
-                    ),
-            ).rejects.toThrowError('Missing fields');
+    it('Should return [BadRequest] when sending invalid items', () => {
+        usingArrayEquipments({ name: 111 }).forEach(async equipment => {
+            await expect(() =>
+                updateCase(
+                    new EquipmentRequests({ id, ...equipment }),
+                    repository,
+                ),
+            ).rejects.toThrowError(BadRequest);
         });
     });
 });

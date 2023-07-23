@@ -1,14 +1,16 @@
 import { describe, it, expect } from 'vitest';
-import { InMemoryEquipmentRepository } from './mock/inMemoryEquipmentRepository';
+import { InMemoryEquipmentRepository } from './mock/in-memory.equipment.repository';
 import { EquipmentRequests } from 'infra/routes/requests/equipment.request.impl';
 import { deleteCase } from 'app/use-cases/equipment-cases/delete.case';
+import { NotFound } from 'utils/http.exceptions';
 
 const repository = new InMemoryEquipmentRepository();
-const { id } = repository.helpers.pubId();
+
+const { pubId: id } = repository.getDataMock();
+
+repository.save(repository.getDataMock());
 
 describe('Delete-> Equipment-OK', () => {
-    repository.helpers.insertOneToDatabase();
-
     it('Should delete the Equipment', async () => {
         const res = await deleteCase(new EquipmentRequests({ id }), repository);
 
@@ -17,9 +19,9 @@ describe('Delete-> Equipment-OK', () => {
 });
 
 describe('Delete-> Equipment-Exceptions', () => {
-    it('Should return [not found] when informing an id that does not exist in the database', async () => {
+    it('Should return [NotFound] when informing an id that does not exist in the database', async () => {
         await expect(() =>
             deleteCase(new EquipmentRequests({ id }), repository),
-        ).rejects.toThrowError('not found');
+        ).rejects.toThrowError(NotFound);
     });
 });
