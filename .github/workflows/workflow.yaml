@@ -24,7 +24,7 @@ jobs:
                   docker compose top
 
             - name: EXEC TESTS
-              run: docker compose exec app bash
+              run: docker container exec app yarn test unit
 
             - name: STOP CONTAINERS
               run: docker compose down
