@@ -23,8 +23,15 @@ jobs:
                   docker container ls -a
                   docker compose top
 
-            - name: EXEC TESTS
-              run: docker container exec app yarn test unit
+            - name: SETUP NODEJS
+              uses: actions/setup-node@v3
+              with:
+                  node-version: '18.x'
+            - run: docker container start app
+            - run: docker container exec app yarn install
+            - run: docker container exec app yarn build
+            - run: docker container exec app yarn dev
+            - run: docker container exec app yarn test unit
 
             - name: STOP CONTAINERS
               run: docker compose down
