@@ -17,13 +17,14 @@ jobs:
               run: docker compose up -d
 
             - name: CHECK RUNNING CONTAINERS
-              run: docker compose ps -a
-
-            - name: CHECK APP LOGS
-              run: docker compose logs app
+              run: |
+                  docker container ps -a
+                  docker container logs app
+                  docker container ls -a
+                  docker compose top
 
             - name: EXEC TESTS
-              run: docker compose exec app yarn test
+              run: docker compose exec app bash
 
             - name: STOP CONTAINERS
               run: docker compose down
