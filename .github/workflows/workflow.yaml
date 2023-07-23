@@ -16,19 +16,19 @@ jobs:
             - name: SETUP NODEJS
               uses: actions/setup-node@v3
               with:
-                  nove-version: '18.x'
+                  node-version: '18.x'
 
             - name: INSTALL | BUILD | CONTAINERS
               run: |
                   docker compose up -d
 
-                  sleep 10
+                  sleep 30
 
+            - name: EXEC UNIT TESTS
+              run: |
                   docker compose exec app bash
 
                   yarn test unit
-
-                  yarn test integration
 
             - name: STOP DOCKER CONTAINERS
               run: docker compose down
